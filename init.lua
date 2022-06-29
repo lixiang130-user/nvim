@@ -92,15 +92,39 @@ require('packer').startup(function()
     use 'shaunsingh/nord.nvim'
     --zephyr-nvim theme
     use 'glepnir/zephyr-nvim'
+    -- treesitter 语法高亮, :TSInstallInfo查看支持的语言
+    -- :TSInstall lua,安装语言解析器, :TSBufToggle highlight 可根据语法高亮显示
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     --nvim-tree 插件,打开文件树
     use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
     -- bufferline 插件,展示顶部tab标签
     use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 end)
 
+
 -- gruvbox nord zephyr-nvim 等主题插件配置
 vim.api.nvim_command('set background=dark') -- 设置背景色,调用vim设置的方式
 vim.api.nvim_command('colorscheme zephyr')  -- 设置主题,调用vim设置的方式
+
+-- treesitter 语法高亮配置
+require'nvim-treesitter.configs'.setup{
+    -- 安装 language parser :TSInstallInfo 命令查看支持的语言
+    ensure_installed = {"lua", "c", "cpp", "python", "make"},
+    -- 启动代码高亮功能
+    highlight = {enable = true, additional_vim_regex_highlighting = false},
+    -- 启动增量选择
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = '<CR>',
+            node_incremental = '<CR>',
+            node_decremental = '<BS>',
+            scope_incremental = '<TAB>',
+        }
+    },
+    -- 启用基于Treesitter的代码格式化(=). 实验功能
+    indent = {enable = true}
+}
 
 -- nvim-tree 配置
 require'nvim-tree'.setup{
