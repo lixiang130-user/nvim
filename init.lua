@@ -119,7 +119,9 @@ require('bufferline').setup{
         diagnostics = 'nvim_lsp',   -- 使用nvim内置lsp
         show_buffer_icons = false, -- 禁用缓冲区的文件类型图标
         show_buffer_close_icons = true,    -- 禁用缓冲区的关闭图标
-        numbers = 'buffer_id',  --显示缓冲区文件编号
+        numbers = 'buffer_id',  -- 显示缓冲区文件编号
+        max_name_length = 18,   -- 最大显示tab的字节数
+        tab_size = 5,   --table最小宽度,给小了无影响,给大了浪费空间
         offsets = {{    -- 左侧让出nvim-tree的位置
             filetype = 'NvimTree',
             text = 'File Explorer',
@@ -131,3 +133,6 @@ require('bufferline').setup{
 -- bufferline 左右Alt切换
 map("n", "<M-h>", ":BufferLineCyclePrev<CR>", opt)
 map("n", "<M-l>", ":BufferLineCycleNext<CR>", opt)
+map("n", "cw", ":bw<CR>", opt)  -- 关闭当前窗口
+map("n", "cl", ":BufferLineCloseLeft<CR>", opt)     --关闭当前窗口左侧所有窗口
+map("n", "cr", ":BufferLineCloseRight<CR>", opt)    --关闭当前窗口右侧所有窗口
