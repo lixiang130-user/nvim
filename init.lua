@@ -67,7 +67,7 @@ local map = vim.api.nvim_set_keymap
 local opt = {noremap = true, silent = true }
 -- 这样就可样映射按键了:
 -- map('模式','按键','映射为xx',opt)
-map('n', 'ca', ':wqa<CR>', opt)     -- ca(close all)关闭所有窗口并退出
+map('n', 'ca', ':wa<CR>:qa<CR>', opt)     -- ca(close all)关闭所有窗口并退出
 map('n', 'cc', '<C-w>c', opt)       -- cc(close)关闭当前窗口
 map('n', 'co', '<C-w>o', opt)       -- co(close others)关闭其他窗口
 map('n', 'wv', ':vsp<CR>', opt)     -- wv(windows vertical split)垂直分屏
@@ -130,9 +130,11 @@ require('bufferline').setup{
         }}
     }
 }
--- bufferline 左右Alt切换
-map("n", "<M-h>", ":BufferLineCyclePrev<CR>", opt)
-map("n", "<M-l>", ":BufferLineCycleNext<CR>", opt)
-map("n", "cw", ":bw<CR>", opt)  -- 关闭当前窗口
+-- bufferline 左右Shift切换
+map("n", "<S-h>", ":BufferLineCyclePrev<CR>", opt)
+map("n", "<S-l>", ":BufferLineCycleNext<CR>", opt)
+map("n", "cw", ":bw!<CR>", opt)  -- 关闭当前窗口(bw or bd)
 map("n", "cl", ":BufferLineCloseLeft<CR>", opt)     --关闭当前窗口左侧所有窗口
 map("n", "cr", ":BufferLineCloseRight<CR>", opt)    --关闭当前窗口右侧所有窗口
+map("t", "<Esc>", "<C-\\><C-n>", opt)    --命令行模式下terminal输入模式下切换到正常模式
+map("n", "tt", ":vsp<CR>:terminal<CR>", opt)     --开启终端
