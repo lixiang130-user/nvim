@@ -13,5 +13,3 @@
 
 9. 使用语法增强插件treesitter 需要安装gcc,g++
 
-10.安装lsp需要安装unzip,sudo apt-get install unzip
-
