@@ -18,7 +18,9 @@
 -- 配置
 vim.g.encoding = 'UTF-8'    -- utf8
 vim.o.fileencoding = 'utf-8'
-
+-- jk移动时光标下上方保留x行
+vim.o.scrolloff = 5
+vim.o.sidescrolloff = 5
 vim.o.tabstop = 4   -- 缩进4个空格等于一个Tab
 vim.bo.tabstop = 4
 vim.o.softtabstop = 4
@@ -55,8 +57,6 @@ vim.o.showtabline = 2   -- 默认情况下,只有用户新建了标签页才会�
 
 vim.o.showmode = false  -- 显示当前模式nvi,使用增强状态栏插件后不再需要 vim 的模式提示
 vim.wo.colorcolumn = '80'   -- 右侧参考线，超过表示代码太长了，考虑换行
-vim.o.termguicolors = true  -- 主题样式
-vim.opt.termguicolors = true
 
 
 -- 配置快捷键的常用前缀,通常是空格,后面见到<leader>就表示空格
@@ -157,8 +157,11 @@ require('bufferline').setup{
 -- bufferline 左右Shift切换
 map("n", "<S-h>", ":BufferLineCyclePrev<CR>", opt)
 map("n", "<S-l>", ":BufferLineCycleNext<CR>", opt)
-map("n", "cw", ":bw!<CR>", opt)  -- 关闭当前窗口(bw or bd)
-map("n", "cl", ":BufferLineCloseLeft<CR>", opt)     --关闭当前窗口左侧所有窗口
-map("n", "cr", ":BufferLineCloseRight<CR>", opt)    --关闭当前窗口右侧所有窗口
+map("n", "cw", ":bw!<CR>", opt)  -- close windows 关闭当前窗口(bw or bd)
+map("n", "cl", ":BufferLineCloseLeft<CR>", opt)     -- close left 关闭当前窗口左侧所有窗口
+map("n", "cr", ":BufferLineCloseRight<CR>", opt)    -- close right 关闭当前窗口右侧所有窗口
 map("t", "<Esc>", "<C-\\><C-n>", opt)    --命令行模式下terminal输入模式下切换到正常模式
-map("n", "tt", ":vsp<CR>:terminal<CR>", opt)     --开启终端
+map("n", "tt", ":vsp<CR>:terminal<CR>", opt)     -- terminal 开启终端
+-- wsl子系统无法使用xsel实现剪切板,但是可以用过clip.exe实现系统剪切板:
+map("v", "Y", "!clip.exe<CR>u", opt)    --通过wsl中的clip.exe拷贝内容到系统剪切板
+                                        --但是会删除背拷贝的内容,所以使用u撤销

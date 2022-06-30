@@ -5,5 +5,6 @@
 5.clone 插件packer,保存路径固定在~/.config下,想要修改路径比较困难
     git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-packer管理插件的插件:https://github.com/wbthomason/packer.nvim
-gruvbox配色:https://github.com/ellisonleao/gruvbox.nvim.git
+6.packer管理插件的插件:https://github.com/wbthomason/packer.nvim
+
+7.~/.baserc中配置默认vim为neovim"alias vim='nvim',alias vi='nvim'"
