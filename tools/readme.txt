@@ -8,3 +8,5 @@
 6.packer管理插件的插件:https://github.com/wbthomason/packer.nvim
 
 7.~/.baserc中配置默认vim为neovim"alias vim='nvim',alias vi='nvim'"
+
+8.windows子系统wsl中使用clip.exe拷贝到系统剪切板,虚拟机安装xsel工具即可
