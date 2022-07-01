@@ -13,3 +13,18 @@
 
 9. 使用语法增强插件treesitter 需要安装gcc,g++
 
+10. 若需要安装nodejs, npm
+    sudo apt-get install nodejs
+    sudo apt-get install npm
+    -- 期间要关闭fastgithub中修改的环境变量中的http_proxy和https_proxy,
+    unset http_proxy
+    unset https_proxy
+    -- 更新nodejs和npm
+    sudo npm install -g n  -- 安装n模块
+    sudo n stable  -- 升级nodejs到最新的stable(稳定版)
+    sudo npm install npm -location=global
+    nvim中使用npm时环境变量http_proxy/https_proxy也不能有
+    -- 若需要安装 typescripy typescript-language-server 
+    sudo npm install --location=global typescript typescript-language-server
+
+11.支持具体语言查看: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md

@@ -49,5 +49,32 @@ map("n", "tt", ":vsp<CR>:terminal<CR>", opt) -- terminal 开启终端
 -- 剪切板操作 wsl子系统无法使用xsel实现剪切板,但是可以用过clip.exe实现系统剪切板:
 map("v", "Y", "!clip.exe<CR>u", opt) -- 通过wsl中的clip.exe拷贝内容到系统剪切板
                                         -- 但是会删除背拷贝的内容,所以使用u撤销
+-- lspconfig keymap
+local pluginKeys = {}
+pluginKeys.lsp_map = function()
+    -- 展示语法提示警告错误内容 当前,上一个,下一个提示内容, 展示所有提示语
+    map('n', '<leader>o', '<cmd>lua vim.diagnostic.open_float()<CR>', opt)
+    map('n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opt)
+    map('n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<CR>', opt)
+    map('n', '<leader>s', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
 
+    map('n', '<leader>D', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
+    map('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opt) -- 跳转到定义处
+    map('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)  -- 悬浮窗展示定义详情
+    map('n', '<leader>i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opt)
+    map('n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt) -- 查看签名帮助
+    -- map('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
+    -- map('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
+    -- map('n', '<leader>wl', '<cmd>lua function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end()<CR>', opt)
+   -- goto type def跳转到定义处
+    map('n', '<leader>td', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
+    -- map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)    -- 变量重命名
+    -- 关闭诊断,当前行诊断,等待,交换参数位置等常用功能
+    map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
+    -- 参考文献,类似查找功能,查到单词级别的所有出现的地方
+    map('n', '<leader>r', '<cmd>lua vim.lsp.buf.references()<CR>', opt)
+    -- 格式化
+    map('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opt)
+end
+return pluginKeys
 

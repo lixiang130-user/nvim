@@ -16,6 +16,8 @@ require('packer').startup(function()
     use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
     -- bufferline 插件,展示顶部tab标签
     use { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
+    -- lspconfig 提供跳转到定义，查找引用，悬停文档提示等功能
+    use { 'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer' }
 end)
 
 -- gruvbox nord zephyr-nvim 等主题插件配置
@@ -69,3 +71,49 @@ require('bufferline').setup {
     }
 }
 
+-- lspconfig 配置
+local servers = {
+    sumneko_lua = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { 'vim' },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+    -- 根据不同的语言使用不同的配置
+    clangd = {},
+}
+for name, _ in pairs(servers) do
+    local server_is_found, server = require 'nvim-lsp-installer'.get_server(name)
+    if server_is_found then
+        if not server:is_installed() then
+            print("Installing " .. name)
+            server:install()
+        end
+    end
+end
+-- 应该是判断安装完成的回调函数
+local lsp_flags = { debounce_text_changes = 150 } --nvim0.7+默认配置
+require 'nvim-lsp-installer'.on_server_ready(function(server)
+    local opts = servers[server.name]
+    if opts then
+        opts.on_attach = function()
+            require('keymaps').lsp_map()
+        end
+        opts.flags = lsp_flags
+        server:setup(opts)
+    end
+end)

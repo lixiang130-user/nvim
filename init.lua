@@ -1,5 +1,5 @@
 -- init
-require('core.base')
-require('core.keymaps')
-require('core.plugins')
+require('base')
+require('keymaps')
+require('plugins')
 
