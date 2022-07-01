@@ -13,7 +13,7 @@
 
 9. 使用语法增强插件treesitter 需要安装gcc,g++
 
-10. 若需要安装nodejs, npm
+10. python需要安装nodejs, npm
     sudo apt-get install nodejs
     sudo apt-get install npm
     -- 期间要关闭fastgithub中修改的环境变量中的http_proxy和https_proxy,

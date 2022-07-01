@@ -95,6 +95,7 @@ local servers = {
     },
     -- 根据不同的语言使用不同的配置
     clangd = {},
+    pyright = {},
 }
 for name, _ in pairs(servers) do
     local server_is_found, server = require 'nvim-lsp-installer'.get_server(name)
