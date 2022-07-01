@@ -18,7 +18,6 @@ require('packer').startup(function()
     use { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
     -- lspconfig 提供跳转到定义，查找引用，悬停文档提示等功能
     use { 'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer' }
-    
     -- gen_tags.vim 替换ctags和cscope 方案
     use 'jsfaint/gen_tags.vim'
 end)
@@ -99,6 +98,7 @@ local servers = {
     -- 根据不同的语言使用不同的配置
     clangd = {},
     pyright = {},
+    jsonls = {},
 }
 for name, _ in pairs(servers) do
     local server_is_found, server = require 'nvim-lsp-installer'.get_server(name)

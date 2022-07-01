@@ -34,6 +34,5 @@ vim.o.list = false -- 是否显示不可见字符
 vim.o.listchars = 'space:·,tab:··' -- 不可见字符的显示,这里只把空格显示为一个点
 vim.o.showmode = false -- 显示当前模式nvi,使用增强状态栏插件后不再需要 vim 的模式提示
 vim.wo.colorcolumn = '80' -- 右侧参考线，超过表示代码太长了，考虑换行
-
-
+vim.o.cmdheight = 1 -- 命令行高为2，提供足够的显示空间
 
