@@ -18,6 +18,9 @@ require('packer').startup(function()
     use { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
     -- lspconfig 提供跳转到定义，查找引用，悬停文档提示等功能
     use { 'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer' }
+    
+    -- gen_tags.vim 替换ctags和cscope 方案
+    use 'jsfaint/gen_tags.vim'
 end)
 
 -- gruvbox nord zephyr-nvim 等主题插件配置

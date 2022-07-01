@@ -52,14 +52,21 @@ map("v", "Y", "!clip.exe<CR>u", opt) -- 通过wsl中的clip.exe拷贝内容到�
 -- lspconfig keymap
 local pluginKeys = {}
 pluginKeys.lsp_map = function()
+    -- 参考文献,类似查找功能,查到单词级别的所有出现的地方
+    map('n', '<leader>r', '<cmd>lua vim.lsp.buf.references()<CR>', opt)
+    map('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opt) -- 跳转到定义处
+    map('n', '<leader>D', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)    -- 跳转到头文件声明
+    -- 关闭诊断,当前行诊断,等待,交换参数位置等常用功能,展开宏定义等
+    map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
+    -- 格式化
+    map('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opt)
+
     -- 展示语法提示警告错误内容 当前,上一个,下一个提示内容, 展示所有提示语
     map('n', '<leader>o', '<cmd>lua vim.diagnostic.open_float()<CR>', opt)
     map('n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opt)
     map('n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<CR>', opt)
     map('n', '<leader>s', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
 
-    map('n', '<leader>D', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
-    map('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opt) -- 跳转到定义处
     map('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)  -- 悬浮窗展示定义详情
     map('n', '<leader>i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opt)
     map('n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt) -- 查看签名帮助
@@ -69,12 +76,18 @@ pluginKeys.lsp_map = function()
    -- goto type def跳转到定义处
     map('n', '<leader>td', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
     -- map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)    -- 变量重命名
-    -- 关闭诊断,当前行诊断,等待,交换参数位置等常用功能
-    map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
-    -- 参考文献,类似查找功能,查到单词级别的所有出现的地方
-    map('n', '<leader>r', '<cmd>lua vim.lsp.buf.references()<CR>', opt)
-    -- 格式化
-    map('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opt)
 end
 return pluginKeys
+
+-- gen_tags
+    -- 跳转<C-]>
+    -- Ctrl+\c查找调用此函数的函数
+    -- Ctrl+\d查找此函数调用的函数
+    -- Ctrl+\e查找匹配字符
+    -- Ctrl+\f查找此文件
+    -- Ctrl+\g查找此定义
+    -- Ctrl+\i查找文件#包括此文件
+    -- Ctrl+\s查找此C符号
+    -- Ctrl+\t查找此文本字符串
+
 
