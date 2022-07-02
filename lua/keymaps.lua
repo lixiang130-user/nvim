@@ -49,14 +49,34 @@ map("n", "tt", ":vsp<CR>:terminal<CR>", opt) -- terminal 开启终端
 -- 剪切板操作 wsl子系统无法使用xsel实现剪切板,但是可以用过clip.exe实现系统剪切板:
 map("v", "Y", ":w !clip.exe<CR><CR>", opt) -- 通过wsl中的clip.exe拷贝内容到系统剪切板,只读文件也可以复制
 -- map("v", "Y", "!clip.exe<CR>u", opt) -- 通过wsl中的clip.exe拷贝内容到系统剪切板
-                                        -- 但是会删除背拷贝的内容,所以使用u撤销,而且只读文件不能复制
+                                    -- 但是会删除背拷贝的内容,所以使用u撤销,而且只读文件不能复制
+
+-- gen_tags
+-- GenCtags + GenGTAGS 生成tags+global(类似cscope)链接文件
+map('n', 'gts', ':GenCtags<CR>:GenGTAGS<CR>', opt)
+-- EditExt 编辑ctags数据库,可以添加第三方库,如输入:ls -s /user/include/ . 即可链接三方库
+map('n', 'gte', ':EditExt<CR>', opt)
+-- ClearCtags(!) + ClearCTAGS(!) 删除生成的tags+global,!删除全部
+map('n', 'gtc', ':ClearCtags!<CR>:ClearGTAGS!<CR>', opt)
+    -- 跳转<C-]>
+    -- Ctrl+\c查找调用此函数的函数
+    -- Ctrl+\d查找此函数调用的函数
+    -- Ctrl+\e查找匹配字符
+    -- Ctrl+\f查找此文件
+    -- Ctrl+\g查找此定义
+    -- Ctrl+\i查找文件#包括此文件
+    -- Ctrl+\s查找此C符号
+    -- Ctrl+\t查找此文本字符串
+
 -- lspconfig keymap
 local pluginKeys = {}
 pluginKeys.lsp_map = function()
     -- 参考文献,类似查找功能,查到单词级别的所有出现的地方
     map('n', '<leader>r', '<cmd>lua vim.lsp.buf.references()<CR>', opt)
-    map('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opt) -- 跳转到定义处
-    map('n', '<leader>D', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)    -- 跳转到头文件声明
+    -- 跳转到定义处,还可以跳转到文件
+    map('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
+    -- 跳转到头文件声明
+    map('n', '<leader>D', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
     -- 关闭诊断,当前行诊断,等待,交换参数位置等常用功能,展开宏定义等
     map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
     -- 格式化
@@ -78,17 +98,5 @@ pluginKeys.lsp_map = function()
     map('n', '<leader>td', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
     -- map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)    -- 变量重命名
 end
-return pluginKeys
-
--- gen_tags
-    -- 跳转<C-]>
-    -- Ctrl+\c查找调用此函数的函数
-    -- Ctrl+\d查找此函数调用的函数
-    -- Ctrl+\e查找匹配字符
-    -- Ctrl+\f查找此文件
-    -- Ctrl+\g查找此定义
-    -- Ctrl+\i查找文件#包括此文件
-    -- Ctrl+\s查找此C符号
-    -- Ctrl+\t查找此文本字符串
-
+do return pluginKeys end
 
