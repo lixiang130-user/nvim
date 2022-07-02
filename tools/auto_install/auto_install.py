@@ -56,7 +56,7 @@ class git_install(object):
     pass
 
 class nvim_get(object):
-    __url = 'https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz'
+    __url = 'https://github.com/neovim/neovim/releases/download/v0.7.2/nvim-linux64.tar.gz'
     __dir = '/home/user/.user_tools/'
     __fname = 'nvim-linux64.tar.gz'
     def __init__(self):
@@ -64,10 +64,10 @@ class nvim_get(object):
     def __del__(self):
         print('nvim_get __def__')
     def get(self):
-        if not os.path.isdir(dir):
-            os.makedirs(dir)
-        response = urllib.request.urlopen(url)
-        f = open(dir+fname, 'wb')
+        if not os.path.isdir(self.__dir):
+            os.makedirs(self.__dir)
+        response = urllib.request.urlopen(self.__url)
+        f = open(self.__dir+self.__fname, 'wb')
         while(len(data := response.read())):
             print('.')
             f.write(data)
@@ -78,6 +78,4 @@ class nvim_get(object):
 #apt = git_install()
 #apt.install()
 nvim = nvim_get()
-#nvim.get()
-print(nvim.__url)
-print(nvim._nvim_get__url)
+nvim.get()
