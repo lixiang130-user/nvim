@@ -36,7 +36,9 @@ map('n', '<C-j>', '<C-w>j', opt)
 map('n', '<C-k>', '<C-w>k', opt)
 map('n', '<C-l>', '<C-w>l', opt)
 -- nvimtree插件打开目录树
-map('n', 'wm', ':NvimTreeToggle<CR>', opt) -- 映射wm为启动关闭nvimtree功能
+map('n', 'wm', ':NvimTreeToggle<CR>', opt)
+-- vista插件打开大纲
+map('n', 'vm', ':Vista!!<CR>', opt)
 -- bufferline插件操作
 map("n", "<S-h>", ":BufferLineCyclePrev<CR>", opt) -- bufferline 左右Shift切换
 map("n", "<S-l>", ":BufferLineCycleNext<CR>", opt)

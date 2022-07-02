@@ -20,6 +20,8 @@ require('packer').startup(function()
     use { 'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer' }
     -- gen_tags.vim 替换ctags和cscope 方案
     use 'jsfaint/gen_tags.vim'
+    -- vista.vim 插件,显示大纲,函数变量
+    use 'liuchengxu/vista.vim'
 end)
 
 -- gruvbox nord zephyr-nvim 等主题插件配置
@@ -121,3 +123,4 @@ require 'nvim-lsp-installer'.on_server_ready(function(server)
         server:setup(opts)
     end
 end)
+
