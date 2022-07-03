@@ -33,6 +33,7 @@
     sudo apt-get install bear
     bear 后面跟编译命令即可
     bear $make  #bear 3.版本后使用 bear -- make 指令
+    启动了fastgithub代理bear -- make出问题,unset http(s)_proxy就行了
     就可以生成'compile_commands.json文件了,然后lsp中的clangd就能更好用了
     编译出错可以使用gf跳转到文件出错的那一行
 
