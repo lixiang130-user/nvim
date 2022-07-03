@@ -114,7 +114,7 @@ class git_install(object):
         if os.path.isdir(self.__packer):
             os.system('rm -rf '+self.__packer)
 
-        if(os.system('git clone --depth 1 https://github.com/lixiang130-user/nvim '+self.__nvim) != 0):exit(-1)
+        if(os.system('git clone https://github.com/lixiang130-user/nvim '+self.__nvim) != 0):exit(-1)
         if(os.system('git clone --depth 1 https://github.com/wbthomason/packer.nvim '+self.__packer) != 0):exit(-1)
         return True
     pass
