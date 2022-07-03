@@ -93,7 +93,7 @@ class apt_install(object):
         if(os.system('sudo apt-get update -y') != 0):exit(-1)
         if(os.system('sudo apt-get upgrade -y') != 0):exit(-1)
         if(os.system('sudo apt-get install -y unzip universal-ctags global') != 0):exit(-1)
-        if(os.system('sudo apt-get install -y make bear git tree gcc ') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y make bear git tree gcc npm') != 0):exit(-1)
         if(os.system('sudo apt-get install -y g++ gcc-multilib g++-multilib') != 0):exit(-1)
         return True
     pass
