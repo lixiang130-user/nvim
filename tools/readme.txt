@@ -5,22 +5,24 @@
 5.clone 插件packer,保存路径固定在~/.config下,想要修改路径比较困难
     git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-6.~/.baserc中配置默认vim为neovim"alias vim='nvim',alias vi='nvim'"
+6.~/.bashrc中配置默认vim为neovim"alias vim='nvim',alias vi='nvim'"
 
 7.windows子系统wsl中使用clip.exe拷贝到系统剪切板,虚拟机安装xsel工具即可
 
 8. 使用语法增强插件treesitter 需要安装gcc,g++, gcc支持32位编译 sudo apt-get install gcc-multilib g++-multilib
 
-9. python需要安装nodejs, npm
-    sudo apt-get install nodejs
+9. lsp解析python和json需要安装npm,
     sudo apt-get install npm
+    使用npm期间要 unset https_proxy
+    若需要安装nodejs
+    sudo apt-get install nodejs
     -- 期间要关闭fastgithub中修改的环境变量中的http_proxy和https_proxy,
     unset http_proxy
     unset https_proxy
     -- 更新nodejs和npm
     sudo npm install -g n  -- 安装n模块
     sudo n stable  -- 升级nodejs到最新的stable(稳定版)
-    sudo npm install npm -location=global
+    sudo npm install npm -location=global   --升级npm到最新版本
     nvim中使用npm时环境变量http_proxy/https_proxy也不能有
     -- 若需要安装 typescripy typescript-language-server 
     sudo npm install --location=global typescript typescript-language-server
