@@ -124,3 +124,10 @@ require 'nvim-lsp-installer'.on_server_ready(function(server)
     end
 end)
 
+-- gen_tags 工具将检测 scm（git，hg，svn）根并将其用作项目根路径。
+-- 但是，您也可以创建一个名为“.root”的文件夹，以将目录指定为项目根路径。
+-- g:gen_tags#root_marker 变量用于指定项目根目录,默认值为.root
+-- 这里改为 文件夹'.', 则在项目根目录下执行一次gen_tags命令就可以了
+vim.api.nvim_command('let g:gen_tags#root_marker = \".\"')
+-- vim.api.nvim_command('echo g:gen_tags#root_marker g:gen_tags#root_path')
+
