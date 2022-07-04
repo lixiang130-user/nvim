@@ -31,7 +31,7 @@ if [[ $? != 0 ]]; then
 	exit -1
 fi
 #安装debian中killall命令
-sudo apt-get install psmisc
+sudo apt-get install psmisc -y
 if [[ $? != 0 ]]; then
 	exit -1
 fi
@@ -45,7 +45,7 @@ fi
 #sudo cp -r gh_${VERSION}_linux_amd64/share/man/man1/* /usr/share/man/man1/
 #简单来说就是要安装github cli(gh),文件放在当前目录,复制到/usr/local/bin下即可
 #实际发现是因为没有安装curl:)
-sudo apt-get install curl
+sudo apt-get install curl -y
 if [[ $? != 0 ]]; then
 	exit -1
 fi
