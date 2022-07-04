@@ -105,6 +105,7 @@ class git_install(object):
         if(os.system('git config --global credential.helper store') != 0):exit(-1)
         if(os.system('git config --global user.name lixiang130') != 0):exit(-1)
         if(os.system('git config --global user.email 1309776181@qq.com') != 0):exit(-1)
+        if(os.system('git config --global pull.rebase false') != 0):exit(-1)
         if os.path.isdir(self.__nvim):
             os.system('rm -rf '+self.__nvim)
         if os.path.isdir(self.__packer):
