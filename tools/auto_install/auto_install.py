@@ -6,17 +6,11 @@ import urllib
 import urllib.request
 
 '''
-替换ubuntu源/etc/apt/sources.list:
-deb https://repo.huaweicloud.com/ubuntu/ jammy main restricted
-deb https://repo.huaweicloud.com/ubuntu/ jammy-updates main restricted
-deb https://repo.huaweicloud.com/ubuntu/ jammy universe
-deb https://repo.huaweicloud.com/ubuntu/ jammy-updates universe
-deb https://repo.huaweicloud.com/ubuntu/ jammy multiverse
-deb https://repo.huaweicloud.com/ubuntu/ jammy-updates multiverse
-deb https://repo.huaweicloud.com/ubuntu/ jammy-backports main restricted universe multiverse
-deb https://repo.huaweicloud.com/ubuntu/ jammy-security main restricted
-deb https://repo.huaweicloud.com/ubuntu/ jammy-security universe
-deb https://repo.huaweicloud.com/ubuntu/ jammy-security multiverse
+替换apt源/etc/apt/sources.list:
+apt-get update
+apt-get install apt-transport-https ca-certificates安装https源
+http://ftp.debian.org替换成https://repo.huaweicloud.com
+http://security.debian.org替换成https://repo.huaweicloud.com
 
 安装unzip, universal-ctags, global, tree,
 make, bear, git, gcc, npm
@@ -53,10 +47,6 @@ class script_install(object):
             os.system('rm -rf '+self.__user_tools+'/fastgithub_linux-x64')
         if(os.system('tar -xzvf ../compressed/nvim-linux64.tar.gz -C  '+self.__user_tools) != 0):exit(-1)
         if(os.system('tar -xzvf ../compressed/fastgithub_linux-x64.tar.gz -C  '+self.__user_tools) != 0):exit(-1)
-        print('fastgithub frist running')
-        if(os.system('sudo '+self.__fastgithub+' &') != 0):exit(-1)
-        if(os.system('sleep 8') != 0):exit(-1)
-        if(os.system('sudo killall fastgithub') != 0):exit(-1)
 
         #2.复制脚本
         if(os.system('sudo cp '+self.__etc_profile_d_sh+' /etc/profile.d/') != 0):exit(-1)
@@ -66,7 +56,13 @@ class script_install(object):
         f = open(self.__bashrc,'ab')
         f.write(b'\nalias vim=nvim\n')
         f.write(b'alias vi=nvim\n')
+        f.write(b'alias ll=\'ls -a -l\'\n')
         f.close()
+
+        print('fastgithub frist running')
+        if(os.system('sudo '+self.__fastgithub+' &') != 0):exit(-1)
+        if(os.system('sleep 8') != 0):exit(-1)
+        if(os.system('sudo killall fastgithub') != 0):exit(-1)
         return True
     pass
 
