@@ -102,15 +102,17 @@ pluginKeys.cmp = function(cmp)
         -- 下一个
         ['<C-n>'] = cmp.mapping.select_next_item(),
         -- 出现补全
-        ['<A-.>'] = cmp.mapping(cmp.mapping.complete()),
+        ['<A-.>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         -- 取消
         ['<A-,>'] = cmp.mapping({i = cmp.mapping.abort(), c = cmp.mapping.close(),}),
         -- 确认,接受当前选定的项目。如果未选择任何项，则“选择”第一项。
         -- 将“选择”设置为“false”以仅确认显式选择的项目。
         ['<CR>'] = cmp.mapping.confirm({select = true}),
         --['<C-y>']=cmp.config.disable,--如果要删除默认的'<C-y>'映射,请指定'cmp.config.disable'
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-u>'] = cmp.config.disable,
+        ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }), --二级界面注释翻页
+        ['<C-d>'] = cmp.config.disable,
+        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' })   --二级界面注释翻页
     }
 end
 
