@@ -93,5 +93,26 @@ pluginKeys.lsp_map = function()
     map('n', '<leader>td', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
     -- map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)    -- 变量重命名
 end
+
+-- nvim-cmp 自动补全
+pluginKeys.cmp = function(cmp)
+    return {
+        -- 上一个
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        -- 下一个
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        -- 出现补全
+        ['<A-.>'] = cmp.mapping(cmp.mapping.complete()),
+        -- 取消
+        ['<A-,>'] = cmp.mapping({i = cmp.mapping.abort(), c = cmp.mapping.close(),}),
+        -- 确认,接受当前选定的项目。如果未选择任何项，则“选择”第一项。
+        -- 将“选择”设置为“false”以仅确认显式选择的项目。
+        ['<CR>'] = cmp.mapping.confirm({select = true}),
+        --['<C-y>']=cmp.config.disable,--如果要删除默认的'<C-y>'映射,请指定'cmp.config.disable'
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    }
+end
+
 do return pluginKeys end
 

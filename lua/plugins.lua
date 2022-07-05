@@ -18,6 +18,11 @@ require('packer').startup(function()
     use { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
     -- lspconfig 提供跳转到定义，查找引用，悬停文档提示等功能
     use { 'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer' }
+    -- lsp 自动补全功能
+    use 'hrsh7th/nvim-cmp'  -- 自动补全插件本身
+    use 'hrsh7th/cmp-nvim-lsp' -- 可从内置lsp提供的补全
+    use 'hrsh7th/vim-vsnip' -- 一个snippet引擎
+    use 'onsails/lspkind-nvim'  -- 美化自动补全窗口的插件
     -- vista.vim 插件,显示大纲,函数变量
     use 'liuchengxu/vista.vim'
     -- telescope 强大的文件搜索 预览 等
@@ -44,8 +49,7 @@ require 'nvim-treesitter.configs'.setup {
             scope_incremental = '<TAB>',
         }
     },
-    -- 启用基于Treesitter的代码格式化(=). 实验功能
-    indent = { enable = true }
+    indent = { enable = true }  -- 启用基于Treesitter的代码格式化(=). 实验功能
 }
 
 -- nvim-tree 配置,  nvim-tree 可执行常见文件操作
@@ -75,28 +79,15 @@ require('bufferline').setup {
     }
 }
 
--- lspconfig 配置
+-- lspconfig 配置, servers 参考对应语言
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.txt
 local servers = {
-    sumneko_lua = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT',
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { 'vim' },
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-                enable = false,
-            },
-        },
-    },
+    sumneko_lua = { Lua = {
+        runtime = {version = 'LuaJIT'},
+        diagnostics = {globals = { 'vim' }},
+        workspace = {library = vim.api.nvim_get_runtime_file("", true),},
+        telemetry = {enable = false,},
+    }},
     -- 根据不同的语言使用不同的配置
     clangd = {},
     pyright = {},
@@ -123,3 +114,20 @@ require 'nvim-lsp-installer'.on_server_ready(function(server)
         server:setup(opts)
     end
 end)
+
+-- lsp 自动补全功能
+local cmp = require'cmp'
+cmp.setup {
+    -- 必须指定代码段引擎 -- For `vsnip` users. 就是vim-vsnip插件
+    snippet = {expand = function(args) vim.fn["vsnip#anonymous"](args.body)end},
+    sources = cmp.config.sources({{name='nvim_lsp'},{name='vsnip'}}),-- 来源
+    mapping = require'keymaps'.cmp(cmp),    -- 快捷键配置
+    formatting = {format = require'lspkind'.cmp_format({
+        with_text = true, -- 不要在图标旁边显示文本
+        maxwidth = 50,  -- 放置弹出窗口显示超过设定的字符50
+        before = function(entry, vim_item)  --source 显示提供源
+            vim_item.menu = '['..string.upper(entry.source.name)..']'
+            return vim_item
+        end
+    })}
+}
