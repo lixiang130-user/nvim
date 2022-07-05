@@ -37,17 +37,5 @@
     就可以生成'compile_commands.json文件了,然后lsp中的clangd就能更好用了
     编译出错可以使用gf跳转到文件出错的那一行
 
-12.更换apt源 sudo vim /etc/apt/source.list 换后gcc有问题,只能用来安装bear,再换回去
-    deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
-    deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
-    deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
-    deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
-    deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
-    deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
-    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
-    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
-    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
-    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
-    -- 若缺少公钥
-    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
-    3B4FE6ACC0B21F32是缺少的密钥，缺少什么就下什么
+12.telescope 望远镜插件可以查找文件,字符串等,需要安装工具ripgrep才能使用live_grep
+    sudo apt-get install ripgrep

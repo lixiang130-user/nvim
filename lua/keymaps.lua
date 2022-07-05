@@ -54,6 +54,15 @@ map("v", "Y", ":w !clip.exe<CR><CR>", opt) -- 通过wsl中的clip.exe拷贝内�
 -- map("v", "Y", "!clip.exe<CR>u", opt) -- 通过wsl中的clip.exe拷贝内容到系统剪切板
                                     -- 但是会删除背拷贝的内容,所以使用u撤销,而且只读文件不能复制
 
+-- telescope(望远镜) 强大的文件搜索 预览, 可以通过命令和函数的方式调用
+map('n', '<leader>ts', '<cmd>Telescope<CR>', opt)   -- 调用telescope
+-- 查找文件 lsp解析的文件
+map('n', '<leader>ff', '<cmd>Telescope find_files<CR>', opt)    -- 查找文件
+-- 查找字符串 类似grep精准方式
+map('n', '<leader>fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<CR>', opt)
+-- 查找符号,lsp解析过的符号表,不能找到每一处
+map('n', '<leader>fs', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opt)
+
 -- lspconfig keymap
 local pluginKeys = {}
 pluginKeys.lsp_map = function()

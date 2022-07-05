@@ -20,6 +20,8 @@ require('packer').startup(function()
     use { 'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer' }
     -- vista.vim 插件,显示大纲,函数变量
     use 'liuchengxu/vista.vim'
+    -- telescope 强大的文件搜索 预览 等
+    use {"nvim-telescope/telescope.nvim", requires = {"nvim-lua/plenary.nvim"}}
 end)
 
 -- gruvbox nord zephyr-nvim 等主题插件配置
