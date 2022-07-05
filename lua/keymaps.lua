@@ -54,23 +54,6 @@ map("v", "Y", ":w !clip.exe<CR><CR>", opt) -- 通过wsl中的clip.exe拷贝内�
 -- map("v", "Y", "!clip.exe<CR>u", opt) -- 通过wsl中的clip.exe拷贝内容到系统剪切板
                                     -- 但是会删除背拷贝的内容,所以使用u撤销,而且只读文件不能复制
 
--- gen_tags
--- GenCtags + GenGTAGS 生成tags+global(类似cscope)链接文件
-map('n', 'gts', ':GenCtags<CR>:GenGTAGS<CR>', opt)
--- EditExt 编辑ctags数据库,可以添加第三方库,如输入:ls -s /user/include/ . 即可链接三方库
-map('n', 'gte', ':EditExt<CR>', opt)
--- ClearCtags(!) + ClearCTAGS(!) 删除生成的tags+global,!删除全部
-map('n', 'gtc', ':ClearCtags!<CR>:ClearGTAGS!<CR>', opt)
-    -- 跳转<C-]>
-    -- Ctrl+\c查找调用此函数的函数
-    -- Ctrl+\d查找此函数调用的函数
-    -- Ctrl+\e查找匹配字符
-    -- Ctrl+\f查找此文件
-    -- Ctrl+\g查找此定义
-    -- Ctrl+\i查找文件#包括此文件
-    -- Ctrl+\s查找此C符号
-    -- Ctrl+\t查找此文本字符串
-
 -- lspconfig keymap
 local pluginKeys = {}
 pluginKeys.lsp_map = function()

@@ -51,21 +51,3 @@
     -- 若缺少公钥
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
     3B4FE6ACC0B21F32是缺少的密钥，缺少什么就下什么
-
-13.gen_tags 需要安装ctags 和 GNU-Global(cscope 替代升级版)
-    sudo apt-get install universal-ctags
-    sudo apt-get install global
-    使用时:nvim打开代码后命令行输入
-    :GenCtags   生成ctags数据库,即可跳转<C-]>
-    :ClearCtags 删除生成的ctags, 加叹号remove all files, include the db dir
-    :EditExit 编辑ctags数据库,可以添加第三方库,如输入:ls -s /user/include/ . 即可链接三方库
-    :GenGTAGS   生成类似cscope的数据库
-
-    Ctrl+\c查找调用此函数的函数
-    Ctrl+\d查找此函数调用的函数
-    Ctrl+\e查找匹配字符
-    Ctrl+\f查找此文件
-    Ctrl+\g查找此定义
-    Ctrl+\i查找文件#包括此文件
-    Ctrl+\s查找此C符号
-    Ctrl+\t查找此文本字符串
