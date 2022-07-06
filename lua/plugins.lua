@@ -138,7 +138,9 @@ cmp.setup {
 -- haici bing 可用 google超时,如果启用的外部翻墙就是用google翻译
 local ret_proxy = os.execute("env | grep all_proxy")
 if ret_proxy == 512 then    -- 没有使用windows的全局代理
-    vim.g.translator_default_engines = {'bing', 'haici', 'google'}
+    vim.g.translator_default_engines = {'bing', 'google'}
 else
     vim.g.translator_default_engines = {'bing', 'haici'}
 end
+vim.g.translator_window_max_width = 0.9     -- 设置悬浮窗大小
+vim.g.translator_window_max_height = 0.6
