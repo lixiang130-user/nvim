@@ -15,6 +15,7 @@
 -- 可视模式 (Visual Mode) v
 -- 命令模式 (Command Mode) c
 -- 配置快捷键的常用前缀,通常是空格,后面见到<leader>就表示空格
+-- ctrl-ww可以进入悬浮窗,再次按下退出悬浮窗
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- 设备本地变量 这样就可样映射按键了: map('模式','按键','映射为xx',opt)
@@ -62,6 +63,19 @@ map('n', '<leader>ff', '<cmd>Telescope find_files<CR>', opt)    -- 查找文件
 map('n', '<leader>fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<CR>', opt)
 -- 查找符号,lsp解析过的符号表,不能找到每一处
 map('n', '<leader>fs', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opt)
+
+-- vim-translator 插件
+-- 翻译结果展示在命令行
+map('v', '<leader>ft', ':Translate<CR>', opt)
+map('n', '<leader>ft', ':Translate<CR>', opt)
+-- 翻译结果展示在悬浮窗
+map('v', '<leader>fw', ':TranslateW<CR>', opt)
+map('n', '<leader>fw', ':TranslateW<CR>', opt)
+-- 翻译结果替换原文本(不可用)
+map('v', '<leader>fr', ':TranslateR<CR>', opt)
+map('n', '<leader>fr', ':TranslateR<CR>', opt)
+-- 翻译终端输入的文本
+map('n', '<leader>fx', ':TranslateX ', opt)
 
 -- lspconfig keymap
 local pluginKeys = {}

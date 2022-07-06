@@ -27,6 +27,8 @@ require('packer').startup(function()
     use 'liuchengxu/vista.vim'
     -- telescope 强大的文件搜索 预览 等
     use {"nvim-telescope/telescope.nvim", requires = {"nvim-lua/plenary.nvim"}}
+    -- vim-translatoruse 翻译插件
+    use 'voldikss/vim-translator'
 end)
 
 -- gruvbox nord zephyr-nvim 等主题插件配置
@@ -131,3 +133,6 @@ cmp.setup {
         end
     })}
 }
+
+-- vim-translator 插件,  haici bing 可用 google超时
+vim.g.translator_default_engines = {'bing', 'haici'}
