@@ -12,7 +12,7 @@ apt-get install apt-transport-https ca-certificates安装https源
 http://ftp.debian.org替换成https://repo.huaweicloud.com
 http://security.debian.org替换成https://repo.huaweicloud.com
 
-安装unzip, tree, make, bear, git, gcc, npm, ripgrep
+安装unzip, tree, make, bear, git, gcc, npm, ripgrep, Vista
 g++,gcc-multilib g++-multilib(gcc支持32位编译)
 安装fastgithub,nvim,添加环境变量到/etc/profile/xx.sh,启动http代理,
 .~/.baserc中配置默认vim为neovim"alias vim='nvim',alias vi='nvim'"
@@ -87,8 +87,9 @@ class apt_install(object):
     def install(self):
         if(os.system('sudo apt-get update -y') != 0):exit(-1)
         if(os.system('sudo apt-get upgrade -y') != 0):exit(-1)
-        if(os.system('sudo apt-get install -y unzip make bear git tree ') != 0):exit(-1)
-        if(os.system('sudo apt-get install -y gcc npm dos2unix ripgrep ') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y universal-ctags') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y unzip make bear git tree') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y npm dos2unix ripgrep gcc') != 0):exit(-1)
         if(os.system('sudo apt-get install -y g++ gcc-multilib g++-multilib') != 0):exit(-1)
         return True
     pass

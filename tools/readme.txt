@@ -39,3 +39,4 @@
 
 12.telescope 望远镜插件可以查找文件,字符串等,需要安装工具ripgrep才能使用live_grep
     sudo apt-get install ripgrep
+13. Vista展示大纲的插件需要安装universal-ctags
