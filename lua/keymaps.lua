@@ -84,6 +84,7 @@ pluginKeys.lsp_map = function()
     -- 参考文献,类似查找功能,查到单词级别的所有出现的地方
     map('n', '<leader>r', '<cmd>lua vim.lsp.buf.references()<CR>', opt)
     -- 跳转到定义处,还可以跳转到文件
+    map('n', '<C-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
     map('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
     -- 跳转到头文件声明
     map('n', '<leader>D', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)

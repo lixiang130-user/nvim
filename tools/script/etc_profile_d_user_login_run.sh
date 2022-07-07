@@ -9,7 +9,7 @@ if false; then
     export https_proxy="http://127.0.0.1:38457"
     ~/.user_tools/user_tools_start.sh &
     #echo 'use fastgithub'
-else
+elif true; then
     #使用外部代理,外部翻墙即可
     wsl2ip=$(cat /etc/resolv.conf | grep 'nameserver' | cut -f 2 -d ' ')
     export https_proxy="http://$wsl2ip:7890"
