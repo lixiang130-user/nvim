@@ -63,6 +63,7 @@ map('n', '<leader>ff', '<cmd>Telescope find_files<CR>', opt)    -- 查找文件
 map('n', '<leader>fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<CR>', opt)
 -- 查找符号,lsp解析过的符号表,不能找到每一处
 map('n', '<leader>fs', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opt)
+-- <C-q> 将所有未过滤的条目,发送到qlist(在屏幕下方的小窗口,类似以前的cw弹出小窗口)
 
 -- vim-translator 插件
 -- 翻译结果展示在命令行
