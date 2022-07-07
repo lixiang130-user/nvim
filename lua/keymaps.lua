@@ -65,7 +65,7 @@ map('n', '<leader>fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<CR>'
 map('n', '<leader>fs', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opt)
 -- <C-q> 将所有未过滤的条目,发送到qlist(在屏幕下方的小窗口,类似以前的cw弹出小窗口)
 
--- vim-translator 插件
+-- vim-translator 插件, <ctrl-w>p可以进入翻译悬浮窗,再次按下退出
 -- 翻译结果展示在命令行
 map('v', '<leader>ft', ':Translate<CR>', opt)
 map('n', '<leader>ft', ':Translate<CR>', opt)
