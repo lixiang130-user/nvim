@@ -77,6 +77,17 @@ map('v', '<leader>fr', ':TranslateR<CR>', opt)
 map('n', '<leader>fr', ':TranslateR<CR>', opt)
 -- 翻译终端输入的文本
 map('n', '<leader>fx', ':TranslateX ', opt)
+-- 中英文翻译互换 fc convert 转换
+local t_src_eq_en = 'vim.g.translator_source_lang == \'en-us\''
+local t_src_cn = 'vim.g.translator_source_lang = \'zh-cn\''
+local t_tar_en = 'vim.g.translator_target_lang = \'en-us\''
+local t_src_en = 'vim.g.translator_source_lang = \'en-us\''
+local t_tar_cn = 'vim.g.translator_target_lang = \'zh-cn\''
+local t_map_cmd = ':lua if '..t_src_eq_en..' then '..t_src_cn..' '..t_tar_en..' else '..t_src_en..' '..t_tar_cn..' end<CR>'
+vim.g.translator_target_lang = 'zh-cn'
+vim.g.translator_source_lang = 'en-us'
+map('v', '<leader>fc', t_map_cmd, opt)
+map('n', '<leader>fc', t_map_cmd, opt)
 
 -- lspconfig keymap
 local pluginKeys = {}
