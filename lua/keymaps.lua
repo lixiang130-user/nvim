@@ -123,7 +123,7 @@ pluginKeys.cmp = function(cmp)
         ['<A-,>'] = cmp.mapping({i = cmp.mapping.abort(), c = cmp.mapping.close(),}),
         -- 确认,接受当前选定的项目。如果未选择任何项，则“选择”第一项。
         -- 将“选择”设置为“false”以仅确认显式选择的项目。
-        ['<CR>'] = cmp.mapping.confirm({select = true}),
+        -- ['<CR>'] = cmp.mapping.confirm({select = true}),
         --['<C-y>']=cmp.config.disable,--如果要删除默认的'<C-y>'映射,请指定'cmp.config.disable'
         ['<C-u>'] = cmp.config.disable,
         ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }), --二级界面注释翻页
