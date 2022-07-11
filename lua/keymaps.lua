@@ -24,10 +24,10 @@ local opt = { noremap = true, silent = true }
 -- 分屏操作
 map('n', 'wv', ':vsp<CR>', opt) -- wv(windows vertical split)垂直分屏
 map('n', 'ws', ':sp<CR>', opt) -- ws(windows split)水平分屏
-map('n', 'w.', ':resize +3<CR>', opt) -- w.窗口上下大小增加3
-map('n', 'w,', ':resize -3<CR>', opt) -- w.窗口上下大小减小3
-map('n', 'w=', ':vertical resize +3<CR>', opt) -- w.窗口左右大小增加3
-map('n', 'w-', ':vertical resize -3<CR>', opt) -- w.窗口左右大小减小3
+map('n', 'w=', ':resize +3<CR>', opt) -- w.窗口上下大小增加3
+map('n', 'w-', ':resize -3<CR>', opt) -- w.窗口上下大小减小3
+map('n', 'w.', ':vertical resize +3<CR>', opt) -- w.窗口左右大小增加3
+map('n', 'w,', ':vertical resize -3<CR>', opt) -- w.窗口左右大小减小3
 -- 关闭窗口操作
 map('n', 'ca', ':wa<CR>:qa<CR>', opt) -- ca(close all)关闭所有窗口并退出
 map('n', 'cc', '<C-w>c', opt) -- cc(close)关闭当前窗口
@@ -134,7 +134,7 @@ pluginKeys.cmp = function(cmp)
         ['<A-,>'] = cmp.mapping({i = cmp.mapping.abort(), c = cmp.mapping.close(),}),
         -- 确认,接受当前选定的项目。如果未选择任何项，则“选择”第一项。
         -- 将“选择”设置为“false”以仅确认显式选择的项目。
-        -- ['<CR>'] = cmp.mapping.confirm({select = true}),
+        ['<CR>'] = cmp.mapping.confirm({select = false}),
         --['<C-y>']=cmp.config.disable,--如果要删除默认的'<C-y>'映射,请指定'cmp.config.disable'
         ['<C-u>'] = cmp.config.disable,
         ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }), --二级界面注释翻页
