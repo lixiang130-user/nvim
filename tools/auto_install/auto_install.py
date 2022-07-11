@@ -116,6 +116,20 @@ class git_install(object):
         return True
     pass
 
+class python_rely(object):
+    def __init__(self):
+        print(__name__, ' __init__')
+    def __del__(self):
+        print(__name__, ' __def__')
+    def install(self):
+        if(os.system('sudo apt-get install -y python3-pip') != 0):exit(-1)
+        #mysql相关
+        #if(os.system('sudo apt-get install -y lsb-release mariadb-server') != 0):exit(-1)
+        #股票,mysql等库
+        #if(os.system('pip install baostock mysql.connector') != 0):exit(-1)
+        pass
+    pass
+
 #run
 if len(sys.argv) <= 1:
     print('plase set step 1 2 3')
@@ -133,3 +147,6 @@ elif sys.argv[1] == '2':
     print('run step 2')
     git = git_install()
     git.install()
+elif sys.argv[1] == '3':
+    print('run step 3')
+    python_rely().install()
