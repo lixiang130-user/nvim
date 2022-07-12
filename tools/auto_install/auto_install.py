@@ -123,19 +123,25 @@ class python_rely(object):
         print(__name__, ' __def__')
     def install(self):
         #print(sys._getframe().f_lineno)
-        if(os.system('sudo apt-get install -y python3-pip') != 0):exit(-1)
-        #mysql相关
-        if(os.system('sudo apt-get install -y mysql-server') != 0):exit(-1)
         #股票,mysql等库
+        if(os.system('sudo apt-get install -y python3-pip') != 0):exit(-1)
         if(os.system('pip install baostock') != 0):exit(-1)
         if(os.system('pip install mysql.connector mysql-connector-python') != 0):exit(-1)
+
+        #mysql相关
+        if(os.system('sudo apt-get install -y mariadb-server') != 0):exit(-1)
+        if(os.system('sudo service mariadb start') != 0):exit(-1)
         #配置mysql
-        if(os.system('sudo /etc/init.d/mysql start') != 0):exit(-1)
         if(os.system('sudo mysql') != 0):exit(-1)
+        #ALTER USER root@localhost IDENTIFIED VIA mysql_native_password USING PASSWORD("Mysql1234.");
+
+        #if(os.system('sudo apt-get install -y mysql-server') != 0):exit(-1)
+        #if(os.system('sudo /etc/init.d/mysql start') != 0):exit(-1)
+        #if(os.system('sudo mysql') != 0):exit(-1)
         #ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'Mysql1234.';
+
         if(os.system('sudo mysql_secure_installation') != 0):exit(-1)
         #然后全部选择否n
-
         pass
     pass
 
