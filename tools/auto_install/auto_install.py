@@ -122,9 +122,10 @@ class python_rely(object):
     def __del__(self):
         print(__name__, ' __def__')
     def install(self):
+        #print(sys._getframe().f_lineno)
         if(os.system('sudo apt-get install -y python3-pip') != 0):exit(-1)
         #mysql相关
-        if(os.system('sudo apt-get install -y mariadb-server') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y mysql-server') != 0):exit(-1)
         #股票,mysql等库
         if(os.system('pip install baostock') != 0):exit(-1)
         if(os.system('pip install mysql.connector mysql-connector-python') != 0):exit(-1)
