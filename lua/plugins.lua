@@ -23,6 +23,7 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-nvim-lsp' -- 可从内置lsp提供的补全
     use 'hrsh7th/vim-vsnip' -- 一个snippet引擎
     use 'onsails/lspkind-nvim'  -- 美化自动补全窗口的插件
+    use 'hrsh7th/cmp-buffer'    -- 从缓冲区补全
     -- vista.vim 插件,显示大纲,函数变量
     use 'liuchengxu/vista.vim'
     -- telescope 强大的文件搜索 预览 等
@@ -122,7 +123,7 @@ local cmp = require'cmp'
 cmp.setup {
     -- 必须指定代码段引擎 -- For `vsnip` users. 就是vim-vsnip插件
     snippet = {expand = function(args) vim.fn["vsnip#anonymous"](args.body)end},
-    sources = cmp.config.sources({{name='nvim_lsp'},{name='vsnip'}}),-- 来源
+    sources = cmp.config.sources({{name='nvim_lsp'},{name='vsnip'}},{{name = 'buffer'}}),-- 来源
     mapping = require'keymaps'.cmp(cmp),    -- 快捷键配置
     formatting = {format = require'lspkind'.cmp_format({
         with_text = true, -- 不要在图标旁边显示文本
