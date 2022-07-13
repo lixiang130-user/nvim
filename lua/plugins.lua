@@ -20,11 +20,12 @@ require('packer').startup(function()
     use { 'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer' }
     -- lsp 自动补全功能
     use 'hrsh7th/nvim-cmp'  -- 自动补全插件本身
-    use 'hrsh7th/cmp-nvim-lsp' -- 可从内置lsp提供的补全
-    use 'hrsh7th/vim-vsnip' -- 一个snippet引擎
     use 'onsails/lspkind-nvim'  -- 美化自动补全窗口的插件
+    use 'hrsh7th/cmp-nvim-lsp' -- 可从内置lsp提供的补全
     use 'hrsh7th/cmp-buffer'    -- 从缓冲区补全
     use 'hrsh7th/cmp-path'  -- 从路径补全
+    use {'hrsh7th/cmp-vsnip', -- 自动补全代码段,生成代码块
+        requires = {'hrsh7th/vim-vsnip','rafamadriz/friendly-snippets'}}
     -- vista.vim 插件,显示大纲,函数变量
     use 'liuchengxu/vista.vim'
     -- telescope 强大的文件搜索 预览 等
