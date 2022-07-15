@@ -4,6 +4,9 @@
     "actions": 
     [
         {
+            "command": "paste"
+        },
+        {
             "command": 
             {
                 "action": "copy",
@@ -12,7 +15,16 @@
             "keys": "ctrl+c"
         },
         {
-            "command": "paste"
+            "command": "closePane",
+            "keys": "ctrl+shift+w"
+        },
+        {
+            "command": 
+            {
+                "action": "switchToTab",
+                "index": 2
+            },
+            "keys": "alt+3"
         },
         {
             "command": "unbound",
@@ -21,10 +33,6 @@
         {
             "command": "unbound",
             "keys": "ctrl+comma"
-        },
-        {
-            "command": "unbound",
-            "keys": "ctrl+shift+w"
         },
         {
             "command": "unbound",
@@ -91,20 +99,12 @@
             "keys": "ctrl+d"
         },
         {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 2
-            },
-            "keys": "alt+3"
+            "command": "unbound",
+            "keys": "ctrl+w"
         },
         {
             "command": "find",
             "keys": "ctrl+shift+f"
-        },
-        {
-            "command": "closePane",
-            "keys": "ctrl+w"
         },
         {
             "command": 
@@ -132,14 +132,6 @@
             "keys": "alt+2"
         },
         {
-            "command": "scrollUpPage",
-            "keys": "ctrl+pgup"
-        },
-        {
-            "command": "scrollUpPage",
-            "keys": "shift+pgup"
-        },
-        {
             "command": 
             {
                 "action": "scrollDown"
@@ -155,6 +147,14 @@
             "keys": "alt+4"
         },
         {
+            "command": "scrollUpPage",
+            "keys": "ctrl+pgup"
+        },
+        {
+            "command": "scrollUpPage",
+            "keys": "shift+pgup"
+        },
+        {
             "command": 
             {
                 "action": "switchToTab",
@@ -165,17 +165,17 @@
         {
             "command": 
             {
-                "action": "quakeMode"
-            },
-            "keys": "ctrl+f11"
-        },
-        {
-            "command": 
-            {
                 "action": "switchToTab",
                 "index": 5
             },
             "keys": "alt+6"
+        },
+        {
+            "command": 
+            {
+                "action": "quakeMode"
+            },
+            "keys": "ctrl+f11"
         },
         {
             "command": 
