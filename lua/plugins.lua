@@ -54,7 +54,8 @@ require 'nvim-treesitter.configs'.setup {
             scope_incremental = '<TAB>',
         }
     },
-    indent = { enable = true }  -- 启用基于Treesitter的代码格式化(=). 实验功能
+    -- 会导致python插入模式下输入冒号缩进改变,关闭这个实验功能
+    -- indent = { enable = true }  -- 启用基于Treesitter的代码格式化(=). 实验功能
 }
 
 -- nvim-tree 配置,  nvim-tree 可执行常见文件操作
