@@ -2,8 +2,6 @@
 
 import os
 import sys
-import urllib
-import urllib.request
 
 '''
 替换apt源/etc/apt/sources.list:
@@ -66,7 +64,7 @@ class script_install(object):
     pass
 
 class apt_sources_update(object):
-    __src_sources = './sources.list'
+    __src_sources = '../script/sources.list'
     __dst_sources = '/etc/apt/sources.list'
     def __init__(self):
         print('apt_install __init__')
@@ -122,28 +120,38 @@ class python_rely(object):
         print(__name__, ' __init__')
     def __del__(self):
         print(__name__, ' __def__')
-    def install(self):
+    def install(self, type=1):
         #print(sys._getframe().f_lineno)
-        #股票,mysql等库
-        if(os.system('sudo apt-get install -y python3-pip') != 0):exit(-1)
-        #if(os.system('pip install baostock') != 0):exit(-1)
-        if(os.system('pip install mysql.connector mysql-connector-python') != 0):exit(-1)
+        if type == 1:
+            #股票,mysql等库
+            if(os.system('sudo apt-get install -y python3-pip') != 0):exit(-1)
+            #if(os.system('pip install baostock') != 0):exit(-1)
+            if(os.system('pip install mysql.connector mysql-connector-python') != 0):exit(-1)
 
-        #mysql相关
-        if(os.system('sudo apt-get install -y mariadb-server') != 0):exit(-1)
-        if(os.system('sudo service mariadb start') != 0):exit(-1)
-        #配置mysql
-        if(os.system('sudo mysql') != 0):exit(-1)
-        #ALTER USER root@localhost IDENTIFIED VIA mysql_native_password USING PASSWORD("Mysql1234.");
+            #mysql相关
+            if(os.system('sudo apt-get install -y mariadb-server') != 0):exit(-1)
+        if type == 2:
+            if(os.system('sudo service mariadb start') != 0):exit(-1)
+            #配置mysql
+            if(os.system('sudo mysql') != 0):exit(-1)
+            #ALTER USER root@localhost IDENTIFIED VIA mysql_native_password USING PASSWORD("Mysql1234.");
 
-        #if(os.system('sudo apt-get install -y mysql-server') != 0):exit(-1)
-        #if(os.system('sudo /etc/init.d/mysql start') != 0):exit(-1)
-        #if(os.system('sudo mysql') != 0):exit(-1)
-        #ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'Mysql1234.';
+            #if(os.system('sudo apt-get install -y mysql-server') != 0):exit(-1)
+            #if(os.system('sudo /etc/init.d/mysql start') != 0):exit(-1)
+            #if(os.system('sudo mysql') != 0):exit(-1)
+            #ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'Mysql1234.';
 
-        if(os.system('sudo mysql_secure_installation') != 0):exit(-1)
-        #然后全部选择否n
-        pass
+            if(os.system('sudo mysql_secure_installation') != 0):exit(-1)
+            #然后全部选择否n
+
+        if type == 3:
+            #然后修改/etc/mysql/mariadb.conf.d/50-server.cnf:18 datadir = /home/user/linux/mysql
+            #复制/var/lib/mysql文件 到/home/user/linux/mysql 处
+            os.system('mkdir /home/user/linux')
+            if(os.system('sudo cp ../script/mysql_50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf') != 0):exit(-1)
+            if(os.system('sudo cp -r /var/lib/mysql /home/user/linux/mysql') != 0):exit(-1)
+            if(os.system('sudo chown mysql:mysql -R /home/user/linux/mysql') != 0):exit(-1)
+        return
     pass
 
 #run
@@ -163,6 +171,12 @@ elif sys.argv[1] == '2':
     print('run step 2')
     git = git_install()
     git.install()
-elif sys.argv[1] == '3':
-    print('run step 3')
-    python_rely().install()
+elif sys.argv[1] == 'py1':
+    print('run step py1')
+    python_rely().install(1)
+elif sys.argv[1] == 'py2':
+    print('run step py2')
+    python_rely().install(2)
+elif sys.argv[1] == 'py3':
+    print('run step py3')
+    python_rely().install(3)
