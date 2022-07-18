@@ -126,7 +126,7 @@ class python_rely(object):
         #print(sys._getframe().f_lineno)
         #股票,mysql等库
         if(os.system('sudo apt-get install -y python3-pip') != 0):exit(-1)
-        if(os.system('pip install baostock') != 0):exit(-1)
+        #if(os.system('pip install baostock') != 0):exit(-1)
         if(os.system('pip install mysql.connector mysql-connector-python') != 0):exit(-1)
 
         #mysql相关
