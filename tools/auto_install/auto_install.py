@@ -151,6 +151,9 @@ class python_rely(object):
             if(os.system('sudo cp ../script/mysql_50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf') != 0):exit(-1)
             if(os.system('sudo cp -r /var/lib/mysql /home/user/linux/mysql') != 0):exit(-1)
             if(os.system('sudo chown mysql:mysql -R /home/user/linux/mysql') != 0):exit(-1)
+            os.system('sudo service mariadb stop')
+            os.system('sudo service mariadb start')
+            #若重启mysql服务失败,则需要重启系统
         return
     pass
 
