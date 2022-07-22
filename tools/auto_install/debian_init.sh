@@ -9,7 +9,7 @@ sudo apt-get install apt-transport-https ca-certificates -y
 if [[ $? != 0 ]]; then
 	exit -1
 fi
-sudo cp ./sources.list /etc/apt/sources.list
+sudo cp ../script/sources.list /etc/apt/sources.list
 if [[ $? != 0 ]]; then
 	exit -1
 fi
