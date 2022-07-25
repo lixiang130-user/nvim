@@ -120,22 +120,28 @@ class python_rely(object):
         print(__name__, ' __init__')
     def __del__(self):
         print(__name__, ' __def__')
-    def install(self, type=1):
+    def install(self, type=''):
         #print(sys._getframe().f_lineno)
-        if type == 1:
+        if type == 'py':
             #股票,mysql等库
             if(os.system('sudo apt-get install -y python3-pip') != 0):exit(-1)
+        elif type == 'pymisc':
             #if(os.system('pip install baostock') != 0):exit(-1)
-            if(os.system('pip install pymysql') != 0):exit(-1)
-
+            if(os.system('pip install pymysql requests lxml bs4 parsel') != 0):exit(-1)
+        elif type == 'browser':
+            #if(os.system('sudo apt-get install -y fonts-liberation wget dbus-x11') != 0):exit(-1)
+            if(os.system('sudo apt-get install -y firefox-esr libpci-dev libegl-dev') != 0):exit(-1)
+            if(os.system('which firefox && firefox --version') != 0):exit(-1)
+            if(os.system('tar -xzvf ../compressed/geckodriver-v0.31.0-linux64.tar.gz') != 0):exit(-1)
+            if(os.system('sudo mv geckodriver /usr/bin/ && geckodriver --version') != 0):exit(-1)
+            if(os.system('pip install selenium') != 0):exit(-1)
+        elif type == 'mysql':
             #mysql相关
             if(os.system('sudo apt-get install -y mariadb-server') != 0):exit(-1)
-        if type == 2:
             if(os.system('sudo service mariadb start') != 0):exit(-1)
             #配置mysql
             if(os.system('sudo mysql') != 0):exit(-1)
             #ALTER USER root@localhost IDENTIFIED VIA mysql_native_password USING PASSWORD("Mysql1234.");
-
             #if(os.system('sudo apt-get install -y mysql-server') != 0):exit(-1)
             #if(os.system('sudo /etc/init.d/mysql start') != 0):exit(-1)
             #if(os.system('sudo mysql') != 0):exit(-1)
@@ -144,7 +150,7 @@ class python_rely(object):
             if(os.system('sudo mysql_secure_installation') != 0):exit(-1)
             #然后全部选择否n
 
-        if type == 3:
+        elif type == 'mysql2':
             #然后修改/etc/mysql/mariadb.conf.d/50-server.cnf:18 datadir = /home/user/linux/mysql
             #复制/var/lib/mysql文件 到/home/user/linux/mysql 处
             os.system('mkdir /home/user/linux')
@@ -155,18 +161,6 @@ class python_rely(object):
             os.system('sudo service mariadb start')
             #若重启mysql服务失败,则需要重启系统
         return
-    pass
-
-class chrome_driver(object):
-    def install(self):
-        #if(os.system('sudo apt-get install -y fonts-liberation wget dbus-x11') != 0):exit(-1)
-        if(os.system('sudo apt-get install -y chromium') != 0):exit(-1)
-        if(os.system('which chromium && chromium --version') != 0):exit(-1)
-        if(os.system('curl -o driver.zip https://chromedriver.storage.googleapis.com/103.0.5060.134/chromedriver_linux64.zip') != 0):exit(-1)
-        if(os.system('unzip driver.zip && rm driver.zip') != 0):exit(-1)
-        if(os.system('sudo mv chromedriver /usr/bin/ && chromedriver -v') != 0):exit(-1)
-        if(os.system('pip install selenium') != 0):exit(-1)
-        #sudo service dbus start 需要启动,看看怎么自动启动服务
     pass
 
 #run
@@ -186,14 +180,14 @@ elif sys.argv[1] == '2':
     print('run step 2')
     git = git_install()
     git.install()
-elif sys.argv[1] == 'sql1':
-    print('run step py1')
-    python_rely().install(1)
-elif sys.argv[1] == 'sql2':
-    print('run step py2')
-    python_rely().install(2)
-elif sys.argv[1] == 'sql3':
-    print('run step py3')
-    python_rely().install(3)
-elif sys.argv[1] == 'chrome':
-    chrome_driver().install();
+elif sys.argv[1] == 'py':
+    print('run step py')
+    python_rely().install(sys.argv[1])
+elif sys.argv[1] == 'pymisc':
+    print('run step pymisc')
+    python_rely().install(sys.argv[1])
+elif sys.argv[1] == 'mysql':
+    print('run step mysql')
+    python_rely().install(sys.argv[1])
+elif sys.argv[1] == 'browser':
+    python_rely().install(sys.argv[1])
