@@ -186,13 +186,13 @@ elif sys.argv[1] == '2':
     print('run step 2')
     git = git_install()
     git.install()
-elif sys.argv[1] == 'py1':
+elif sys.argv[1] == 'sql1':
     print('run step py1')
     python_rely().install(1)
-elif sys.argv[1] == 'py2':
+elif sys.argv[1] == 'sql2':
     print('run step py2')
     python_rely().install(2)
-elif sys.argv[1] == 'py3':
+elif sys.argv[1] == 'sql3':
     print('run step py3')
     python_rely().install(3)
 elif sys.argv[1] == 'chrome':
