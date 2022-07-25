@@ -133,7 +133,7 @@ class python_rely(object):
             if(os.system('sudo apt-get install -y firefox-esr libpci-dev libegl-dev') != 0):exit(-1)
             if(os.system('which firefox && firefox --version') != 0):exit(-1)
             if(os.system('tar -xzvf ../compressed/geckodriver-v0.31.0-linux64.tar.gz') != 0):exit(-1)
-            if(os.system('sudo mv geckodriver /usr/bin/ && geckodriver --version') != 0):exit(-1)
+            if(os.system('sudo mv geckodriver /usr/local/bin/ && geckodriver --version') != 0):exit(-1)
             if(os.system('pip install selenium') != 0):exit(-1)
         elif type == 'mysql':
             #mysql相关
