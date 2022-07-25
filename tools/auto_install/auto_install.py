@@ -157,6 +157,18 @@ class python_rely(object):
         return
     pass
 
+class chrome_driver(object):
+    def install(self):
+        if(os.system('curl -o chrome.deb  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y fonts-liberation wget dbus-x11') != 0):exit(-1)
+        if(os.system('sudo dpkg -i chrome.deb') != 0):exit(-1)
+        if(os.system('which google-chrome && google-chrome --version') != 0):exit(-1)
+        if(os.system('curl -o driver.zip https://chromedriver.storage.googleapis.com/103.0.5060.134/chromedriver_linux64.zip') != 0):exit(-1)
+        if(os.system('unzip driver.zip && rm driver.zip') != 0):exit(-1)
+        if(os.system('sudo mv chromedriver /usr/bin/ && chromedriver -v') != 0):exit(-1)
+        if(os.system('pip install selenium') != 0):exit(-1)
+    pass
+
 #run
 if len(sys.argv) <= 1:
     print('plase set step 1 2 3')
@@ -183,3 +195,5 @@ elif sys.argv[1] == 'py2':
 elif sys.argv[1] == 'py3':
     print('run step py3')
     python_rely().install(3)
+elif sys.argv[1] == 'chrome':
+    chrome_driver().install();
