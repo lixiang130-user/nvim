@@ -135,7 +135,8 @@ class python_rely(object):
             if(os.system('unzip ../compressed/chromedriver_linux64.zip') != 0):exit(-1)
             if(os.system('sudo mv chromedriver /usr/local/bin/ && chromedriver --version') != 0):exit(-1)
             if(os.system('sudo apt-get install fonts-wqy-microhei') != 0):exit(-1)
-            if(os.system('pip install selenium') != 0):exit(-1)
+            if(os.system('pip install selenium playwright') != 0):exit(-1)
+            if(os.system('playwright install') != 0):exit(-1)
             #若浏览器闪退或打开时自动输入按键自己,则从 https://aka.ms/wslstorepage 安装最新开发版wsl,即可修复
         elif type == 'mysql':
             #mysql相关
