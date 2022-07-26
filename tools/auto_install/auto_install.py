@@ -127,7 +127,7 @@ class python_rely(object):
             if(os.system('sudo apt-get install -y python3-pip') != 0):exit(-1)
         elif type == 'pymisc':
             #if(os.system('pip install baostock') != 0):exit(-1)
-            if(os.system('pip install pymysql requests lxml bs4 parsel') != 0):exit(-1)
+            if(os.system('pip install pymysql requests lxml bs4 parsel aiohttp') != 0):exit(-1)
         elif type == 'browser':
             #if(os.system('sudo apt-get install -y fonts-liberation wget dbus-x11') != 0):exit(-1)
             if(os.system('sudo apt-get install -y chromium') != 0):exit(-1)
