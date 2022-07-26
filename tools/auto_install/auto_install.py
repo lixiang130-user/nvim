@@ -130,10 +130,10 @@ class python_rely(object):
             if(os.system('pip install pymysql requests lxml bs4 parsel') != 0):exit(-1)
         elif type == 'browser':
             #if(os.system('sudo apt-get install -y fonts-liberation wget dbus-x11') != 0):exit(-1)
-            if(os.system('sudo apt-get install -y firefox-esr libpci-dev libegl-dev') != 0):exit(-1)
-            if(os.system('which firefox && firefox --version') != 0):exit(-1)
-            if(os.system('tar -xzvf ../compressed/geckodriver-v0.31.0-linux64.tar.gz') != 0):exit(-1)
-            if(os.system('sudo mv geckodriver /usr/local/bin/ && geckodriver --version') != 0):exit(-1)
+            if(os.system('sudo apt-get install -y chromium') != 0):exit(-1)
+            if(os.system('which chromium && chromium --version') != 0):exit(-1)
+            if(os.system('unzip ../compressed/chromedriver_linux64.zip') != 0):exit(-1)
+            if(os.system('sudo mv chromedriver /usr/local/bin/ && chromedriver --version') != 0):exit(-1)
             if(os.system('sudo apt-get install fonts-wqy-microhei') != 0):exit(-1)
             if(os.system('pip install selenium') != 0):exit(-1)
             #若浏览器闪退或打开时自动输入按键自己,则从 https://aka.ms/wslstorepage 安装最新开发版wsl,即可修复
