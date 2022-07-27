@@ -128,6 +128,11 @@ class python_rely(object):
         elif type == 'pymisc':
             #if(os.system('pip install baostock') != 0):exit(-1)
             if(os.system('pip install pymysql requests lxml bs4 parsel aiohttp') != 0):exit(-1)
+        elif type == 'pyocr':
+            if(os.system('sudo apt-get install -y tesseract-ocr libtesseract-dev') != 0):exit(-1)
+            if(os.system('sudo apt-get install -y libleptonica-dev') != 0):exit(-1)
+            if(os.system('pip install tesserocr pillow numpy retrying') != 0):exit(-1)
+            pass
         elif type == 'browser':
             #if(os.system('sudo apt-get install -y fonts-liberation wget dbus-x11') != 0):exit(-1)
             if(os.system('sudo apt-get install -y chromium') != 0):exit(-1)
@@ -194,4 +199,6 @@ elif sys.argv[1] == 'mysql':
     print('run step mysql')
     python_rely().install(sys.argv[1])
 elif sys.argv[1] == 'browser':
+    python_rely().install(sys.argv[1])
+elif sys.argv[1] == 'pyocr':
     python_rely().install(sys.argv[1])
