@@ -122,18 +122,19 @@ class python_rely(object):
         print(__name__, ' __def__')
     def install(self, type=''):
         #print(sys._getframe().f_lineno)
-        if type == 'py':
+        if type =='all' or type == 'py':
             #股票,mysql等库
             if(os.system('sudo apt-get install -y python3-pip') != 0):exit(-1)
-        elif type == 'pymisc':
+        elif type =='all' or type == 'pymisc':
             #if(os.system('pip install baostock') != 0):exit(-1)
             if(os.system('pip install pymysql requests lxml bs4 parsel aiohttp') != 0):exit(-1)
-        elif type == 'pyocr':
+        elif type =='all' or type == 'pyverify':
             if(os.system('sudo apt-get install -y tesseract-ocr libtesseract-dev') != 0):exit(-1)
             if(os.system('sudo apt-get install -y libleptonica-dev') != 0):exit(-1)
             if(os.system('pip install tesserocr pillow numpy retrying') != 0):exit(-1)
+            if(os.system('pip install opencv-python') != 0):exit(-1)
             pass
-        elif type == 'browser':
+        elif type =='all' or type == 'browser':
             #if(os.system('sudo apt-get install -y fonts-liberation wget dbus-x11') != 0):exit(-1)
             if(os.system('sudo apt-get install -y chromium') != 0):exit(-1)
             if(os.system('which chromium && chromium --version') != 0):exit(-1)
@@ -144,7 +145,7 @@ class python_rely(object):
             if(os.system('playwright install') != 0):exit(-1)
             if(os.system('playwright install-deps') != 0):exit(-1)
             #若浏览器闪退或打开时自动输入按键字母,则从 https://aka.ms/wslstorepage 安装最新开发版wsl,即可修复
-        elif type == 'mysql':
+        elif type =='all' or type == 'mysql':
             #mysql相关
             if(os.system('sudo apt-get install -y mariadb-server') != 0):exit(-1)
             if(os.system('sudo service mariadb start') != 0):exit(-1)
@@ -159,7 +160,7 @@ class python_rely(object):
             if(os.system('sudo mysql_secure_installation') != 0):exit(-1)
             #然后全部选择否n
 
-        elif type == 'mysql2':
+        elif type =='all' or type == 'mysql2':
             #然后修改/etc/mysql/mariadb.conf.d/50-server.cnf:18 datadir = /home/user/linux/mysql
             #复制/var/lib/mysql文件 到/home/user/linux/mysql 处
             os.system('mkdir /home/user/linux')
@@ -200,5 +201,5 @@ elif sys.argv[1] == 'mysql':
     python_rely().install(sys.argv[1])
 elif sys.argv[1] == 'browser':
     python_rely().install(sys.argv[1])
-elif sys.argv[1] == 'pyocr':
+elif sys.argv[1] == 'pyverify':
     python_rely().install(sys.argv[1])
