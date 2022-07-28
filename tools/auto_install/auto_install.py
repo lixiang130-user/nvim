@@ -128,11 +128,13 @@ class python_rely(object):
         elif type =='all' or type == 'pymisc':
             #if(os.system('pip install baostock') != 0):exit(-1)
             if(os.system('pip install pymysql requests lxml bs4 parsel aiohttp') != 0):exit(-1)
+            if(os.system('pip install pyquery') != 0):exit(-1)  #xml解析,在用别人的爬代理ip时用到
         elif type =='all' or type == 'pyverify':
             if(os.system('sudo apt-get install -y tesseract-ocr libtesseract-dev') != 0):exit(-1)
             if(os.system('sudo apt-get install -y libleptonica-dev') != 0):exit(-1)
             if(os.system('pip install tesserocr pillow numpy retrying') != 0):exit(-1)
-            if(os.system('pip install opencv-python') != 0):exit(-1)
+            #if(os.system('pip install opencv-python') != 0):exit(-1)
+            #代理安装proxifier软件设置127.0.0.1:7890
             pass
         elif type =='all' or type == 'browser':
             #if(os.system('sudo apt-get install -y fonts-liberation wget dbus-x11') != 0):exit(-1)
