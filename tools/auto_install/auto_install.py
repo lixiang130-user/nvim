@@ -162,7 +162,7 @@ class python_rely(object):
             if(os.system('sudo mysql_secure_installation') != 0):exit(-1)
             #然后全部选择否n
 
-        elif type =='all' or type == 'mysql2':
+        elif type == 'mysql2':
             #然后修改/etc/mysql/mariadb.conf.d/50-server.cnf:18 datadir = /home/user/linux/mysql
             #复制/var/lib/mysql文件 到/home/user/linux/mysql 处
             os.system('mkdir /home/user/linux')
