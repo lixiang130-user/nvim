@@ -129,6 +129,7 @@ class python_rely(object):
             #if(os.system('pip install baostock') != 0):exit(-1)
             if(os.system('pip install pymysql requests lxml bs4 parsel aiohttp') != 0):exit(-1)
             if(os.system('pip install pyquery') != 0):exit(-1)  #xml解析,在用别人的爬代理ip时用到
+            if(os.system('pip install pyexecjs') != 0):exit(-1)  #python模拟执行javaScript库
         elif type =='all' or type == 'pyverify':
             if(os.system('sudo apt-get install -y tesseract-ocr libtesseract-dev') != 0):exit(-1)
             if(os.system('sudo apt-get install -y libleptonica-dev') != 0):exit(-1)
