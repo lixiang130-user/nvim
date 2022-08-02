@@ -131,7 +131,8 @@ class python_rely(object):
             if(os.system('pip install pymysql requests lxml bs4 parsel aiohttp') != 0):exit(-1)
             if(os.system('pip install pyquery') != 0):exit(-1)  #xml解析,在用别人的爬代理ip时用到
             if(os.system('pip install pyexecjs') != 0):exit(-1)  #python模拟执行javaScript库
-            if(os.system('pip install mitmproxy') != 0):exit(-1)    #mitmproxy是一个http(s)抓包工具,抓手机app的包, 在wsl中需要按照教程配置: https://www.likecs.com/show-273420.html
+            #if(os.system('pip install mitmproxy') != 0):exit(-1)    #mitmproxy是一个http(s)抓包工具,抓手机app的包, 在wsl中需要按照教程配置: https://www.likecs.com/show-273420.html
+            #if(os.system('sudo npm install -g appium') != 0):exit(-1)  #控制手机自动化操作工具,需要安装android stdio,苹果也比较麻烦
         elif type =='all' or type == 'pyverify':
             if(os.system('sudo apt-get install -y tesseract-ocr libtesseract-dev') != 0):exit(-1)
             if(os.system('sudo apt-get install -y libleptonica-dev') != 0):exit(-1)
