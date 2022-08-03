@@ -98,9 +98,10 @@ local servers = {
     clangd = {},
     pyright = {},
     pylsp = { settings = {pylsp = {plugins = {pycodestyle = {
-        ignore = {'W391', 'E401', 'E265', 'E262', 'E128', 'E231', 'E402'},
-        maxLineLength = 300
-    }}}}},
+        maxLineLength = 300,
+        ignore = {'W391', 'E401', 'E265', 'E262', 'E128', 'E231', 'E402',
+        'E123', 'E126', 'E225',
+    }}}}}},
     jsonls = {},
 }
 for name, _ in pairs(servers) do
