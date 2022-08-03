@@ -96,6 +96,7 @@ local servers = {
     }},
     -- 根据不同的语言使用不同的配置
     clangd = {},
+    pyright = {},
     pylsp = { settings = {pylsp = {plugins = {pycodestyle = {
         ignore = {'W391', 'E401', 'E265', 'E262', 'E128', 'E231', 'E402'},
         maxLineLength = 300
