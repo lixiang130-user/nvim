@@ -96,7 +96,10 @@ local servers = {
     }},
     -- 根据不同的语言使用不同的配置
     clangd = {},
-    pyright = {},
+    pylsp = { settings = {pylsp = {plugins = {pycodestyle = {
+        ignore = {'W391'},
+        maxLineLength = 100
+    }}}}},
     jsonls = {},
 }
 for name, _ in pairs(servers) do

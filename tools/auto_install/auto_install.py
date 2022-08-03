@@ -89,6 +89,7 @@ class apt_install(object):
         if(os.system('sudo apt-get install -y unzip make bear git tree') != 0):exit(-1)
         if(os.system('sudo apt-get install -y npm dos2unix ripgrep gcc') != 0):exit(-1)
         if(os.system('sudo apt-get install -y g++ gcc-multilib g++-multilib') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y python3-venv') != 0):exit(-1)
         return True
     pass
 
@@ -125,7 +126,7 @@ class python_rely(object):
         if type =='all' or type == 'py':
             #股票,mysql等库
             if(os.system('sudo apt-get install -y python3-pip') != 0):exit(-1)
-        elif type =='all' or type == 'pymisc':
+        if type =='all' or type == 'pymisc':
             #if(os.system('pip install baostock') != 0):exit(-1)
             if(os.system('sudo npm install -g express') != 0):exit(-1)  #使用npmexpress框架作为http服务运行js 辅助工具:express-generator
             if(os.system('pip install pymysql requests lxml bs4 parsel aiohttp') != 0):exit(-1)
@@ -134,14 +135,14 @@ class python_rely(object):
             #if(os.system('pip install mitmproxy') != 0):exit(-1)    #mitmproxy是一个http(s)抓包工具,抓手机app的包, 在wsl中需要按照教程配置: https://www.likecs.com/show-273420.html
             #if(os.system('sudo npm install -g appium') != 0):exit(-1)  #控制手机自动化操作工具,需要安装android stdio,苹果也比较麻烦
             #if(os.system('pip install Appium-Python-Client') != 0):exit(-1)  #appium 客户端
-        elif type =='all' or type == 'pyverify':
+        if type =='all' or type == 'pyverify':
             if(os.system('sudo apt-get install -y tesseract-ocr libtesseract-dev') != 0):exit(-1)
             if(os.system('sudo apt-get install -y libleptonica-dev') != 0):exit(-1)
             if(os.system('pip install tesserocr pillow numpy retrying') != 0):exit(-1)
             #if(os.system('pip install opencv-python') != 0):exit(-1)
             #代理安装proxifier软件设置127.0.0.1:7890
             pass
-        elif type =='all' or type == 'browser':
+        if type =='all' or type == 'browser':
             #if(os.system('sudo apt-get install -y fonts-liberation wget dbus-x11') != 0):exit(-1)
             if(os.system('sudo apt-get install -y chromium') != 0):exit(-1)
             if(os.system('which chromium && chromium --version') != 0):exit(-1)
@@ -152,7 +153,11 @@ class python_rely(object):
             if(os.system('playwright install') != 0):exit(-1)
             if(os.system('playwright install-deps') != 0):exit(-1)
             #若浏览器闪退或打开时自动输入按键字母,则从 https://aka.ms/wslstorepage 安装最新开发版wsl,即可修复
-        elif type =='all' or type == 'mysql':
+        if type =='all' or type == 'scrapy':
+            if(os.system('sudo apt-get install -y build-essential python3-dev \
+                libssl-dev libxml2-dev openssl') != 0):exit(-1)
+            if(os.system('pip install Scrapy') != 0):exit(-1)
+        if type =='all' or type == 'mysql':
             #mysql相关
             if(os.system('sudo apt-get install -y mariadb-server') != 0):exit(-1)
             if(os.system('sudo service mariadb start') != 0):exit(-1)
@@ -167,7 +172,7 @@ class python_rely(object):
             if(os.system('sudo mysql_secure_installation') != 0):exit(-1)
             #然后全部选择否n
 
-        elif type == 'mysql2':
+        if type == 'mysql2':
             #然后修改/etc/mysql/mariadb.conf.d/50-server.cnf:18 datadir = /home/user/linux/mysql
             #复制/var/lib/mysql文件 到/home/user/linux/mysql 处
             os.system('mkdir /home/user/linux')
@@ -197,6 +202,9 @@ elif sys.argv[1] == '2':
     print('run step 2')
     git = git_install()
     git.install()
+elif sys.argv[1] == 'all':
+    print('run step all')
+    python_rely().install(sys.argv[1])
 elif sys.argv[1] == 'py':
     print('run step py')
     python_rely().install(sys.argv[1])
@@ -209,4 +217,6 @@ elif sys.argv[1] == 'mysql':
 elif sys.argv[1] == 'browser':
     python_rely().install(sys.argv[1])
 elif sys.argv[1] == 'pyverify':
+    python_rely().install(sys.argv[1])
+elif sys.argv[1] == 'scrapy':
     python_rely().install(sys.argv[1])
