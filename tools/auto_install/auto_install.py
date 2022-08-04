@@ -156,7 +156,7 @@ class python_rely(object):
         if type =='all' or type == 'scrapy':
             if(os.system('sudo apt-get install -y build-essential python3-dev \
                 libssl-dev libxml2-dev openssl') != 0):exit(-1)
-            if(os.system('pip install Scrapy') != 0):exit(-1)
+            if(os.system('pip install Scrapy pillow') != 0):exit(-1)
         if type =='all' or type == 'mysql':
             #mysql相关
             if(os.system('sudo apt-get install -y mariadb-server') != 0):exit(-1)
