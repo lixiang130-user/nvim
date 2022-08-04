@@ -35,6 +35,9 @@ vim.o.listchars = 'space:·,tab:··' -- 不可见字符的显示,这里只把�
 vim.o.showmode = false -- 显示当前模式nvi,使用增强状态栏插件后不再需要 vim 的模式提示
 vim.wo.colorcolumn = '80' -- 右侧参考线，超过表示代码太长了，考虑换行
 vim.o.cmdheight = 1 -- 命令行高为2，提供足够的显示空间
+vim.o.ignorecase = true -- 搜索大小写不敏感，除非包含大写
+vim.o.smartcase = true
+
 vim.api.nvim_command('set cursorline')  --编辑的折行添加下划线,背景色
 -- 折叠功能 za 打开/关闭,zc,zo关闭,打开,zr,zm打开,关闭所有折叠,zR,zM打开,关闭所有嵌套折叠
 -- zd,zE,删除当前,所有折叠, zj,zk,移动至上,下一个折叠,zn,zN禁用,启动,折叠
