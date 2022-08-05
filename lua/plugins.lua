@@ -100,7 +100,8 @@ local servers = {
     pylsp = { settings = {pylsp = {plugins = {pycodestyle = {
         maxLineLength = 300,
         ignore = {'W391', 'E401', 'E265', 'E262', 'E128', 'E231', 'E402',
-        'E123', 'E126', 'E225',
+        'E123', 'E126', 'E225', 'E701', 'E261', 'E226', 'W291', 'W293',
+        'E251',
     }}}}}},
     jsonls = {},
 }

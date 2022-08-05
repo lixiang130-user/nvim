@@ -46,7 +46,7 @@ map('n', 'vm', ':Vista!!<CR>', opt)
 -- bufferline插件操作
 map("n", "<S-h>", ":BufferLineCyclePrev<CR>", opt) -- bufferline 左右Shift切换
 map("n", "<S-l>", ":BufferLineCycleNext<CR>", opt)
-map("n", "cw", ":bw!<CR>", opt) -- close windows 关闭当前窗口(bw or bd)
+map("n", "ci", ":bw!<CR>", opt) -- close windows 关闭当前窗口(bw or bd)
 map("n", "cl", ":BufferLineCloseLeft<CR>", opt) -- close left 关闭当前窗口左侧所有窗口
 map("n", "cr", ":BufferLineCloseRight<CR>", opt) -- close right 关闭当前窗口右侧所有窗口
 -- terminal终端操作
