@@ -220,7 +220,7 @@ class python_rely(object):
 
 #run
 if len(sys.argv) <= 1:
-    print('plase set step 1 2 3')
+    print('plase set step 1 2 ...')
 elif sys.argv[1] == '1':
     print('run step 1')
     apt_source = apt_sources_update()
@@ -235,21 +235,6 @@ elif sys.argv[1] == '2':
     print('run step 2')
     git = git_install()
     git.install()
-elif sys.argv[1] == 'all':
-    print('run step all')
-    python_rely().install(sys.argv[1])
-elif sys.argv[1] == 'py':
-    print('run step py')
-    python_rely().install(sys.argv[1])
-elif sys.argv[1] == 'pymisc':
-    print('run step pymisc')
-    python_rely().install(sys.argv[1])
-elif sys.argv[1] == 'mysql':
-    print('run step mysql')
-    python_rely().install(sys.argv[1])
-elif sys.argv[1] == 'browser':
-    python_rely().install(sys.argv[1])
-elif sys.argv[1] == 'pyverify':
-    python_rely().install(sys.argv[1])
-elif sys.argv[1] == 'scrapy':
+else:
+    print('run step sys.argv[1]')
     python_rely().install(sys.argv[1])
