@@ -23,16 +23,20 @@ git clone --depth 1 https://github.com/lixiang130-user/nvim ~/.config/nvim
 nvim中需要执行PackerSynv, 
 '''
 
+
 class script_install(object):
     __user_tools = os.path.expanduser('~')+'/.user_tools/'
     __fastgithub = __user_tools+'fastgithub_linux-x64/fastgithub'
     __script_dir = '../script/'
     __etc_profile_d_sh = __script_dir+'etc_profile_d_user_login_run.sh'
     __bashrc = os.path.expanduser('~')+'/.bashrc'
+
     def __init__(self):
         print('scripy_install __init__')
+
     def __del__(self):
         print('scripy_install __def__')
+
     def install(self):
         if not os.path.isdir(self.__user_tools):
             os.makedirs(self.__user_tools)
@@ -63,25 +67,31 @@ class script_install(object):
         return True
     pass
 
+
 class apt_sources_update(object):
     __src_sources = '../script/sources.list'
     __dst_sources = '/etc/apt/sources.list'
+
     def __init__(self):
         print('apt_install __init__')
+
     def __del__(self):
         print('apt_install __def__')
+
     def update(self):
         if(os.system('sudo cp '+self.__src_sources+' '+self.__dst_sources) != 0):
             exit(-1)
         return True
-    
     pass
+
 
 class apt_install(object):
     def __init__(self):
         print('apt_install __init__')
+
     def __del__(self):
         print('apt_install __def__')
+
     def install(self):
         if(os.system('sudo apt-get update -y') != 0):exit(-1)
         if(os.system('sudo apt-get upgrade -y') != 0):exit(-1)
@@ -93,13 +103,17 @@ class apt_install(object):
         return True
     pass
 
+
 class git_install(object):
     __packer = os.path.expanduser('~')+'/.local/share/nvim/site/pack/packer/start/packer.nvim'
     __nvim = os.path.expanduser('~')+'/.config/nvim'
+
     def __init__(self):
         print('git_install __init__')
+
     def __del__(self):
         print('git_install __def__')
+
     def install(self):
         if(os.system('git config --global credential.helper store') != 0):exit(-1)
         if(os.system('git config --global user.name lixiang130') != 0):exit(-1)
@@ -116,74 +130,93 @@ class git_install(object):
         return True
     pass
 
+
 class python_rely(object):
     def __init__(self):
         print(__name__, ' __init__')
+
     def __del__(self):
         print(__name__, ' __def__')
+
+    def install_pymisc(self):
+        #if(os.system('pip install baostock') != 0):exit(-1)
+        if(os.system('sudo npm install -g express') != 0):exit(-1)  #使用npmexpress框架作为http服务运行js 辅助工具:express-generator
+        if(os.system('pip install pymysql requests lxml bs4 parsel aiohttp') != 0):exit(-1)
+        if(os.system('pip install pyquery') != 0):exit(-1)  #xml解析,在用别人的爬代理ip时用到
+        if(os.system('pip install pyexecjs') != 0):exit(-1)  #python模拟执行javaScript库
+        #if(os.system('pip install mitmproxy') != 0):exit(-1)    #mitmproxy是一个http(s)抓包工具,抓手机app的包, 在wsl中需要按照教程配置: https://www.likecs.com/show-273420.html
+        #if(os.system('sudo npm install -g appium') != 0):exit(-1)  #控制手机自动化操作工具,需要安装android stdio,苹果也比较麻烦
+        #if(os.system('pip install Appium-Python-Client') != 0):exit(-1)  #appium 客户端
+
+    def install_browser(self):
+        #if(os.system('sudo apt-get install -y fonts-liberation wget dbus-x11') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y chromium') != 0):exit(-1)
+        if(os.system('which chromium && chromium --version') != 0):exit(-1)
+        if(os.system('unzip ../compressed/chromedriver_linux64.zip') != 0):exit(-1)
+        if(os.system('sudo mv chromedriver /usr/local/bin/ && chromedriver --version') != 0):exit(-1)
+        if(os.system('sudo apt-get install fonts-wqy-microhei') != 0):exit(-1)
+        if(os.system('pip install selenium playwright') != 0):exit(-1)
+        if(os.system('playwright install') != 0):exit(-1)
+        if(os.system('playwright install-deps') != 0):exit(-1)
+        #若浏览器闪退或打开时自动输入按键字母,则从 https://aka.ms/wslstorepage 安装最新开发版wsl,即可修复
+
+    def install_pyverify(self):
+        if(os.system('sudo apt-get install -y tesseract-ocr libtesseract-dev') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y libleptonica-dev') != 0):exit(-1)
+        if(os.system('pip install tesserocr pillow numpy retrying') != 0):exit(-1)
+        #if(os.system('pip install opencv-python') != 0):exit(-1)
+        #代理安装proxifier软件设置127.0.0.1:7890
+
+    def install_scrapy(self):
+        if(os.system('sudo apt-get install -y build-essential python3-dev \
+            libssl-dev libxml2-dev openssl') != 0):exit(-1)
+        if(os.system('pip install Scrapy pillow') != 0):exit(-1)
+
+    def install_mysql(self):
+        #mysql相关
+        if(os.system('sudo apt-get install -y mariadb-server') != 0):exit(-1)
+        if(os.system('sudo service mariadb start') != 0):exit(-1)
+        if(os.system('sudo mysql') != 0):exit(-1)
+        '''
+        #配置mysql
+        ALTER USER root@localhost IDENTIFIED VIA mysql_native_password USING PASSWORD("Mysql1234.");
+        #if(os.system('sudo apt-get install -y mysql-server') != 0):exit(-1)
+        #if(os.system('sudo /etc/init.d/mysql start') != 0):exit(-1)
+        #if(os.system('sudo mysql') != 0):exit(-1)
+        ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'Mysql1234.';
+        '''
+        if(os.system('sudo mysql_secure_installation') != 0):exit(-1)
+        #然后全部选择否n
+        '''
+        #然后修改/etc/mysql/mariadb.conf.d/50-server.cnf:18 datadir = /home/user/linux/mysql
+        #复制/var/lib/mysql文件 到/home/user/linux/mysql 处
+        os.system('mkdir /home/user/linux')
+        if(os.system('sudo cp ../script/mysql_50-server.cnf\
+                /etc/mysql/mariadb.conf.d/50-server.cnf') != 0):exit(-1)
+        if(os.system('sudo cp -r /var/lib/mysql /home/user/linux/mysql') != 0):exit(-1)
+        if(os.system('sudo chown mysql:mysql -R /home/user/linux/mysql') != 0):exit(-1)
+        os.system('sudo service mariadb stop')
+        os.system('sudo service mariadb start')
+        #若重启mysql服务失败,则需要重启系统
+        '''
+
     def install(self, type=''):
         #print(sys._getframe().f_lineno)
         if type =='all' or type == 'py':
             #股票,mysql等库
             if(os.system('sudo apt-get install -y python3-pip') != 0):exit(-1)
         if type =='all' or type == 'pymisc':
-            #if(os.system('pip install baostock') != 0):exit(-1)
-            if(os.system('sudo npm install -g express') != 0):exit(-1)  #使用npmexpress框架作为http服务运行js 辅助工具:express-generator
-            if(os.system('pip install pymysql requests lxml bs4 parsel aiohttp') != 0):exit(-1)
-            if(os.system('pip install pyquery') != 0):exit(-1)  #xml解析,在用别人的爬代理ip时用到
-            if(os.system('pip install pyexecjs') != 0):exit(-1)  #python模拟执行javaScript库
-            #if(os.system('pip install mitmproxy') != 0):exit(-1)    #mitmproxy是一个http(s)抓包工具,抓手机app的包, 在wsl中需要按照教程配置: https://www.likecs.com/show-273420.html
-            #if(os.system('sudo npm install -g appium') != 0):exit(-1)  #控制手机自动化操作工具,需要安装android stdio,苹果也比较麻烦
-            #if(os.system('pip install Appium-Python-Client') != 0):exit(-1)  #appium 客户端
+            self.install_pymisc()
         if type =='all' or type == 'pyverify':
-            if(os.system('sudo apt-get install -y tesseract-ocr libtesseract-dev') != 0):exit(-1)
-            if(os.system('sudo apt-get install -y libleptonica-dev') != 0):exit(-1)
-            if(os.system('pip install tesserocr pillow numpy retrying') != 0):exit(-1)
-            #if(os.system('pip install opencv-python') != 0):exit(-1)
-            #代理安装proxifier软件设置127.0.0.1:7890
-            pass
+            self.install_pyverify()
         if type =='all' or type == 'browser':
-            #if(os.system('sudo apt-get install -y fonts-liberation wget dbus-x11') != 0):exit(-1)
-            if(os.system('sudo apt-get install -y chromium') != 0):exit(-1)
-            if(os.system('which chromium && chromium --version') != 0):exit(-1)
-            if(os.system('unzip ../compressed/chromedriver_linux64.zip') != 0):exit(-1)
-            if(os.system('sudo mv chromedriver /usr/local/bin/ && chromedriver --version') != 0):exit(-1)
-            if(os.system('sudo apt-get install fonts-wqy-microhei') != 0):exit(-1)
-            if(os.system('pip install selenium playwright') != 0):exit(-1)
-            if(os.system('playwright install') != 0):exit(-1)
-            if(os.system('playwright install-deps') != 0):exit(-1)
-            #若浏览器闪退或打开时自动输入按键字母,则从 https://aka.ms/wslstorepage 安装最新开发版wsl,即可修复
+            self.install_browser()
         if type =='all' or type == 'scrapy':
-            if(os.system('sudo apt-get install -y build-essential python3-dev \
-                libssl-dev libxml2-dev openssl') != 0):exit(-1)
-            if(os.system('pip install Scrapy pillow') != 0):exit(-1)
+            self.install_scrapy()
         if type =='all' or type == 'mysql':
-            #mysql相关
-            if(os.system('sudo apt-get install -y mariadb-server') != 0):exit(-1)
-            if(os.system('sudo service mariadb start') != 0):exit(-1)
-            #配置mysql
-            if(os.system('sudo mysql') != 0):exit(-1)
-            #ALTER USER root@localhost IDENTIFIED VIA mysql_native_password USING PASSWORD("Mysql1234.");
-            #if(os.system('sudo apt-get install -y mysql-server') != 0):exit(-1)
-            #if(os.system('sudo /etc/init.d/mysql start') != 0):exit(-1)
-            #if(os.system('sudo mysql') != 0):exit(-1)
-            #ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'Mysql1234.';
-
-            if(os.system('sudo mysql_secure_installation') != 0):exit(-1)
-            #然后全部选择否n
-
-        if type == 'mysql2':
-            #然后修改/etc/mysql/mariadb.conf.d/50-server.cnf:18 datadir = /home/user/linux/mysql
-            #复制/var/lib/mysql文件 到/home/user/linux/mysql 处
-            os.system('mkdir /home/user/linux')
-            if(os.system('sudo cp ../script/mysql_50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf') != 0):exit(-1)
-            if(os.system('sudo cp -r /var/lib/mysql /home/user/linux/mysql') != 0):exit(-1)
-            if(os.system('sudo chown mysql:mysql -R /home/user/linux/mysql') != 0):exit(-1)
-            os.system('sudo service mariadb stop')
-            os.system('sudo service mariadb start')
-            #若重启mysql服务失败,则需要重启系统
-        return
+            self.install_mysql()
     pass
+
 
 #run
 if len(sys.argv) <= 1:
