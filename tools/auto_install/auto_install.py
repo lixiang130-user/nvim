@@ -171,6 +171,7 @@ class python_rely(object):
         if(os.system('sudo apt-get install -y build-essential python3-dev \
             libssl-dev libxml2-dev openssl') != 0):exit(-1)
         if(os.system('pip install Scrapy pillow') != 0):exit(-1)
+        if(os.system('pip install scrapy-playwright') != 0):exit(-1)
 
     def install_mysql(self):
         #mysql相关
