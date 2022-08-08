@@ -133,8 +133,8 @@ cmp.setup {
     -- 必须指定代码段引擎 -- For `vsnip` users. 就是vim-vsnip插件
     snippet = {expand = function(args) vim.fn["vsnip#anonymous"](args.body)end},
     sources = cmp.config.sources({
+            {name='vsnip'},
             {name='nvim_lsp'},
-            {name='vsnip'}
         },{
             {name = 'buffer'},
             {name = 'path'}
