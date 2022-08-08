@@ -201,6 +201,9 @@ class python_rely(object):
         #若重启mysql服务失败,则需要重启系统
         '''
 
+    def install_pyside(self):
+        if(os.system('pip install pyside6') != 0):exit(-1)
+
     def install(self, type=''):
         #print(sys._getframe().f_lineno)
         if type =='all' or type == 'py':
@@ -216,6 +219,8 @@ class python_rely(object):
             self.install_scrapy()
         if type =='all' or type == 'mysql':
             self.install_mysql()
+        if type =='all' or type == 'pyside':
+            self.install_pyside()
     pass
 
 
@@ -237,5 +242,5 @@ elif sys.argv[1] == '2':
     git = git_install()
     git.install()
 else:
-    print('run step sys.argv[1]')
+    print('run step ', sys.argv[1])
     python_rely().install(sys.argv[1])
