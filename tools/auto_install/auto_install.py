@@ -206,6 +206,15 @@ class python_rely(object):
 
     def install_pyinstaller(self):
         if(os.system('pip install pyinstaller') != 0):exit(-1)
+        '''
+        https://www.pc6.com/softview/SoftView_104246.html
+        windows可执行的exe需要安装微软常用运行库中的:
+        Microsoft Visual C++ 2005-2019 Redistributable – 14.28.29301
+        再打包才能用, 而且windows下也要安装python3,
+        pyside6(界面用的windows下的库,
+        pyinstaller(打包工具用的pyinstall.exe
+        这样打包后的exe, 就可以在没有环境的电脑上运行
+        '''
 
     def install(self, type=''):
         #print(sys._getframe().f_lineno)
