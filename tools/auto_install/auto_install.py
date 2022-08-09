@@ -204,6 +204,9 @@ class python_rely(object):
     def install_pyside(self):
         if(os.system('pip install pyside6') != 0):exit(-1)
 
+    def install_pyinstaller(self):
+        if(os.system('pip install pyinstaller') != 0):exit(-1)
+
     def install(self, type=''):
         #print(sys._getframe().f_lineno)
         if type =='all' or type == 'py':
@@ -221,6 +224,8 @@ class python_rely(object):
             self.install_mysql()
         if type =='all' or type == 'pyside':
             self.install_pyside()
+        if type =='all' or type == 'pyinstaller':
+            self.install_pyinstaller()
     pass
 
 
