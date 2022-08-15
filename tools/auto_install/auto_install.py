@@ -216,6 +216,14 @@ class python_rely(object):
         这样打包后的exe, 就可以在没有环境的电脑上运行
         '''
 
+    def install_kivy(self):
+        #不好用,教程少,暂时不要了
+        #稳定版
+        if(os.system('sudo apt-get install -y python3-kivy python-kivy-examples') != 0):exit(-1)
+        #依赖
+        if(os.system('sudo apt-get install -y libmtdev-dev libmtdev1 xclip') != 0):exit(-1)
+        if(os.system('pip install cython kivy pygame') != 0):exit(-1)
+
     def install(self, type=''):
         #print(sys._getframe().f_lineno)
         if type =='all' or type == 'py':
