@@ -1,0 +1,38 @@
+set encoding=UTF-8
+set fileencoding=utf-8
+set scrolloff=5
+set sidescrolloff=5
+set tabstop=4
+set softtabstop=4
+set shiftround
+set shiftwidth=4
+set expandtab
+set autoread
+set wrap
+set number
+set hlsearch
+set mouse=a
+set splitbelow
+set splitright
+set completeopt=menu,menuone,noselect,noinsert
+set wildmenu
+set pumheight=10
+set cmdheight=1
+set ignorecase
+set smartcase
+set cursorline
+set foldmethod=indent
+set foldlevel=99
+nnoremap wv :vsp<CR>
+nnoremap ws :sp<CR>
+nnoremap ww :wa<CR>
+nnoremap wa :wa<CR>
+nnoremap ca :wa<CR>:qa<CR>
+nnoremap cc <C-w>c
+nnoremap co <C-w>o
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <space>d gd
+nnoremap gd *
