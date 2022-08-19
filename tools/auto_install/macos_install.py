@@ -59,8 +59,8 @@ win == Command      Option == Alt
     仅松开Tab, 按住Opt,松开CMD。
 全屏:
     Control+command+f
-切换到桌面1,桌面2:
-    Control+1 或 Control+2
+切换到右侧左侧,桌面1,桌面2:
+    Control+(->, ->) Control+1 或 Control+2
 开关程序坞:
     Option+Command+d
 退出程序,大退:
