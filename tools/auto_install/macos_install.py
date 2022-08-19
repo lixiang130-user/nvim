@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 '''
+github mac passwd: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
 1.安装xcode-select包含常用开发工具:
     xcode-select --install
 2.安装brew, 似乎安装的xcode-select就能使用brew了?
@@ -32,6 +33,6 @@ function proxy_off()
 
 proxy_on
 alias vi='nvim'
-alisa vim='nvim'
-alisa ll='ls -al'
+alias vim='nvim'
+alias ll='ls -al'
 '''
