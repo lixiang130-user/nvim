@@ -28,3 +28,43 @@ github mac passwd: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
     #chsh -s /bin/bash	#修改会原来的终端
 10.其他功能安装
 '''
+
+'''
+mac快捷键:
+Command（或 Cmd）⌘      Shift ⇧
+Option（或 Alt）⌥       Control（或 Ctrl）⌃
+Caps Lock ⇪
+win == Command      Option == Alt
+
+刷新网页:
+    Command+r 刷新网页
+截图:
+    Shift+Control+Command+3键会在剪贴板里获取整个屏幕的截图
+    Shift+Control+Command+4键则能使你通过拖动鼠标来截取部分屏幕，并复制图片到剪贴板:
+    Control+Command+a键,微信截图
+删除文件:
+    Command+Backspace 删除文件
+中文输入法输入半角符号:
+    在右上角输入法右键选择对应选项,但是打括号,尖括号等不行
+重命名:
+    回车键
+最小化:
+    Command+M，最小化当前窗口
+    Command+Option+M，最小化当前应用程序所有窗口
+    Command+H，隐藏当前应用程序所有窗口的目的
+    Command+Option+H，隐藏除当前应用程序之外所有程序窗口
+    Command+Option+M+H，隐藏所有应用程序窗口的目的
+放大被最小化的窗口:
+    CMD+Tab 选中要还原/恢复的窗口
+    仅松开Tab, 按住Opt,松开CMD。
+全屏:
+    Control+command+f
+切换到桌面1,桌面2:
+    Control+1 或 Control+2
+开关程序坞:
+    Option+Command+d
+退出程序,大退:
+    Command+Q
+调出应用程序管理窗口:
+    command+option+esc
+'''

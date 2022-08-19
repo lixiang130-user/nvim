@@ -53,7 +53,8 @@ map("n", "cl", ":BufferLineCloseLeft<CR>", opt) -- close left 关闭当前窗口
 map("n", "cr", ":BufferLineCloseRight<CR>", opt) -- close right 关闭当前窗口右侧所有窗口
 -- terminal终端操作
 map("t", "<Esc>", "<C-\\><C-n>", opt) -- 命令行模式下terminal输入模式下切换到正常模式
-map("t", "<C-[>", "<C-\\><C-n>", opt) -- 命令行模式下terminal输入模式下切换到正常模式
+map("t", "<C-[>", "<C-\\><C-n>", opt)
+map("i", "<C-【>", "<C-\\><C-n>", opt)
 map("n", "tt", ":sp<CR>:terminal<CR>", opt) -- terminal 开启终端
 -- 剪切板操作 wsl子系统无法使用xsel实现剪切板,但是可以用过clip.exe实现系统剪切板:
 map("v", "Y", ":w !clip.exe<CR><CR>", opt) -- 通过wsl中的clip.exe拷贝内容到系统剪切板,只读文件也可以复制
