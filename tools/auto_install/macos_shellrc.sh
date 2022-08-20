@@ -18,4 +18,4 @@ function proxy_off()
 alias vi='nvim'
 alias vim='nvim'
 alias ll='ls -al'
-export PATH=$PATH:/opt/homebrew/bin
+#export PATH=$PATH:/opt/homebrew/bin
