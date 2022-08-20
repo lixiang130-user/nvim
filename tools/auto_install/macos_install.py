@@ -38,6 +38,7 @@ github mac passwd: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
             ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 8.其他功能安装
+    brew install tree
 '''
 
 '''

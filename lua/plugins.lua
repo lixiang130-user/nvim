@@ -152,7 +152,7 @@ cmp.setup {
 
 -- vim-translator 插件
 -- haici bing 可用 google超时,如果启用的外部翻墙就是用google翻译
-if os.getenv('all_proxy') ~= nil then    -- 没有使用windows的全局代理
+if os.getenv('https_proxy') ~= nil then    -- 没有使用windows的全局代理
     vim.g.translator_default_engines = {'bing', 'google'}
 else
     vim.g.translator_default_engines = {'bing', 'haici'}
