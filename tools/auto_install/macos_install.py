@@ -50,6 +50,11 @@ win == Command      Option == Alt
     Command+]
 多窗口页面,现实所有窗口:
     Command+Shift+\
+同应用切换窗口:
+    Command+~(tab上面到案件)
+同窗口切换tab:
+    Control+tab
+    部分可以Command+左右,或Command+option+左右
 浏览器自动填充密码
     Command+Shift+a
 打开文件管理器:
