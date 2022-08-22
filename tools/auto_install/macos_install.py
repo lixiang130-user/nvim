@@ -34,7 +34,9 @@ win == Command      Option == Alt
 全屏:
     Control+command+f
 切换到右侧左侧,桌面1,桌面2:
-    Control+(->, ->) Control+1 或 Control+2
+    Control+(<-, ->, 上, 下) Control+1 或 Control+2
+显示桌面:
+    F11
 开关程序坞:
     Option+Command+d
 退出程序,大退:

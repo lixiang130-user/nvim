@@ -8,6 +8,15 @@ function proxy_on()
     echo -e "已开启代理"
 }
 
+function proxy_on1()
+{
+    export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+    export http_proxy=http://127.0.0.1:1087;
+    export https_proxy=http://127.0.0.1:1087;
+    #export ALL_PROXY=socks5://127.0.0.1:1080
+    echo -e "已开启代理1"
+}
+
 function proxy_off()
 {
     unset http_proxy
