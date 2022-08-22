@@ -61,7 +61,8 @@ win == Command      Option == Alt
     Command+Shift+a
 打开文件管理器:
     Command+⬆️
-
+显示隐藏文件:
+    Command+Shift+.
 '''
 
 '''
