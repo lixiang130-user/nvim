@@ -72,7 +72,7 @@ github mac passwd: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
 2.安装brew:
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     /bin/bash -c "$(curl -fsSL https://gitee.com/ineo6/homebrew-install/raw/master/install.sh)"
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/user/.zprofile
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
     卸载:
     /bin/bash -c "$(curl -fsSL https://gitee.com/ineo6/homebrew-install/raw/master/uninstall.sh)"
 
@@ -117,25 +117,25 @@ def usystem(cmd):
         exit(f'error:{ret} cmd:{cmd}')
 
 
-def macos_init():
+def xcode_select_init():
     print('func:', sys._getframe().f_code.co_name, ' start')
-    usystem('xcode-select --install')
+    #usystem('xcode-select --install')
+
+def homebrew_init():
+    print('func:', sys._getframe().f_code.co_name, ' start')
     usystem('/bin/bash -c "$(curl -fsSL https://gitee.com/ineo6/homebrew-install/raw/master/install.sh)"')
-    usystem('echo \'eval "$(/opt/homebrew/bin/brew shellenv)"\' >> /Users/user/.zprofile')
+    usystem('echo \'eval "$(/opt/homebrew/bin/brew shellenv)"\' >> ~/.zprofile')
+    usystem('source ~/.zprofile && echo $PATH')
+    usystem('cat ./macos_shellrc.sh >> ~/.zshrc')
+    print('plase open new terminal and run all and proxy_on')
+
+def macos_init():
     #安装主要功能
     usystem('brew install python3 npm neovim')
     #安装其他功能
     usystem('brew install tree trash')
     #安装iterm2和on-my-zsh,可能需要翻墙,请提前安装好翻墙功能
-    usystem('cat ./macos_shellrc.sh >> ~/.zshrc')
     usystem('brew install iterm2')
-    usystem('/bin/bash -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"')
-    usystem('chsh -s /bin/zsh')    #修改为默认的终端
-    #usystem('chsh -s /bin/bash')	#修改会原来的终端
-    #安装完成on-my-zsh后会修改~/.zshrc内容,再次追加会用户配置
-    usystem('cat ./macos_shellrc.sh >> ~/.zshrc')
-
-    print('手动执行:打开iterm2 菜单中点击 make iterm2 default term')
 
 
 def nvim_init():
@@ -147,6 +147,15 @@ def nvim_init():
     usystem('git config --global core.fileMode false')
     usystem('git clone https://github.com/lixiang130-user/nvim ~/.config/nvim')
     usystem('git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim')
+
+
+def zsh_init():
+    usystem('/bin/bash -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"')
+    usystem('chsh -s /bin/zsh')    #修改为默认的终端
+    #usystem('chsh -s /bin/bash')	#修改会原来的终端
+    #安装完成on-my-zsh后会修改~/.zshrc内容,再次追加会用户配置
+    usystem('cat ./macos_shellrc.sh >> ~/.zshrc')
+    print('手动执行:打开iterm2 菜单中点击 make iterm2 default term')
 
 
 class classname(object):
@@ -168,13 +177,15 @@ if __name__ == '__main__':
     func()
     print('main start')
 
-    supports = ['macos_init', 'nvim_init']
+    supports = ['macos_init', 'nvim_init', 'zsh_init']
     if len(sys.argv) <= 1:
         exit(f'plase set param in {supports}')
+    elif sys.argv[1] == 'homebrew_init':
+        eval(sys.argv[1])()
     elif sys.argv[1] in supports:
         eval(sys.argv[1])()
     elif sys.argv[1] == 'all':
         for support in supports:
-            eval(sys.argv[1])()
+            eval(support)()
 
-    print('main start')
+    print('main end')
