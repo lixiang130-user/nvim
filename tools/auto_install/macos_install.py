@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!python3
 '''
 mac快捷键:
 Command（或 Cmd）⌘      Shift ⇧
@@ -110,14 +110,71 @@ github mac passwd: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
 
 import sys, os
 
+
+def usystem(cmd):
+    ret = os.system(cmd)
+    if ret != 0:
+        exit(f'error:{ret} cmd:{cmd}')
+
+
+def macos_init():
+    print('func:', sys._getframe().f_code.co_name, ' start')
+    usystem('xcode-select --install')
+    usystem('/bin/bash -c "$(curl -fsSL https://gitee.com/ineo6/homebrew-install/raw/master/install.sh)"')
+    usystem('echo \'eval "$(/opt/homebrew/bin/brew shellenv)"\' >> /Users/user/.zprofile')
+    #安装主要功能
+    usystem('brew install python3 npm neovim')
+    #安装其他功能
+    usystem('brew install tree trash')
+    #安装iterm2和on-my-zsh,可能需要翻墙,请提前安装好翻墙功能
+    usystem('cat ./macos_shellrc.sh >> ~/.zshrc')
+    usystem('brew install iterm2')
+    usystem('/bin/bash -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"')
+    usystem('chsh -s /bin/zsh')    #修改为默认的终端
+    #usystem('chsh -s /bin/bash')	#修改会原来的终端
+    #安装完成on-my-zsh后会修改~/.zshrc内容,再次追加会用户配置
+    usystem('cat ./macos_shellrc.sh >> ~/.zshrc')
+
+    print('手动执行:打开iterm2 菜单中点击 make iterm2 default term')
+
+
+def nvim_init():
+    print('func:', sys._getframe().f_code.co_name, ' start')
+    usystem('git config --global credential.helper store')
+    usystem('git config --global user.name lixiang130')
+    usystem('git config --global user.email 1309776181@qq.com')
+    usystem('git config --global pull.rebase false')
+    usystem('git config --global core.fileMode false')
+    usystem('git clone https://github.com/lixiang130-user/nvim ~/.config/nvim')
+    usystem('git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim')
+
+
+class classname(object):
+    def __init__(self):
+        print('file:', __file__.split('/')[-1])
+        print('class', self.__class__.__name__)
+        print('func:', sys._getframe().f_code.co_name)
+        print('line:', sys._getframe().f_lineno)
+    pass
+
+
+def func():
+    print('func:', sys._getframe().f_code.co_name)
+
+
 if __name__ == '__main__':
+    print('python version:', sys.version)
+    classname()
+    func()
+    print('main start')
+
+    supports = ['macos_init', 'nvim_init']
     if len(sys.argv) <= 1:
-        exit('plase set param ...')
-    if sys.argv[1] == 'nvim_clone':
-        if(os.system('git config --global credential.helper store') != 0):exit(-1)
-        if(os.system('git config --global user.name lixiang130') != 0):exit(-1)
-        if(os.system('git config --global user.email 1309776181@qq.com') != 0):exit(-1)
-        if(os.system('git config --global pull.rebase false') != 0):exit(-1)
-        if(os.system('git config --global core.fileMode false') != 0):exit(-1)
-        if(os.system('git clone https://github.com/lixiang130-user/nvim ~/.config/nvim') != 0):exit(-1)
-        if(os.system('git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim') != 0):exit(-1)
+        exit(f'plase set param in {supports}')
+    elif sys.argv[1] in supports:
+        eval(sys.argv[1])()
+    elif sys.argv[1] == 'all':
+        for support in supports:
+            eval(sys.argv[1])()
+
+    print('main start')
