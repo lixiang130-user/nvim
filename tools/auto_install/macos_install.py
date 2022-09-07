@@ -133,7 +133,7 @@ def macos_init():
     #安装主要功能
     usystem('brew install python3 npm neovim')
     #安装其他功能
-    usystem('brew install tree trash')
+    usystem('brew install tree trash carlocab/personal/unrar')
     #安装iterm2和on-my-zsh,可能需要翻墙,请提前安装好翻墙功能
     usystem('brew install iterm2')
 
