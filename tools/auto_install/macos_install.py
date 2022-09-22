@@ -170,6 +170,9 @@ class classname(object):
 def func():
     print('func:', sys._getframe().f_code.co_name)
 
+def python_init():
+    usystem('pip3 install bs4 requests')
+
 
 if __name__ == '__main__':
     print('python version:', sys.version)
@@ -187,5 +190,7 @@ if __name__ == '__main__':
     elif sys.argv[1] == 'all':
         for support in supports:
             eval(support)()
+    elif sys.argv[1] in "python_init":
+        eval(sys.argv[1])()
 
     print('main end')
