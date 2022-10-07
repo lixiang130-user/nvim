@@ -136,6 +136,8 @@ def macos_init():
     usystem('brew install tree trash carlocab/personal/unrar')
     #安装iterm2和on-my-zsh,可能需要翻墙,请提前安装好翻墙功能
     usystem('brew install iterm2')
+    #安装bear C语言Make解析
+    usystem('brew install bear')
 
 
 def nvim_init():
