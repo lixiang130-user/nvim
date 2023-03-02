@@ -9,11 +9,28 @@ if false; then
     export https_proxy="http://127.0.0.1:38457"
     ~/.user_tools/user_tools_start.sh &
     #echo 'use fastgithub'
-elif true; then
+elif false; then
     #使用外部代理,外部翻墙即可
     wsl2ip=$(cat /etc/resolv.conf | grep 'nameserver' | cut -f 2 -d ' ')
     export https_proxy="http://$wsl2ip:7890"
     export http_proxy="http://$wsl2ip:7890"
     export all_proxy="socks5://$wsl2ip:7890"
     #echo 'use windows proxy'
+elif true; then
+function proxy_on()
+{
+    wsl2ip=$(cat /etc/resolv.conf | grep 'nameserver' | cut -f 2 -d ' ')
+    export http_proxy="http://$wsl2ip:7890"
+    export https_proxy=$http_proxy
+    #export all_proxy=socks5://127.0.0.1:7890 # or this line
+    echo -e "已开启代理"
+}
+
+function proxy_off()
+{
+    unset http_proxy
+    unset https_proxy
+    echo -e "已关闭代理"
+}
 fi
+
