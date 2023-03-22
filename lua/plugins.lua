@@ -17,7 +17,9 @@ require('packer').startup(function()
     -- bufferline 插件,展示顶部tab标签
     use { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
     -- lspconfig 提供跳转到定义，查找引用，悬停文档提示等功能
-    use { 'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer' }
+    use { 'neovim/nvim-lspconfig'} -- 'williamboman/nvim-lsp-installer' }
+    use { 'williamboman/mason.nvim' }
+    use { 'williamboman/mason-lspconfig.nvim' }
     -- lsp 自动补全功能
     use 'hrsh7th/nvim-cmp'  -- 自动补全插件本身
     use 'onsails/lspkind-nvim'  -- 美化自动补全窗口的插件
@@ -87,45 +89,74 @@ require('bufferline').setup {
 
 -- lspconfig 配置, servers 参考对应语言
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.txt
-local servers = {
-    sumneko_lua = { Lua = {
-        runtime = {version = 'LuaJIT'},
-        diagnostics = {globals = { 'vim' }},
-        workspace = {library = vim.api.nvim_get_runtime_file("", true),},
-        telemetry = {enable = false,},
-    }},
-    -- 根据不同的语言使用不同的配置
-    clangd = {},
-    pyright = {},
-    pylsp = { settings = {pylsp = {plugins = {pycodestyle = {
-        maxLineLength = 300,
-        ignore = {'W391', 'E401', 'E265', 'E262', 'E128', 'E231', 'E402',
-        'E123', 'E126', 'E225', 'E701', 'E261', 'E226', 'W291', 'W293',
-        'E251', 'E127', 'E227', 'E241', 'W503', 'E124', 'E201'
-    }}}}}},
-    jsonls = {},
-}
-for name, _ in pairs(servers) do
-    local server_is_found, server = require 'nvim-lsp-installer'.get_server(name)
-    if server_is_found then
-        if not server:is_installed() then
-            print("Installing " .. name)
-            server:install()
-        end
-    end
+-- local servers = {
+--     sumneko_lua = { Lua = {
+--         runtime = {version = 'LuaJIT'},
+--         diagnostics = {globals = { 'vim' }},
+--         workspace = {library = vim.api.nvim_get_runtime_file("", true),},
+--         telemetry = {enable = false,},
+--     }},
+--     -- 根据不同的语言使用不同的配置
+--     clangd = {},
+--     pyright = {},
+--     pylsp = { settings = {pylsp = {plugins = {pycodestyle = {
+--         maxLineLength = 300,
+--         ignore = {'W391', 'E401', 'E265', 'E262', 'E128', 'E231', 'E402',
+--         'E123', 'E126', 'E225', 'E701', 'E261', 'E226', 'W291', 'W293',
+--         'E251', 'E127', 'E227', 'E241', 'W503', 'E124', 'E201'
+--     }}}}}},
+--     jsonls = {},
+-- }
+-- for name, _ in pairs(servers) do
+--     local server_is_found, server = require 'nvim-lsp-installer'.get_server(name)
+--     if server_is_found then
+--         if not server:is_installed() then
+--             print("Installing " .. name)
+--             server:install()
+--         end
+--     end
+-- end
+-- -- 应该是判断安装完成的回调函数
+-- local lsp_flags = { debounce_text_changes = 150 } --nvim0.7+默认配置
+-- require 'nvim-lsp-installer'.on_server_ready(function(server)
+--     local opts = servers[server.name]
+--     if opts then
+--         opts.on_attach = function()
+--             require('keymaps').lsp_map()
+--         end
+--         opts.flags = lsp_flags
+--         server:setup(opts)
+--     end
+-- end)
+
+-- mason 语法解析器
+require'mason'.setup({
+    ui = {
+        icons = {
+            package_installed = '√',
+            package_pending = '→',
+            package_uninstalled = '×',
+        },
+    },
+})
+-- 按键映射
+local on_attach = function(client, bufnr)
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  require('keymaps').lsp_map()
 end
--- 应该是判断安装完成的回调函数
-local lsp_flags = { debounce_text_changes = 150 } --nvim0.7+默认配置
-require 'nvim-lsp-installer'.on_server_ready(function(server)
-    local opts = servers[server.name]
-    if opts then
-        opts.on_attach = function()
-            require('keymaps').lsp_map()
-        end
-        opts.flags = lsp_flags
-        server:setup(opts)
-    end
-end)
+-- 支持解析的语法, 确保安装,根据需要填写, 可以改成循环的方式,暂时不实现了
+require'mason-lspconfig'.setup({
+    ensure_installed = {
+        'lua_ls',
+        'pyright',
+        'jsonls',
+        'clangd',
+    },
+})
+require'lspconfig'['lua_ls'].setup{ on_attach =  on_attach}
+require'lspconfig'['pyright'].setup{ on_attach =  on_attach}
+require'lspconfig'['jsonls'].setup{ on_attach =  on_attach}
+require'lspconfig'['clangd'].setup{ on_attach =  on_attach}
 
 -- lsp 自动补全功能
 local cmp = require'cmp'
