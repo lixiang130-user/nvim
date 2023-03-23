@@ -40,7 +40,7 @@ function fastgit_off()
 {
     killall fastgithub
     unset http_proxy
-    unset https_porxy
+    unset https_proxy
     echo 'fastgithub已关闭'
 }
 fi
