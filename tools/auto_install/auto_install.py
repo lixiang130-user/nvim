@@ -50,15 +50,16 @@ class script_install(object):
         if(os.system('tar -xzvf ../compressed/fastgithub_linux-x64.tar.gz -C  '+self.__user_tools) != 0):exit(-1)
 
         #2.复制脚本
-        if(os.system('sudo cp '+self.__etc_profile_d_sh+' /etc/profile.d/') != 0):exit(-1)
+        # if(os.system('sudo cp '+self.__etc_profile_d_sh+' /etc/profile.d/') != 0):exit(-1)
         if(os.system('cp '+self.__script_dir+'/*.sh '+self.__user_tools) != 0):exit(-1)
 
         #3.~/.bashrc中配置默认vim为neovim"alias vim='nvim',alias vi='nvim'"
-        f = open(self.__bashrc,'ab')
-        f.write(b'\nalias vim=nvim\n')
-        f.write(b'alias vi=nvim\n')
-        f.write(b'alias ll=\'ls -a -l\'\n')
-        f.close()
+        #f = open(self.__bashrc,'ab')
+        #f.write(b'\nalias vim=nvim\n')
+        #f.write(b'alias vi=nvim\n')
+        #f.write(b'alias ll=\'ls -a -l\'\n')
+        #f.close()
+        if(os.system('cat '+self.__etc_profile_d_sh+' >> '+self.__bashrc) != 0):exit(-1)
 
         print('fastgithub frist running')
         if(os.system('sudo '+self.__fastgithub+' &') != 0):exit(-1)

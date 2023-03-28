@@ -3,14 +3,11 @@
 #添加用户环境变量
 PATH=$PATH:~/.user_tools/nvim-linux64/bin
 
-if false; then
-    #使用外部代理,外部翻墙即可
-    wsl2ip=$(cat /etc/resolv.conf | grep 'nameserver' | cut -f 2 -d ' ')
-    export https_proxy="http://$wsl2ip:7890"
-    export http_proxy="http://$wsl2ip:7890"
-    export all_proxy="socks5://$wsl2ip:7890"
-    #echo 'use windows proxy'
-elif true; then
+alias vim=nvim
+alias vi=nvim
+alias ll='ls -a -l'
+alias bmake='bear --append -- make'
+
 #使用外部代理,外部翻墙即可
 function proxy_on()
 {
@@ -43,5 +40,11 @@ function fastgit_off()
     unset https_proxy
     echo 'fastgithub已关闭'
 }
-fi
 
+#esp32的idf所需要的编译工具默认路径在~/.espressif,可以设置IDF_TOOLS_PATH修改
+#需要在运行idf的终端窗口运行 ". $IDF_PATH/export.sh"
+function set_esp32_env()
+{
+    export ADF_PATH=/home/user/esp-adf
+    . $ADF_PATH/esp-idf/export.sh
+}
