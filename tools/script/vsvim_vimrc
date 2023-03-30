@@ -1,0 +1,58 @@
+:nnoremap wv :vsp<CR>
+:nnoremap ws :sp<CR>
+:nnoremap ww :wa<CR>
+:nnoremap wa :wa<CR>
+:nnoremap ca :wa<CR>:qa<CR>
+:nnoremap cc <C-w>c
+:nnoremap ci <C-F4>
+:nnoremap <C-h> <C-w>h
+:nnoremap <C-j> <C-w>j
+:nnoremap <C-k> <C-w>k
+:nnoremap <C-l> <C-w>l
+:vnoremap Y "+y
+:nnoremap <S-h> gT
+:nnoremap <S-l> gt
+:nnoremap <S-k> gT
+:nnoremap <S-j> gt
+" :nnoremap <C-o> <M-[>
+" :nnoremap <C-i> <M-]>
+:nnoremap <C-]> gd<C-[>
+:nnoremap <Space>d gd<C-[>
+:nnoremap <Space>D gd<C-[>
+:nnoremap gd *Nzz
+:nnoremap * *Nzz
+
+
+set encoding = 'UTF-8'
+set fileencoding = 'utf-8'
+set scrolloff = 5
+set sidescrolloff = 5
+set tabstop = 4
+set softtabstop = 4
+set shiftround = true
+set shiftwidth = 4
+set expandtab = true
+set autoread = true
+set wrap = true
+set number = true
+set relativenumber = false
+set hlsearch = true
+set mouse = 'a'
+set backup = false
+set writebackup = false
+set swapfile = false
+set splitbelow = true
+set splitright = true
+set completeopt = 'menu,menuone,noselect,noinsert'
+set wildmenu = true
+set pumheight = 10
+set list = true
+set listchars = 'space:·,tab:··'
+set showmode = false
+set colorcolumn = '80'
+set cmdheight = 1
+set ignorecase = true
+set smartcase = true
+set cursorline
+set foldmethod=indent
+set foldlevel=99
