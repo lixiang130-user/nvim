@@ -1,0 +1,8 @@
+usbipd.exe wsl list
+usbipd.exe wsl attach --busid 1-8
+
+lsusb
+ll /dev/ttyUSB0
+sudo chmod a+rw /dev/ttyUSB0
+
+usbipd.exe wsl detach --busid 1-8

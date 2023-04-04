@@ -1,12 +1,13 @@
 " 1.<C-o> <C-i> 通过visual studio 设置快捷键,等价于Ctrl+-和Ctrl+Shift+-的功能
 " 2.删除所有Ctrl+k的组合键,再设置一个Ctrl+k的快捷键,再次删除该快捷键,才可用vimrc配置的<C-k>
+" 3.Ctrl-[ 也和2中一样处理
 :nnoremap wv :vsp<CR>
 :nnoremap ws :sp<CR>
 :nnoremap ww :wa<CR>
 :nnoremap wa :wa<CR>
 :nnoremap ca :wa<CR>:qa<CR>
-:nnoremap cc <C-w>c
-:nnoremap ci <C-F4>
+:nnoremap cc :q!<CR>
+:nnoremap ci :q!<CR>
 :nnoremap <C-h> <C-w>h
 :nnoremap <C-j> <C-w>j
 :nnoremap <C-k> <C-w>k
