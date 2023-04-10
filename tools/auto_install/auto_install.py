@@ -51,7 +51,7 @@ class script_install(object):
 
         #2.复制脚本
         # if(os.system('sudo cp '+self.__etc_profile_d_sh+' /etc/profile.d/') != 0):exit(-1)
-        if(os.system('cp '+self.__script_dir+'/*.sh '+self.__user_tools) != 0):exit(-1)
+        if(os.system('cp '+self.__script_dir+'/fastgithub_start.sh '+self.__user_tools) != 0):exit(-1)
 
         #3.~/.bashrc中配置默认vim为neovim"alias vim='nvim',alias vi='nvim'"
         #f = open(self.__bashrc,'ab')
