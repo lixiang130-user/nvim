@@ -52,3 +52,18 @@ function set_esp32_env()
 #将终端配置\w改为\W,绝对路径->当前路径：\u 显示username,\h 显示hosename, \W 显示当前目录
 #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\W\[\033[00m\]\$ '
+
+function out_call_station_bmake()
+{
+    #git submodule init
+    #git submodule update
+    #cd src/apps/star_app/
+    #git checkout Bosch_New_Product_Conference
+
+    #make prepare2
+    #bmake apps
+    bmake build/obj/apps/ui/_compile && \
+        bmake build/obj/apps/ui/_install && \
+        bmake build/obj/apps/star_app/_compile && \
+        bmake build/obj/lib/star-httpsdk/_compile
+}
