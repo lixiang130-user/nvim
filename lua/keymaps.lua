@@ -24,10 +24,14 @@ local opt = { noremap = true, silent = true }
 -- 分屏操作
 map('n', 'wv', ':vsp<CR>', opt) -- wv(windows vertical split)垂直分屏
 map('n', 'ws', ':sp<CR>', opt) -- ws(windows split)水平分屏
-map('n', 'w=', ':resize +3<CR>', opt) -- w.窗口上下大小增加3
-map('n', 'w-', ':resize -3<CR>', opt) -- w.窗口上下大小减小3
-map('n', 'w.', ':vertical resize +3<CR>', opt) -- w.窗口左右大小增加3
-map('n', 'w,', ':vertical resize -3<CR>', opt) -- w.窗口左右大小减小3
+-- map('n', 'w=', ':resize +3<CR>', opt) -- w.窗口上下大小增加3
+-- map('n', 'w-', ':resize -3<CR>', opt) -- w.窗口上下大小减小3
+-- map('n', 'w.', ':vertical resize +3<CR>', opt) -- w.窗口左右大小增加3
+-- map('n', 'w,', ':vertical resize -3<CR>', opt) -- w.窗口左右大小减小3
+map('n', 'w=', '<C-w>3+', opt) -- w.窗口上下大小增加3
+map('n', 'w-', '<C-w>3-', opt) -- w.窗口上下大小增加3
+map('n', 'w.', '<C-w>3>', opt) -- w.窗口上下大小增加3
+map('n', 'w,', '<C-w>3<', opt) -- w.窗口上下大小增加3
 -- 保存文件
 map('n', 'ww', ':wa<CR>', opt)
 map('n', 'wa', ':wa<CR>', opt)
@@ -55,7 +59,7 @@ map("n", "cr", ":BufferLineCloseRight<CR>", opt) -- close right 关闭当前窗�
 map("t", "<Esc>", "<C-\\><C-n>", opt) -- 命令行模式下terminal输入模式下切换到正常模式
 map("t", "<C-[>", "<C-\\><C-n>", opt)
 map("i", "<C-【>", "<C-\\><C-n>", opt)
-map("n", "tt", ":sp<CR>:terminal<CR>", opt) -- terminal 开启终端
+map("n", "tt", ":vsp<CR>:terminal<CR>", opt) -- terminal 开启终端
 map("n", "ts", ":sp<CR>:terminal<CR>", opt) -- terminal 开启终端
 map("n", "tv", ":vsp<CR>:terminal<CR>", opt) -- terminal 开启终端
 -- 剪切板操作 wsl子系统无法使用xsel实现剪切板,但是可以用过clip.exe实现系统剪切板:
