@@ -106,6 +106,20 @@ class apt_install(object):
         return True
     pass
 
+class cfg_config(object):
+    __script_dir = '../script/'
+    __local_conf_dir = __script_dir+'local.conf'
+    def install(self):
+        print('cfg_config install start')
+
+        # wslg 中文乱码问题修复
+        if(os.system('sudo locale-gen') != 0):exit(-1)
+        if(os.system('locale') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y fontconfig') != 0):exit(-1)
+        if(os.system('sudo cp '+self.__local_conf_dir+' /etc/fonts/local.conf') != 0):exit(-1)
+        print('cfg_config install end')
+        pass
+    pass
 
 class git_install(object):
     __packer = os.path.expanduser('~')+'/.local/share/nvim/site/pack/packer/start/packer.nvim'
@@ -259,6 +273,8 @@ elif sys.argv[1] == '1':
     #安装常用工具
     apt = apt_install()
     apt.install()
+    cfg = cfg_config()
+    cfg.install()
     script = script_install()
     script.install()
     print('please logout and login for user, then run this script by param 2 again')

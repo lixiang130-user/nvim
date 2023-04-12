@@ -64,7 +64,8 @@ map("n", "ts", ":sp<CR>:terminal<CR>", opt) -- terminal 开启终端
 map("n", "tv", ":vsp<CR>:terminal<CR>", opt) -- terminal 开启终端
 -- 剪切板操作 wsl子系统无法使用xsel实现剪切板,但是可以用过clip.exe实现系统剪切板:
 -- map('v', 'Y', '"+y', opt)   -- mac下复制到剪切板
-map("v", "Y", ":w !clip.exe<CR><CR>", opt) -- 通过wsl中的clip.exe拷贝内容到系统剪切板,只读文件也可以复制
+-- map("v", "Y", ":w !clip.exe<CR><CR>", opt) -- 通过wsl中的clip.exe拷贝内容到系统剪切板,只读文件也可以复制
+map("v", "Y", ":w !uclip.exe<CR><CR>", opt) -- 通过wsl中的clip.exe拷贝内容到系统剪切板,只读文件也可以复制
 -- map("v", "Y", ":w !xsel<CR><CR>", opt)
 -- map("v", "Y", "!clip.exe<CR>u", opt) -- 通过wsl中的clip.exe拷贝内容到系统剪切板
                                     -- 但是会删除背拷贝的内容,所以使用u撤销,而且只读文件不能复制
