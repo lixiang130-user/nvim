@@ -147,6 +147,7 @@ def nvim_init():
     usystem('git config --global user.email 1309776181@qq.com')
     usystem('git config --global pull.rebase false')
     usystem('git config --global core.fileMode false')
+    usystem('git config --global alias.st status')
     usystem('git clone https://github.com/lixiang130-user/nvim ~/.config/nvim')
     usystem('git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim')
 
