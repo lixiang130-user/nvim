@@ -48,6 +48,8 @@ function set_esp32_env()
     export ADF_PATH=~/tools/esp-adf
     . $ADF_PATH/esp-idf/export.sh
 }
+#当esp32发生崩溃时在32esp_addr2line后跟崩溃指针将展示调用堆栈
+alias 32esp_addr2line='xtensa-esp32-elf-addr2line -pfiaC -e build/*.elf '
 
 #将终端配置\w改为\W,绝对路径->当前路径：\u 显示username,\h 显示hosename, \W 显示当前目录
 #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
