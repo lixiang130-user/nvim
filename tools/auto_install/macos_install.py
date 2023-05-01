@@ -154,7 +154,7 @@ def nvim_init():
 
 def zsh_init():
     usystem('/bin/bash -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"')
-    usystem('cat ./macos_shellrc.sh >> ~/.zshrc')
+    usystem('cat ../script/macos_shellrc.sh >> ~/.zshrc')
     usystem('chsh -s /bin/zsh')    #修改为默认的终端
     #usystem('chsh -s /bin/bash')	#修改会原来的终端
     #安装完成on-my-zsh后会修改~/.zshrc内容,再次追加会用户配置

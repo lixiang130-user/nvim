@@ -19,4 +19,5 @@ alias vi='nvim'
 alias vim='nvim'
 alias ll='ls -al'
 alias rm='trash'
+alias bmake='bear --append -- make'
 #export PATH=$PATH:/opt/homebrew/bin
