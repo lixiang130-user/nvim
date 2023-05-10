@@ -19,6 +19,8 @@ require('packer').startup(function()
     -- lspconfig 提供跳转到定义，查找引用，悬停文档提示等功能
     use { 'neovim/nvim-lspconfig'} -- 'williamboman/nvim-lsp-installer' }
     use { 'williamboman/mason.nvim' }
+    -- :mason update更新注册表内容, 手动更新语言解析服务器 MasonInstall <package> ... 安装/重新安装提供的软件包
+    use {"williamboman/mason.nvim", run = ":MasonUpdate"}
     use { 'williamboman/mason-lspconfig.nvim' }
     -- lsp 自动补全功能
     use 'hrsh7th/nvim-cmp'  -- 自动补全插件本身

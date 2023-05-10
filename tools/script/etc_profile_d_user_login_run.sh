@@ -55,17 +55,33 @@ alias 32esp_addr2line='xtensa-esp32-elf-addr2line -pfiaC -e build/*.elf '
 #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\W\[\033[00m\]\$ '
 
-function out_call_station_bmake()
+function call_out_call_station_bmake()
 {
     #git submodule init
     #git submodule update
     #cd src/apps/star_app/
     #git checkout Bosch_New_Product_Conference
 
-    #make prepare2
+    #make prepare   #make prepare2
     #bmake apps
+    #bmake image
+    #bmake upgrade
     bmake build/obj/apps/ui/_compile && \
         bmake build/obj/apps/ui/_install && \
         bmake build/obj/apps/star_app/_compile && \
+        bmake build/obj/lib/star-httpsdk/_compile
+}
+
+function out_lc_h8010a_bmake()
+{
+    #make all, make -j32, make apps, make install, make image, make upgrade 打生产包和升级包
+    #make prepare   #make prepare2
+    #bmake apps
+    #bmake image
+    #bmake upgrade
+    bmake build/obj/apps/plat_app/_compile && \
+        bmake build/obj/apps/plat_app/_install && \
+        bmake build/obj/apps/ui/_compile && \
+        bmake build/obj/apps/ui/_install && \
         bmake build/obj/lib/star-httpsdk/_compile
 }
