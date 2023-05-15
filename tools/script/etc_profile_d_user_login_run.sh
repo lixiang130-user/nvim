@@ -8,23 +8,6 @@ alias vi=nvim
 alias ll='ls -a -l'
 alias bmake='bear --append -- make'
 
-#使用外部代理,外部翻墙即可
-function proxy_on()
-{
-    wsl2ip=$(cat /etc/resolv.conf | grep 'nameserver' | cut -f 2 -d ' ')
-    export http_proxy="http://$wsl2ip:7890"
-    export https_proxy=$http_proxy
-    #export all_proxy=socks5://127.0.0.1:7890 # or this line
-    echo -e "已开启代理"
-}
-
-function proxy_off()
-{
-    unset http_proxy
-    unset https_proxy
-    echo -e "已关闭代理"
-}
-
 #启动fastgithub代理
 function fastgit_on()
 {
@@ -41,6 +24,34 @@ function fastgit_off()
     echo 'fastgithub已关闭'
 }
 
+#vim使用google翻译
+function google_translator_vim()
+{
+    export google_translator_vim='google_translator_vim'
+}
+function google_translator_vim_off()
+{
+    unset google_translator_vim
+}
+
+#使用外部代理,外部翻墙即可
+function proxy_on()
+{
+    wsl2ip=$(cat /etc/resolv.conf | grep 'nameserver' | cut -f 2 -d ' ')
+    export http_proxy="http://$wsl2ip:7890"
+    export https_proxy=$http_proxy
+    google_translator_vim_on
+    #export all_proxy=socks5://127.0.0.1:7890 # or this line
+    echo -e "已开启代理"
+}
+function proxy_off()
+{
+    unset http_proxy
+    unset https_proxy
+    google_translator_vim_off
+    echo -e "已关闭代理"
+}
+
 #esp32的idf所需要的编译工具默认路径在~/.espressif,可以设置IDF_TOOLS_PATH修改
 #需要在运行idf的终端窗口运行 ". $IDF_PATH/export.sh"
 function set_esp32_env()
@@ -55,33 +66,12 @@ alias 32esp_addr2line='xtensa-esp32-elf-addr2line -pfiaC -e build/*.elf '
 #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\W\[\033[00m\]\$ '
 
-function call_out_call_station_bmake()
+function out_bmake()
 {
     #git submodule init
     #git submodule update
-    #cd src/apps/star_app/
-    #git checkout Bosch_New_Product_Conference
-
-    #make prepare   #make prepare2
-    #bmake apps
-    #bmake image
-    #bmake upgrade
-    bmake build/obj/apps/ui/_compile && \
-        bmake build/obj/apps/ui/_install && \
-        bmake build/obj/apps/star_app/_compile && \
-        bmake build/obj/lib/star-httpsdk/_compile
-}
-
-function out_lc_h8010a_bmake()
-{
     #make all, make -j32, make apps, make install, make image, make upgrade 打生产包和升级包
-    #make prepare   #make prepare2
-    #bmake apps
-    #bmake image
-    #bmake upgrade
-    bmake build/obj/apps/plat_app/_compile && \
-        bmake build/obj/apps/plat_app/_install && \
-        bmake build/obj/apps/ui/_compile && \
-        bmake build/obj/apps/ui/_install && \
-        bmake build/obj/lib/star-httpsdk/_compile
+    #执行对应模块的编译
+    module=$1
+    bmake build/obj/apps/$module/_compile && bmake build/obj/apps/$module/_install
 }
