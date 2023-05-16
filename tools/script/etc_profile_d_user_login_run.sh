@@ -40,7 +40,7 @@ function proxy_on()
     wsl2ip=$(cat /etc/resolv.conf | grep 'nameserver' | cut -f 2 -d ' ')
     export http_proxy="http://$wsl2ip:7890"
     export https_proxy=$http_proxy
-    google_translator_vim_on
+    google_translator_vim
     #export all_proxy=socks5://127.0.0.1:7890 # or this line
     echo -e "已开启代理"
 }
