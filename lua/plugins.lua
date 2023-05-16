@@ -194,5 +194,5 @@ elseif os.getenv('https_proxy') ~= nil then    -- 没有使用windows的全局�
 else
     vim.g.translator_default_engines = {'bing', 'haici'}
 end
-vim.g.translator_window_max_width = 0.9     -- 设置悬浮窗大小
-vim.g.translator_window_max_height = 0.6
+vim.g.translator_window_max_width = 0.5     -- 设置悬浮窗大小
+-- vim.g.translator_window_max_height = 0.6
