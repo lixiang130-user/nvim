@@ -70,8 +70,12 @@ function out_bmake()
 {
     #git submodule init
     #git submodule update
-    #make all, make -j32, make apps, make install, make image, make upgrade 打生产包和升级包
-    #执行对应模块的编译
     module=$1
     bmake build/obj/apps/$module/_compile && bmake build/obj/apps/$module/_install
+}
+
+function out_bmake_all()
+{
+    sudo ls && make prepare2 && make version_ctrl && bmake all -j32 && bmake -j32 \
+        && bmake apps && bmake libs && bmake install && make image && make upgrade
 }
