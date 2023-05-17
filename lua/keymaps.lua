@@ -21,6 +21,9 @@ vim.g.maplocalleader = ' '
 -- 设备本地变量 这样就可样映射按键了: map('模式','按键','映射为xx',opt)
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
+-- 指定复制粘贴寄存器双引号变单引号, "xy "xp 指定任意字母x为复制粘贴寄存器
+map("n", "'", "\"", opt)
+map("v", "'", "\"", opt)
 -- 分屏操作
 map('n', 'wv', ':vsp<CR>', opt) -- wv(windows vertical split)垂直分屏
 map('n', 'ws', ':sp<CR>', opt) -- ws(windows split)水平分屏
