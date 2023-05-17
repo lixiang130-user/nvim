@@ -21,6 +21,10 @@ vim.g.maplocalleader = ' '
 -- 设备本地变量 这样就可样映射按键了: map('模式','按键','映射为xx',opt)
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
+-- lvimgrep "xxxx" % <cr> :lopen<cr> 当前文件搜索字符串xxx并窗口打开搜索结果
+-- 命令模式下的百分号 是当前文件的文件名, <C-r>/ 是粘贴搜索模式寄存器
+-- https://www.codenong.com/509690/ 搜索结果列表出窗口教程
+map("n", "<leader>\\", ":lvimgrep <C-r>/ %<CR>:lopen<CR>", opt);
 -- 指定复制粘贴寄存器双引号变单引号, "xy "xp 指定任意字母x为复制粘贴寄存器
 map("n", "'", "\"", opt)
 map("v", "'", "\"", opt)
