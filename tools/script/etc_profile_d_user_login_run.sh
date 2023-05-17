@@ -74,7 +74,7 @@ function out_bmake()
     bmake build/obj/apps/$module/_compile && bmake build/obj/apps/$module/_install
 }
 
-function out_bmake_all()
+function all_out_bmake()
 {
     sudo ls && make prepare2 && make version_ctrl && bmake all -j32 && bmake -j32 \
         && bmake apps && bmake libs && bmake install && make image && make upgrade
