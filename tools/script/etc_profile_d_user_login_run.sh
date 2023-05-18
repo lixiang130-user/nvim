@@ -82,5 +82,5 @@ function all_out_bmake()
 
 function mount_server_lixiang()
 {
-    sudo mount -t cifs -o username="lixiang",password="123456" //192.168.111.21/lixiang /home/user/lixiang/
+    sudo mount -t cifs -o username="lixiang",password="123456" //192.168.111.21/lixiang /home/user/samba/
 }
