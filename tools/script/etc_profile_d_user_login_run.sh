@@ -79,3 +79,8 @@ function all_out_bmake()
     sudo ls && make prepare2 && make version_ctrl && bmake all -j32 && bmake -j32 \
         && bmake apps && bmake libs && bmake install && make image && make upgrade
 }
+
+function mount_server_lixiang()
+{
+    sudo mount -t cifs -o username="lixiang",password="123456" //192.168.111.21/lixiang /home/user/lixiang/
+}
