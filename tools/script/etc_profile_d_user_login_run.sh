@@ -82,5 +82,10 @@ function all_out_bmake()
 
 function mount_server_lixiang()
 {
-    sudo mount -t cifs -o username="lixiang",password="123456" //192.168.111.21/lixiang /home/user/samba/
+    #smbmount需要root权限，挂载后只有root有读写权限。
+    #需要设置uid和pid为本机使用者的uid和gid, dir_mode 和 file_mode需要设置为0777
+    #cat /etc/passwd|grep user 查看用户uid和gid方法
+    sudo mount -t cifs "//192.168.111.21/lixiang" "/home/user/samba/"\
+        -o username="lixiang",password="123456",uid=1000,gid=1000,iocharset=utf8,rw,dir_mode=0777,file_mode=0777
 }
+
