@@ -192,8 +192,10 @@ configSync:
 clickableLinks: {}
 accessibility: {}
 appearance:
-  opacity: 0.99
   spaciness: 0.6
+  css: |-
+    /* * { color: blue !important; } */
+    ::-webkit-scrollbar { display: none; }
 hacks: {}
 pluginBlacklist: []
 language: zh-CN
