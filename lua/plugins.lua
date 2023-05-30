@@ -85,7 +85,9 @@ require('bufferline').setup {
             text = 'File Explorer',
             highlight = 'Directory',
             text_align = 'left'
-        } }
+        } },
+        --separator_style =  'slant', -- 倾斜的标签
+        --indicator = {style = 'underline'},    -- 展示下划线
     }
 }
 

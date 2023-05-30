@@ -33,6 +33,7 @@ function google_translator_vim_off()
 {
     unset google_translator_vim
 }
+google_translator_vim   #默认打开google翻译
 
 #使用外部代理,外部翻墙即可
 function proxy_on()
