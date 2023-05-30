@@ -1,0 +1,205 @@
+version: 3
+profiles: []
+hotkeys:
+  toggle-window: []
+  copy-current-path: []
+  ctrl-c:
+    - Ctrl-C
+  copy:
+    - Ctrl-Shift-C
+  paste:
+    - Shift-Insert
+  select-all:
+    - Ctrl-Shift-A
+  clear: []
+  zoom-in:
+    - Ctrl-=
+    - Ctrl-Shift-=
+  zoom-out:
+    - Ctrl--
+    - Ctrl-Shift--
+  reset-zoom:
+    - Ctrl-0
+  home:
+    - Home
+  end:
+    - End
+  previous-word: []
+  next-word: []
+  delete-previous-word: []
+  delete-line: []
+  delete-next-word: []
+  search:
+    - Ctrl-Shift-F
+  pane-focus-all:
+    - Ctrl-Shift-I
+  focus-all-tabs:
+    - Ctrl-Alt-Shift-I
+  scroll-to-top:
+    - Ctrl-Home
+  scroll-up:
+    - Shift-PageUp
+  scroll-down:
+    - Shift-PageDown
+  scroll-to-bottom:
+    - Ctrl-End
+  restart-telnet-session: []
+  restart-ssh-session: []
+  launch-winscp: []
+  settings-tab: {}
+  settings: []
+  serial: []
+  restart-serial-session: []
+  new-tab:
+    - Ctrl-Shift-T
+  new-window:
+    - Ctrl-Shift-N
+  profile: {}
+  profile-selectors: {}
+  toggle-fullscreen:
+    - F11
+    - Alt-Enter
+    - Alt-Shift-Enter
+  close-tab:
+    - Ctrl-Shift-W
+  reopen-tab:
+    - Ctrl-Shift-Z
+  rename-tab:
+    - Ctrl-Shift-R
+  next-tab:
+    - Ctrl-Shift-Right
+    - Ctrl-Tab
+  move-tab-left: []
+  move-tab-right: []
+  rearrange-panes: []
+  duplicate-tab: []
+  restart-tab: []
+  explode-tab: []
+  combine-tabs: []
+  tab-1:
+    - Alt-1
+  tab-2:
+    - Alt-2
+  tab-3:
+    - Alt-3
+  tab-4:
+    - Alt-4
+  tab-5:
+    - Alt-5
+  tab-6:
+    - Alt-6
+  tab-7:
+    - Alt-7
+  tab-8:
+    - Alt-8
+  tab-9:
+    - Alt-9
+  tab-10:
+    - Alt-0
+  tab-11: []
+  tab-12: []
+  tab-13: []
+  tab-14: []
+  tab-15: []
+  tab-16: []
+  tab-17: []
+  tab-18: []
+  tab-19: []
+  tab-20: []
+  split-right:
+    - Ctrl-Shift-V
+  split-bottom:
+    - Ctrl-Shift-S
+  split-left: []
+  split-top: []
+  pane-nav-right:
+    - Ctrl-Alt-Right
+    - Ctrl-Shift-L
+  pane-nav-down:
+    - Ctrl-Alt-Down
+    - Ctrl-Shift-J
+  pane-nav-up:
+    - Ctrl-Alt-Up
+    - Ctrl-Shift-K
+  pane-nav-left:
+    - Ctrl-Alt-Left
+    - Ctrl-Shift-H
+  pane-nav-previous:
+    - Ctrl-Alt-[
+  pane-nav-next:
+    - Ctrl-Alt-]
+  pane-nav-1: []
+  pane-nav-2: []
+  pane-nav-3: []
+  pane-nav-4: []
+  pane-nav-5: []
+  pane-nav-6: []
+  pane-nav-7: []
+  pane-nav-8: []
+  pane-nav-9: []
+  pane-maximize:
+    - Ctrl-Alt-Enter
+  close-pane:
+    - Ctrl-Shift-D
+  pane-increase-vertical: []
+  pane-decrease-vertical: []
+  pane-increase-horizontal: []
+  pane-decrease-horizontal: []
+  switch-profile:
+    - Ctrl-Alt-T
+  profile-selector:
+    - Ctrl-Shift-E
+  command-selector:
+    - Ctrl-Shift-P
+  toggle-last-tab: []
+  previous-tab:
+    - Ctrl-Shift-Left
+    - Ctrl-Shift-Tab
+  reconnect-tab: []
+terminal:
+  searchOptions: {}
+  colorScheme:
+    name: MaterialDark
+    foreground: '#e5e5e5'
+    background: '#232322'
+    cursor: '#16afca'
+    colors:
+      - '#212121'
+      - '#b7141f'
+      - '#457b24'
+      - '#f6981e'
+      - '#134eb2'
+      - '#560088'
+      - '#0e717c'
+      - '#efefef'
+      - '#424242'
+      - '#e83b3f'
+      - '#7aba3a'
+      - '#ffea2e'
+      - '#54a4f3'
+      - '#aa4dbc'
+      - '#26bbd1'
+      - '#d9d9d9'
+  customColorSchemes: []
+  warnOnMultilinePaste: false
+  setComSpec: true
+  fontWeightBold: 400
+  font: Cascadia Mono
+  minimumContrastRatio: 1
+ssh: {}
+configSync:
+  parts: {}
+clickableLinks: {}
+accessibility: {}
+appearance:
+  opacity: 0.99
+  spaciness: 0.6
+hacks: {}
+pluginBlacklist: []
+language: zh-CN
+profileDefaults:
+  ssh:
+    disableDynamicTitle: true
+providerBlacklist: []
+commandBlacklist: []
+enableAnalytics: false
