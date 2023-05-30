@@ -186,6 +186,7 @@ terminal:
   fontWeightBold: 400
   font: Cascadia Mono
   minimumContrastRatio: 1
+  autoOpen: true
 ssh: {}
 configSync:
   parts: {}
@@ -197,7 +198,6 @@ appearance:
     /* * { color: blue !important; } */
     ::-webkit-scrollbar { display: none; }
 hacks: {}
-pluginBlacklist: []
 language: zh-CN
 profileDefaults:
   ssh:
@@ -205,3 +205,5 @@ profileDefaults:
 providerBlacklist: []
 commandBlacklist: []
 enableAnalytics: false
+enableWelcomeTab: false
+pluginBlacklist: []
