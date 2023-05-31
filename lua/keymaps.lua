@@ -180,14 +180,15 @@ pluginKeys.nvim_tree = function(bufnr)
     -- 删除默认值
     -- vim.keymap.del('n', '<C-]>', { buffer = bufnr })
     -- 添加你的映射 :help nvim-tree-mappings
-    vim.keymap.set('n', 'a', api.fs.create,         opts('Create'))
-    vim.keymap.set('n', 'r', api.fs.rename,         opts('Rename'))
-    vim.keymap.set('n', 'x', api.fs.cut,            opts('Cut'))
-    vim.keymap.set('n', 'C', api.fs.copy.node,      opts('Copy'))
-    vim.keymap.set('n', 'V', api.fs.paste,          opts('Paste'))
-    vim.keymap.set('n', 'd', api.fs.remove,         opts('Delete'))
-    vim.keymap.set('n', '<CR>',  api.node.open.edit,                    opts('Open'))
-    vim.keymap.set('n', 'o',     api.node.open.edit,                    opts('Open'))
+    vim.keymap.set('n', 'a',        api.fs.create,          opts('Create'))
+    vim.keymap.set('n', 'r',        api.fs.rename,          opts('Rename'))
+    vim.keymap.set('n', 'X',        api.fs.cut,             opts('Cut'))
+    vim.keymap.set('n', 'C',        api.fs.copy.node,       opts('Copy'))
+    vim.keymap.set('n', 'V',        api.fs.paste,           opts('Paste'))
+    vim.keymap.set('n', 'p',        api.fs.paste,           opts('Paste'))
+    vim.keymap.set('n', 'd',        api.fs.remove,          opts('Delete'))
+    vim.keymap.set('n', '<CR>',     api.node.open.edit,     opts('Open'))
+    vim.keymap.set('n', 'o',        api.node.open.edit,     opts('Open'))
 end
 
 
