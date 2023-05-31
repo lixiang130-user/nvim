@@ -65,10 +65,17 @@ require 'nvim-treesitter.configs'.setup {
 -- nvim-tree 配置,  nvim-tree 可执行常见文件操作
 -- o 打开关闭文件夹, a 创建文件, r 重命名,
 -- x 剪切, c 拷贝, p 粘贴, d 删除
-require 'nvim-tree'.setup {
+-- 在 init.lua 的最开始禁用 netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+-- 设置 termguicolors 以启用高亮组
+vim.opt.termguicolors = true
+require("nvim-tree").setup({
     -- 不显示git状态图标
-    git = { enable = false }
-}
+    git = { enable = false },
+    view = {width = 23,},
+    filters = { dotfiles = false,}, --不过滤.文件(隐藏文件)
+})
 
 -- bufferline 配置 bufferline 可以展示顶部tab,标号,跳转,关闭等
 vim.opt.termguicolors = true
