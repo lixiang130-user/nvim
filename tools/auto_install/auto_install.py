@@ -99,7 +99,7 @@ class apt_install(object):
         if(os.system('sudo apt-get install -y universal-ctags') != 0):exit(-1)
         if(os.system('sudo apt-get install -y unzip make bear git tree') != 0):exit(-1)
         if(os.system('sudo apt-get install -y npm dos2unix ripgrep gcc cmake') != 0):exit(-1)
-        if(os.system('sudo apt-get install -y g++ gcc-multilib g++-multilib') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y g++ gcc-multilib g++-multilib gitk') != 0):exit(-1)
         if(os.system('sudo apt-get install -y python3-venv') != 0):exit(-1)
         if(os.system('sudo apt-get autoremove -y man*') != 0):exit(-1)  #重新安装man,默认的不能用
         if(os.system('sudo apt-get install -y man-db manpages-de manpages-de-dev manpages-dev glibc-doc manpages-posix-dev manpages-posix') != 0):exit(-1)
