@@ -27,6 +27,15 @@
             "keys": "alt+3"
         },
         {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
+        },
+        {
             "command": "unbound",
             "keys": "ctrl+v"
         },
@@ -103,17 +112,12 @@
             "keys": "ctrl+w"
         },
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
             "command": 
             {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
+                "action": "switchToTab",
+                "index": 7
             },
-            "keys": "alt+shift+d"
+            "keys": "alt+8"
         },
         {
             "command": 
@@ -122,6 +126,10 @@
                 "index": 0
             },
             "keys": "alt+1"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": 
@@ -147,12 +155,26 @@
             "keys": "alt+4"
         },
         {
+            "command": 
+            {
+                "action": "globalSummon"
+            }
+        },
+        {
             "command": "scrollUpPage",
             "keys": "ctrl+pgup"
         },
         {
             "command": "scrollUpPage",
             "keys": "shift+pgup"
+        },
+        {
+            "command": "scrollToBottom",
+            "keys": "ctrl+end"
+        },
+        {
+            "command": "scrollToBottom",
+            "keys": "shift+end"
         },
         {
             "command": 
@@ -166,21 +188,6 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 5
-            },
-            "keys": "alt+6"
-        },
-        {
-            "command": 
-            {
-                "action": "quakeMode"
-            },
-            "keys": "ctrl+f11"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
                 "index": 6
             },
             "keys": "alt+7"
@@ -189,9 +196,24 @@
             "command": 
             {
                 "action": "switchToTab",
-                "index": 7
+                "index": 5
             },
-            "keys": "alt+8"
+            "keys": "alt+6"
+        },
+        {
+            "command": "scrollToTop",
+            "keys": "ctrl+home"
+        },
+        {
+            "command": "scrollToTop",
+            "keys": "shift+home"
+        },
+        {
+            "command": 
+            {
+                "action": "quakeMode"
+            },
+            "keys": "ctrl+f11"
         },
         {
             "command": 
@@ -210,29 +232,7 @@
             "keys": "shift+pgdn"
         },
         {
-            "command": "scrollToBottom",
-            "keys": "ctrl+end"
-        },
-        {
-            "command": "scrollToBottom",
-            "keys": "shift+end"
-        },
-        {
-            "command": "scrollToTop",
-            "keys": "ctrl+home"
-        },
-        {
-            "command": "scrollToTop",
-            "keys": "shift+home"
-        },
-        {
             "command": "closeWindow"
-        },
-        {
-            "command": 
-            {
-                "action": "globalSummon"
-            }
         }
     ],
     "alwaysShowTabs": true,
@@ -246,6 +246,11 @@
         "defaults": 
         {
             "experimental.retroTerminalEffect": false,
+            "font": 
+            {
+                "size": 10.0
+            },
+            "historySize": 102400,
             "opacity": 100,
             "padding": "0",
             "scrollbarState": "hidden"
@@ -253,29 +258,19 @@
         "list": 
         [
             {
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "cursorShape": "filledBox",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "hidden": false,
-                "name": "\u547d\u4ee4\u63d0\u793a\u7b26"
-            },
-            {
-                "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
-                "hidden": false,
-                "name": "Git Bash",
-                "source": "Git"
-            },
-            {
                 "colorScheme": "Campbell",
-                "commandline": "C:\\Windows\\system32\\wsl.exe -d Debian",
-                "guid": "{05f9ccc7-2b7f-47e6-871c-0236c54a36b5}",
+                "commandline": "C:\\WINDOWS\\system32\\wsl.exe -d Ubuntu-22.04",
+                "guid": "{6df2887c-2d51-486a-8563-ea35fa116656}",
                 "hidden": false,
                 "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
-                "name": "Debian",
+                "name": "Ubuntu-22.04",
                 "startingDirectory": "~"
             }
         ]
@@ -537,5 +532,6 @@
         }
     ],
     "showTabsInTitlebar": true,
-    "tabWidthMode": "equal"
+    "tabWidthMode": "equal",
+    "themes": []
 }
