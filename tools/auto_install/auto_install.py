@@ -98,7 +98,7 @@ class apt_install(object):
         if(os.system('sudo apt-get upgrade -y') != 0):exit(-1)
         if(os.system('sudo apt-get install -y universal-ctags') != 0):exit(-1)
         if(os.system('sudo apt-get install -y unzip make bear git tree') != 0):exit(-1)
-        if(os.system('sudo apt-get install -y npm dos2unix ripgrep gcc cmake') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y npm dos2unix ripgrep gcc') != 0):exit(-1)
         if(os.system('sudo apt-get install -y g++ gcc-multilib g++-multilib gitk') != 0):exit(-1)
         if(os.system('sudo apt-get install -y python3-venv') != 0):exit(-1)
         if(os.system('sudo apt-get autoremove -y man*') != 0):exit(-1)  #重新安装man,默认的不能用
@@ -283,6 +283,8 @@ elif sys.argv[1] == '2':
     print('run step 2')
     git = git_install()
     git.install()
+elif sys.argv[1] == 'work': #工作需要的环境
+    if(os.system('sudo apt-get install -y cmake') != 0):exit(-1)
 else:
     print('run step ', sys.argv[1])
     python_rely().install(sys.argv[1])
