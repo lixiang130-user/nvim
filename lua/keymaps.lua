@@ -59,7 +59,7 @@ map("n", "<S-h>", ":BufferLineCyclePrev<CR>", opt) -- bufferline 左右Shift切�
 map("n", "<S-l>", ":BufferLineCycleNext<CR>", opt)
 map("n", "<S-k>", ":BufferLineCyclePrev<CR>", opt) -- bufferline 左右Shift切换
 map("n", "<S-j>", ":BufferLineCycleNext<CR>", opt)
-map("n", "ci", ":bw!<CR>", opt) -- close windows 关闭当前窗口(bw or bd)
+--map("n", "ci", ":bw!<CR>", opt) -- close windows 关闭当前窗口(bw or bd)
 map("n", "cl", ":BufferLineCloseLeft<CR>", opt) -- close left 关闭当前窗口左侧所有窗口
 map("n", "cr", ":BufferLineCloseRight<CR>", opt) -- close right 关闭当前窗口右侧所有窗口
 map('n', 'co', ':BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>', opt) -- co(close others)关闭其他窗口
@@ -165,6 +165,30 @@ pluginKeys.cmp = function(cmp)
         ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' })   --二级界面注释翻页
     }
 end
+
+-- nvim-tree 按键映射
+pluginKeys.nvim_tree = function(bufnr)
+    local api = require('nvim-tree.api')
+    local function opts(desc)
+        return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+    -- copy default mappings here from defaults in next section
+    vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node,          opts('CD'))
+    vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer,     opts('Open: In Place'))
+    -- 或者使用所有默认映射
+    -- api.config.mappings.default_on_attach(bufnr)
+    -- 删除默认值
+    vim.keymap.del('n', '<C-]>', { buffer = bufnr })
+    -- 添加你的映射
+    vim.keymap.set('n', 'a', api.fs.create,         opts('Create'))
+    vim.keymap.set('n', 'r', api.fs.rename,         opts('Rename'))
+    vim.keymap.set('n', 'x', api.fs.cut,            opts('Cut'))
+    vim.keymap.set('n', 'c', api.fs.copy.node,      opts('Copy'))
+    vim.keymap.set('n', 'p', api.fs.paste,          opts('Paste'))
+    vim.keymap.set('n', 'd', api.fs.remove,         opts('Delete'))
+    vim.keymap.set('n', 'S', api.tree.search_node,  opts('Search'))
+end
+
 
 do return pluginKeys end
 
