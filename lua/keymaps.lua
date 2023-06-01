@@ -32,6 +32,8 @@ vim.g.interestingWordsDefaultMappings = 1
 -- 要配置 GUI 的颜色
 -- vim.g.interestingWordsGUIColors = {'#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF'}
 
+map("n", "gd", "\"zyiwh/\\<<C-r>z\\><cr>", opt) -- 复制当前光标单词到寄存器z,在搜索\<xxxx\>
+
 -- lvimgrep "xxxx" % <cr> :lopen<cr> 当前文件搜索字符串xxx并窗口打开搜索结果
 -- 命令模式下的百分号 是当前文件的文件名, <C-r>/ 是粘贴搜索模式寄存器
 -- https://www.codenong.com/509690/ 搜索结果列表出窗口教程
