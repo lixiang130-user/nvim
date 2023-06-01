@@ -36,6 +36,7 @@ require('packer').startup(function()
     use {"nvim-telescope/telescope.nvim", requires = {"nvim-lua/plenary.nvim"}}
     -- vim-translatoruse 翻译插件
     use 'voldikss/vim-translator'
+    use {'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true }}
 end)
 
 -- gruvbox nord zephyr-nvim 等主题插件配置
@@ -209,3 +210,70 @@ else
 end
 vim.g.translator_window_max_width = 0.5     -- 设置悬浮窗大小
 -- vim.g.translator_window_max_height = 0.6
+
+-- lualine配置
+--[[
+可选组件
+branch（吉特分支）
+buffers（显示当前可用的缓冲区）
+diagnostics（诊断计数来自您的首选来源）
+diff（git 差异状态）
+encoding（文件编码）
+fileformat（文件格式）
+filename
+filesize
+filetype
+hostname
+location（文件中的位置行：列格式）
+mode（可视化模式）
+progress（文件中的进度百分比）
+searchcount（HL搜索处于活动状态时的搜索匹配数）
+selectioncount（所选字符数或行数）
+tabs（显示当前可用的选项卡）
+windows（显示当前可用的窗口）
+]]--
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    -- component_separators = { left = '', right = ''},
+    -- section_separators = { left = '', right = ''},
+    component_separators = '|',
+    section_separators = { left = '', right = '' },
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
+  },
+  sections = {
+    --lualine_a = {'mode'},
+    lualine_a = {},
+    --lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_b = {'filename', 'diff', 'diagnostics'},
+    --lualine_c = {'filename'},
+    lualine_c = {},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
