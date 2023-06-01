@@ -257,7 +257,7 @@ require('lualine').setup {
     --lualine_a = {'mode'},
     lualine_a = {},
     --lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_b = {'filename', 'diff', 'diagnostics'},
+    lualine_b = {{'filename', path=1}, 'diff', 'diagnostics'},
     --lualine_c = {'filename'},
     lualine_c = {},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
