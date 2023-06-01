@@ -36,7 +36,10 @@ require('packer').startup(function()
     use {"nvim-telescope/telescope.nvim", requires = {"nvim-lua/plenary.nvim"}}
     -- vim-translatoruse 翻译插件
     use 'voldikss/vim-translator'
+    -- lualine 状态栏插件
     use {'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true }}
+    -- interestingwords高量插件
+    use 'lfv89/vim-interestingwords'
 end)
 
 -- gruvbox nord zephyr-nvim 等主题插件配置

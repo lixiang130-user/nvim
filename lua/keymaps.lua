@@ -21,6 +21,17 @@ vim.g.maplocalleader = ' '
 -- 设备本地变量 这样就可样映射按键了: map('模式','按键','映射为xx',opt)
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
+
+-- interestingwords高量插件,按键配置
+vim.g.interestingWordsDefaultMappings = 1
+-- map("n", "<leader>k", ":call InterestingWords('n')<cr>", opt)
+-- map("v", "<leader>k", ":call InterestingWords('v')<cr>", opt)
+-- map("n", "<leader>K", ":call UncolorAllWords()<cr>", opt)
+-- map("n", "n", ":call WordNavigation(1)<cr>", opt)
+-- map("n", "N", ":call WordNavigation(0)<cr>", opt)
+-- 要配置 GUI 的颜色
+-- vim.g.interestingWordsGUIColors = {'#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '#FFB3FF', '#9999FF'}
+
 -- lvimgrep "xxxx" % <cr> :lopen<cr> 当前文件搜索字符串xxx并窗口打开搜索结果
 -- 命令模式下的百分号 是当前文件的文件名, <C-r>/ 是粘贴搜索模式寄存器
 -- https://www.codenong.com/509690/ 搜索结果列表出窗口教程
@@ -135,7 +146,7 @@ pluginKeys.lsp_map = function()
 
     map('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)  -- 悬浮窗展示定义详情
     map('n', '<leader>i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opt)
-    map('n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt) -- 查看签名帮助
+    -- map('n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt) -- 查看签名帮助
     -- map('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
     -- map('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
     -- map('n', '<leader>wl', '<cmd>lua function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end()<CR>', opt)
