@@ -80,9 +80,10 @@ vim.opt.termguicolors = true
 require("nvim-tree").setup({
     -- 不显示git状态图标
     git = { enable = false },
-    view = {width = 23,},
+    view = {width = 23,preserve_window_proportions = true,},    --不调整文件窗口大小
     filters = { dotfiles = false,}, --不过滤.文件(隐藏文件)
     on_attach = nvim_tree_on_attach,    -- 按键映射
+    actions = {open_file = {resize_window = false,}}    --不调整nvim-tree窗口大小
 })
 
 -- bufferline 配置 bufferline 可以展示顶部tab,标号,跳转,关闭等
