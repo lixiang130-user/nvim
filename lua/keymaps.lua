@@ -129,7 +129,7 @@ map('v', '<leader>fc', t_map_cmd, opt)
 map('n', '<leader>fc', t_map_cmd, opt)
 
 -- 自动等价排列所有窗口 windows (not) eq
-map('n', 'w=', ":set equalalways<CR>", opt)
+map('n', 'we', ":set equalalways<CR>", opt)
 map('n', 'wn', ":set noequalalways<CR>", opt)
 
 -- lspconfig keymap
