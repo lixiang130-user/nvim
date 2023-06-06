@@ -128,6 +128,10 @@ vim.g.translator_source_lang = 'en-us'
 map('v', '<leader>fc', t_map_cmd, opt)
 map('n', '<leader>fc', t_map_cmd, opt)
 
+-- 自动等价排列所有窗口 windows (not) eq
+map('n', 'w=', ":set equalalways<CR>", opt)
+map('n', 'wn', ":set noequalalways<CR>", opt)
+
 -- lspconfig keymap
 local pluginKeys = {}
 pluginKeys.lsp_map = function()
@@ -140,8 +144,9 @@ pluginKeys.lsp_map = function()
     map('n', '<leader>D', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
     -- 关闭诊断,当前行诊断,等待,交换参数位置等常用功能,展开宏定义等
     map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
-    -- 格式化
-    map('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opt)
+    -- 格式化 不好用,全乱了
+    map('n', '<leader>=', '<cmd>lua vim.lsp.buf.format()<CR>', opt)
+    map('v', '<leader>=', '<cmd>lua vim.lsp.buf.format()<CR>', opt)
 
     -- 展示语法提示警告错误内容 当前,上一个,下一个提示内容, 展示所有提示语
     map('n', '<leader>o', '<cmd>lua vim.diagnostic.open_float()<CR>', opt)
