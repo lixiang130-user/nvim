@@ -20,7 +20,7 @@ require('packer').startup(function()
     use { 'neovim/nvim-lspconfig'} -- 'williamboman/nvim-lsp-installer' }
     use { 'williamboman/mason.nvim' }
     -- :mason update更新注册表内容, 手动更新语言解析服务器 MasonInstall <package> ... 安装/重新安装提供的软件包
-    use {"williamboman/mason.nvim", run = ":MasonUpdate"}
+    use {'williamboman/mason.nvim', run = ':MasonUpdate'}
     use { 'williamboman/mason-lspconfig.nvim' }
     -- lsp 自动补全功能
     use 'hrsh7th/nvim-cmp'  -- 自动补全插件本身
@@ -33,14 +33,19 @@ require('packer').startup(function()
     -- vista.vim 插件,显示大纲,函数变量
     use 'liuchengxu/vista.vim'
     -- telescope 强大的文件搜索 预览 等
-    use {"nvim-telescope/telescope.nvim", requires = {"nvim-lua/plenary.nvim"}}
+    use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
     -- vim-translatoruse 翻译插件
     use 'voldikss/vim-translator'
     -- lualine 状态栏插件
     use {'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true }}
     -- interestingwords高量插件
     use 'lfv89/vim-interestingwords'
+    -- leap
+    use {'ggandor/leap.nvim', requires = {'ggandor/ggandor/leap.nvim','ggandor/flit.nvim','ggandor/leap-ast.nvim',}}
 end)
+
+--leap 使用s/S char1 char2 即可跳转到对应位置, 多个字符是,会展示字符,选择字母跳转过去
+require('leap').add_default_mappings()
 
 -- gruvbox nord zephyr-nvim 等主题插件配置
 vim.api.nvim_command('set background=dark') -- 设置背景色,调用vim设置的方式
@@ -49,7 +54,7 @@ vim.api.nvim_command('colorscheme zephyr') -- 设置主题,调用vim设置的方
 -- treesitter 语法高亮配置
 require 'nvim-treesitter.configs'.setup {
     -- 安装 language parser :TSInstallInfo 命令查看支持的语言
-    ensure_installed = { "lua", "c", "cpp", "python", "make", "json"},
+    ensure_installed = { 'lua', 'c', 'cpp', 'python', 'make', 'json'},
     -- 启动代码高亮功能
     highlight = { enable = true, additional_vim_regex_highlighting = false },
     -- 启动增量选择
@@ -77,7 +82,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 -- 设置 termguicolors 以启用高亮组
 vim.opt.termguicolors = true
-require("nvim-tree").setup({
+require('nvim-tree').setup({
     -- 不显示git状态图标
     git = { enable = false },
     view = {width = 23,preserve_window_proportions = true,},    --不调整文件窗口大小
@@ -113,7 +118,7 @@ require('bufferline').setup {
 --     sumneko_lua = { Lua = {
 --         runtime = {version = 'LuaJIT'},
 --         diagnostics = {globals = { 'vim' }},
---         workspace = {library = vim.api.nvim_get_runtime_file("", true),},
+--         workspace = {library = vim.api.nvim_get_runtime_file('', true),},
 --         telemetry = {enable = false,},
 --     }},
 --     -- 根据不同的语言使用不同的配置
@@ -131,7 +136,7 @@ require('bufferline').setup {
 --     local server_is_found, server = require 'nvim-lsp-installer'.get_server(name)
 --     if server_is_found then
 --         if not server:is_installed() then
---             print("Installing " .. name)
+--             print('Installing ' .. name)
 --             server:install()
 --         end
 --     end
@@ -184,7 +189,7 @@ require'lspconfig'['bashls'].setup{ on_attach =  on_attach}
 local cmp = require'cmp'
 cmp.setup {
     -- 必须指定代码段引擎 -- For `vsnip` users. 就是vim-vsnip插件
-    snippet = {expand = function(args) vim.fn["vsnip#anonymous"](args.body)end},
+    snippet = {expand = function(args) vim.fn['vsnip#anonymous'](args.body)end},
     sources = cmp.config.sources({
             {name='vsnip'},
             {name='nvim_lsp'},
