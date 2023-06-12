@@ -40,12 +40,12 @@ require('packer').startup(function()
     use {'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true }}
     -- interestingwords高量插件
     use 'lfv89/vim-interestingwords'
-    -- leap
-    use {'ggandor/leap.nvim', requires = {'ggandor/ggandor/leap.nvim','ggandor/flit.nvim','ggandor/leap-ast.nvim',}}
+    -- leap 快速跳转搜索
+    use {'ggandor/leap.nvim', requires = {'tpope/vim-repeat',}}
 end)
 
 --leap 使用s/S char1 char2 即可跳转到对应位置, 多个字符是,会展示字符,选择字母跳转过去
-require('leap').add_default_mappings()
+--require('leap').add_default_mappings()    --默认使用s/S
 
 -- gruvbox nord zephyr-nvim 等主题插件配置
 vim.api.nvim_command('set background=dark') -- 设置背景色,调用vim设置的方式

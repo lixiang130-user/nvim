@@ -22,6 +22,11 @@ vim.g.maplocalleader = ' '
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
+-- leap 插件按键配置
+vim.keymap.set({'n', 'x', 'o'}, 'f', '<Plug>(leap-forward-to)') --向后查找
+vim.keymap.set({'n', 'x', 'o'}, 'F', '<Plug>(leap-backward-to)')    --向前查找
+vim.keymap.set({'n', 'x', 'o'}, 'gf', '<Plug>(leap-from-window)')    --查找别的窗口
+
 -- interestingwords高量插件,按键配置
 vim.g.interestingWordsDefaultMappings = 1
 -- map("n", "<leader>k", ":call InterestingWords('n')<cr>", opt)
