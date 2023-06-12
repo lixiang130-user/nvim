@@ -23,8 +23,8 @@ local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
 -- leap 插件按键配置
-vim.keymap.set({'n', 'x', 'o'}, '<leader>f', '<Plug>(leap-forward-to)') --向后查找
-vim.keymap.set({'n', 'x', 'o'}, '<leader>F', '<Plug>(leap-backward-to)')    --向前查找
+vim.keymap.set({'n', 'x', 'o'}, '<leader>s', '<Plug>(leap-forward-to)') --向后查找
+vim.keymap.set({'n', 'x', 'o'}, '<leader>S', '<Plug>(leap-backward-to)')    --向前查找
 vim.keymap.set({'n', 'x', 'o'}, '<leader>w', '<Plug>(leap-from-window)')    --查找别的窗口
 
 -- interestingwords高量插件,按键配置
@@ -157,7 +157,7 @@ pluginKeys.lsp_map = function()
     map('n', '<leader>o', '<cmd>lua vim.diagnostic.open_float()<CR>', opt)
     map('n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opt)
     map('n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<CR>', opt)
-    map('n', '<leader>s', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
+    map('n', '<leader>l', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
 
     map('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)  -- 悬浮窗展示定义详情
     map('n', '<leader>i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opt)
