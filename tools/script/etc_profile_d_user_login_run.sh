@@ -77,8 +77,9 @@ function out_bmake()
 
 function all_out_bmake()
 {
-    sudo ls && make prepare2 && make version_ctrl && bmake all -j32 && bmake -j32 \
-        && bmake apps && bmake libs && bmake install && make image && make upgrade
+    sudo ls && make prepare2 && make version_ctrl && bmake all -j32
+    sudo ls && bmake apps && bmake apps && bmake libs && bmake install \
+        && make image && make upgrade
 }
 
 function mount_server_lixiang()
