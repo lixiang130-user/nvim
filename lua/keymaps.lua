@@ -64,7 +64,7 @@ map('n', 'w,', '<C-w>3<', opt) -- w.窗口上下大小增加3
 map('n', 'ww', ':wa<CR>', opt)
 map('n', 'wa', ':wa<CR>', opt)
 -- 关闭窗口操作
-map('n', 'ca', ':wa<CR>:qa<CR>', opt) -- ca(close all)关闭所有窗口并退出
+map('n', 'ca<CR>', ':wa<CR>:qa<CR>', opt) -- ca(close all)关闭所有窗口并退出
 map('n', 'cc', '<C-w>c', opt) -- cc(close)关闭当前窗口
 -- map('n', 'co', '<C-w>o', opt) -- co(close others)关闭其他窗口
 map('n', '<C-h>', '<C-w>h', opt) -- ctrl+hjkl替换ctrl-w +hjkl 切换窗口
