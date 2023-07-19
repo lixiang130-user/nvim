@@ -174,14 +174,12 @@ require'mason-lspconfig'.setup({
     ensure_installed = {
         'lua_ls',
         'pyright',
-        'jsonls',
         'clangd',
         'bashls',
     },
 })
 require'lspconfig'['lua_ls'].setup{ on_attach =  on_attach}
 require'lspconfig'['pyright'].setup{ on_attach =  on_attach}
-require'lspconfig'['jsonls'].setup{ on_attach =  on_attach}
 require'lspconfig'['clangd'].setup{ on_attach =  on_attach}
 require'lspconfig'['bashls'].setup{ on_attach =  on_attach}
 
