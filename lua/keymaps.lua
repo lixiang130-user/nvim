@@ -22,6 +22,8 @@ vim.g.maplocalleader = ' '
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
+map("n", "<leader>==", ":%!jq .<cr>", opt) -- json格式化,使用ubuntu安装的工具js
+
 -- leap 插件按键配置
 vim.keymap.set({'n', 'x', 'o'}, '<leader>s', '<Plug>(leap-forward-to)') --向后查找
 vim.keymap.set({'n', 'x', 'o'}, '<leader>S', '<Plug>(leap-backward-to)')    --向前查找

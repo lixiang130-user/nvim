@@ -12,6 +12,7 @@ http://security.debian.org替换成https://repo.huaweicloud.com
 
 安装unzip, tree, make, bear, git, gcc, npm, ripgrep, Vista
 g++,gcc-multilib g++-multilib(gcc支持32位编译)
+jq 格式化json的工具
 安装fastgithub,nvim,添加环境变量到/etc/profile/xx.sh,启动http代理,
 .~/.baserc中配置默认vim为neovim"alias vim='nvim',alias vi='nvim'"
 启动fastgithub需要sudo启动一次
@@ -100,7 +101,7 @@ class apt_install(object):
         if(os.system('sudo apt-get install -y unzip make bear git tree') != 0):exit(-1)
         if(os.system('sudo apt-get install -y npm dos2unix ripgrep gcc') != 0):exit(-1)
         if(os.system('sudo apt-get install -y g++ gcc-multilib g++-multilib gitk') != 0):exit(-1)
-        if(os.system('sudo apt-get install -y python3-venv') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y python3-venv jq') != 0):exit(-1)
         if(os.system('sudo apt-get autoremove -y man*') != 0):exit(-1)  #重新安装man,默认的不能用
         if(os.system('sudo apt-get install -y man-db manpages-de manpages-de-dev manpages-dev glibc-doc manpages-posix-dev manpages-posix') != 0):exit(-1)
         return True
