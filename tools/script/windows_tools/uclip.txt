@@ -1,3 +1,3 @@
 # 支持utf8到剪切板
 https://github.com/suzusime/uclip
-#如果clip.exe复制乱码,则将uclip.exe复制到/mnt/c/下面,复制到剪切板的改为使用uclip.exe即可
+#如果clip.exe复制乱码,则将uclip.exe复制到C:\Windows\System32下面,复制到剪切板的改为使用uclip.exe即可
