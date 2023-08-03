@@ -69,14 +69,13 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\W\[\033
 
 function out_bmake()
 {
-    module=$1
-    bmake build/obj/apps/$module/_compile && bmake build/obj/apps/$module/_install
-}
-
-function clean_bmake()
-{
-    module=$1
-    bmake build/obj/apps/$module/_clean
+    param1=$1
+    param2=$2
+    if [ "$param1" == "clean" ]; then
+        bmake build/obj/apps/$param2/_clean
+    else
+        bmake build/obj/apps/$param1/_compile && bmake build/obj/apps/$param1/_install
+    fi
 }
 
 function all_out_bmake()
