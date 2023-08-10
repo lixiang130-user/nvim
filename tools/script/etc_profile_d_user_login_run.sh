@@ -80,7 +80,31 @@ function out_bmake()
 
 function all_out_bmake()
 {
-    sudo ls && make prepare2 && make version_ctrl && bmake all -j32
-    sudo ls && bmake apps && bmake apps && bmake libs && bmake install \
+    sudo ls && make prepare2 && make version_ctrl && make tools \
+        && bmake opensource && bmake apps && bmake apps && bmake libs && bmake install \
+        && bmake all -j32 \
         && make image && make upgrade
+}
+
+function cdroot()
+{
+    cur=`pwd`
+    while true
+    do 
+        for file in `la .`
+        do 
+            if [ ".git" == $file ]
+            then
+                #echo root="$file"
+                return
+            fi
+        done
+        cd ..
+        if [ "/" == `pwd` ]
+        then
+            #echo "not file .git"
+            cd $cur
+            return
+        fi
+    done
 }
