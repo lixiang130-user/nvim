@@ -52,24 +52,24 @@ vim.api.nvim_command('set background=dark') -- 设置背景色,调用vim设置�
 vim.api.nvim_command('colorscheme zephyr') -- 设置主题,调用vim设置的方式
 
 -- treesitter 语法高亮配置
---require 'nvim-treesitter.configs'.setup {
---    -- 安装 language parser :TSInstallInfo 命令查看支持的语言
---    ensure_installed = { 'lua', 'c', 'cpp', 'python', 'make', 'json'},
---    -- 启动代码高亮功能
---    highlight = { enable = true, additional_vim_regex_highlighting = false },
---    -- 启动增量选择
---    incremental_selection = {
---        enable = true,
---        keymaps = {
---            init_selection = '<CR>',
---            node_incremental = '<CR>',
---            node_decremental = '<BS>',
---            scope_incremental = '<TAB>',
---        }
---    },
---    -- 会导致python插入模式下输入冒号缩进改变,关闭这个实验功能
---    -- indent = { enable = true }  -- 启用基于Treesitter的代码格式化(=). 实验功能
---}
+require 'nvim-treesitter.configs'.setup {
+    -- 安装 language parser :TSInstallInfo 命令查看支持的语言
+    ensure_installed = { 'lua', 'c', 'cpp', 'python', 'make', 'json'},
+    -- 启动代码高亮功能
+    highlight = { enable = true, additional_vim_regex_highlighting = false },
+    -- 启动增量选择
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = '<CR>',
+            node_incremental = '<CR>',
+            node_decremental = '<BS>',
+            scope_incremental = '<TAB>',
+        }
+    },
+    -- 会导致python插入模式下输入冒号缩进改变,关闭这个实验功能
+    -- indent = { enable = true }  -- 启用基于Treesitter的代码格式化(=). 实验功能
+}
 
 -- nvim-tree 配置,  nvim-tree 可执行常见文件操作
 -- o 打开关闭文件夹, a 创建文件, r 重命名,
