@@ -96,6 +96,8 @@ function cdroot()
             if [ ".git" == $file ]
             then
                 #echo root="$file"
+                cd $cur
+                cd -
                 return
             fi
         done
