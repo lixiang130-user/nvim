@@ -286,7 +286,7 @@ elif sys.argv[1] == '2':
     git.install()
 elif sys.argv[1] == 'work': #工作需要的环境
     if(os.system('sudo apt-get install -y cmake zip kconfig-frontends') != 0):exit(-1)
-    if(os.system('sudo apt-get install -y flex bison bc') != 0):exit(-1)
+    if(os.system('sudo apt-get install -y flex bison bc libncurses5 libpython2.7') != 0):exit(-1)
 else:
     print('run step ', sys.argv[1])
     python_rely().install(sys.argv[1])
