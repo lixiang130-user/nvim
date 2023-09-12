@@ -78,15 +78,6 @@ function out_bmake()
     fi
 }
 
-function all_out_bmake()
-{
-    sudo ls && make prepare2 && make version_ctrl && bmake -j1 && make image && make upgrade
-    #sudo ls && make prepare2 && make version_ctrl && make tools \
-    #    && bmake opensource && bmake apps && bmake apps && bmake libs && bmake install \
-    #    && bmake all -j32 \
-    #    && make image && make upgrade
-}
-
 function cdroot()
 {
     cur=`pwd`
@@ -110,4 +101,10 @@ function cdroot()
             return
         fi
     done
+}
+
+function uttelnet()
+{
+    param1=$1
+    /home/user/.config/nvim/tools/script/user_tool_telnet.sh $1
 }

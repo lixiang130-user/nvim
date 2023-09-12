@@ -28,8 +28,8 @@ nvim中需要执行PackerSynv,
 class script_install(object):
     __user_tools = os.path.expanduser('~')+'/.user_tools/'
     __fastgithub = __user_tools+'fastgithub_linux-x64/fastgithub'
-    __script_dir = '../script/'
-    __etc_profile_d_sh = __script_dir+'etc_profile_d_user_login_run.sh'
+    __script_dir = os.path.expanduser('~')+'/.config/nvim/tools/script/'
+    __user_tools_sh = __script_dir+'user_tools.sh'
     __bashrc = os.path.expanduser('~')+'/.bashrc'
 
     def __init__(self):
@@ -51,7 +51,7 @@ class script_install(object):
         if(os.system('tar -xzvf ../compressed/fastgithub_linux-x64.tar.gz -C  '+self.__user_tools) != 0):exit(-1)
 
         #2.复制脚本
-        # if(os.system('sudo cp '+self.__etc_profile_d_sh+' /etc/profile.d/') != 0):exit(-1)
+        # if(os.system('sudo cp '+self.__user_tools_sh+' /etc/profile.d/') != 0):exit(-1)
         if(os.system('cp '+self.__script_dir+'/fastgithub_start.sh '+self.__user_tools) != 0):exit(-1)
 
         #3.~/.bashrc中配置默认vim为neovim"alias vim='nvim',alias vi='nvim'"
@@ -60,7 +60,7 @@ class script_install(object):
         #f.write(b'alias vi=nvim\n')
         #f.write(b'alias ll=\'ls -a -l\'\n')
         #f.close()
-        if(os.system('cat '+self.__etc_profile_d_sh+' >> '+self.__bashrc) != 0):exit(-1)
+        if(os.system('echo "source '+self.__user_tools_sh+'" >> '+self.__bashrc) != 0):exit(-1)
 
         print('fastgithub frist running')
         if(os.system('sudo '+self.__fastgithub+' &') != 0):exit(-1)
