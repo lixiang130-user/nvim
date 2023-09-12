@@ -106,5 +106,7 @@ function cdroot()
 function uttelnet()
 {
     param1=$1
-    /home/user/.config/nvim/tools/script/user_tool_telnet.sh $1
+    timestamp=$(date +%s)
+
+    /home/user/.config/nvim/tools/script/user_tool_telnet.sh $1 | tee -a /tmp/$1_$timestamp.log
 }
