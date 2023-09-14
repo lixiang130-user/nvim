@@ -57,3 +57,6 @@ vim.api.nvim_command('set foldlevel=99')    -- 这样就可以使用zc,zo折叠�
 -- x可以使任意字母或数字, 但是1-9数字是最近删除的文本,0号数字是最近复制的文本,会被系统不断覆盖
 -- '/' 是搜索模式寄存器(Search Pattern Register)当通过/命令进行搜索时,所使用的模式将被自动放入"/寄存器。
 -- 计算器,指令模式输入":=x+x*x-x/x"回车,输入模式"<C-r>=x+x-x/x*"回车
+
+-- 设置vim terminal的最大回滚行号,默认9999,最大目前只能到100000
+vim.api.nvim_command('set scrollback=100000')    -- 这样就可以使用zc,zo折叠和打开了

@@ -110,3 +110,8 @@ function uttelnet()
 
     /home/user/.config/nvim/tools/script/user_tool_telnet.sh $1 | tee -a /tmp/$1_$timestamp.log
 }
+
+function vimtt()
+{
+    /home/user/.config/nvim/tools/script/user_tool_vimtt.sh
+}
