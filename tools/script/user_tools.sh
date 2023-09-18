@@ -115,3 +115,8 @@ function vimtt()
 {
     /home/user/.config/nvim/tools/script/user_tool_vimtt.sh
 }
+
+function set_mi30_env()
+{
+    export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
+}
