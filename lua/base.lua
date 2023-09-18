@@ -59,4 +59,4 @@ vim.api.nvim_command('set foldlevel=99')    -- 这样就可以使用zc,zo折叠�
 -- 计算器,指令模式输入":=x+x*x-x/x"回车,输入模式"<C-r>=x+x-x/x*"回车
 
 -- 设置vim terminal的最大回滚行号,默认9999,最大目前只能到100000
-vim.api.nvim_command('set scrollback=100000')    -- 这样就可以使用zc,zo折叠和打开了
+vim.api.nvim_command('set scrollback=100000')
