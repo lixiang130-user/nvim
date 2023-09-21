@@ -84,7 +84,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 require('nvim-tree').setup({
     -- 不显示git状态图标
-    git = { enable = false },
+    git = { enable = true },
     view = {width = 23,preserve_window_proportions = true,},    --不调整文件窗口大小
     filters = { dotfiles = false,}, --不过滤.文件(隐藏文件)
     on_attach = nvim_tree_on_attach,    -- 按键映射
