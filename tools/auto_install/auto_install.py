@@ -30,6 +30,7 @@ class script_install(object):
     __fastgithub = __user_tools+'fastgithub_linux-x64/fastgithub'
     __script_dir = os.path.expanduser('~')+'/.config/nvim/tools/script/'
     __user_tools_sh = __script_dir+'user_tools.sh'
+    __becompare =  os.path.expanduser('~')+'/.config/nvim/tools/compressed/bcompare-4.4.6.27483_amd64.deb'
     __bashrc = os.path.expanduser('~')+'/.bashrc'
 
     def __init__(self):
@@ -61,6 +62,11 @@ class script_install(object):
         #f.write(b'alias ll=\'ls -a -l\'\n')
         #f.close()
         if(os.system('echo "source '+self.__user_tools_sh+'" >> '+self.__bashrc) != 0):exit(-1)
+
+        #bcompare安装和其依赖
+        os.system('sudo apt install '+self.__becompare)
+        if(os.system('sudo apt --fix-broken install') != 0):exit(-1)
+        #if(os.system('sudo apt autoremove -y --purge bcompare') != 0):exit(-1)
 
         print('fastgithub frist running')
         if(os.system('sudo '+self.__fastgithub+' &') != 0):exit(-1)
