@@ -4,5 +4,5 @@ spawn nvim
 send "tt\r"
 send "co\r"
 send "tv\r"
-send "20w.\r"
+send "15w.\r"
 interact
