@@ -302,6 +302,8 @@ elif sys.argv[1] == 'work': #工作需要的环境
     if(os.system('sudo apt-get install -y flex bison bc libncurses5 libpython2.7 python2') != 0):exit(-1)
     if(os.system('sudo apt-get install -y device-tree-compiler') != 0):exit(-1)
     if(os.system('sudo ln -s /usr/bin/python2 /usr/bin/python') != 0):exit(-1)  #创建python的连接符
+    #lvgl在linux上运行所需的sdl环境,展示界面用的:https://github.com/lvgl/lv_port_pc_vscode
+    if(os.system('sudo apt-get install -y build-essential libsdl2-dev') != 0):exit(-1)  
 else:
     print('run step ', sys.argv[1])
     python_rely().install(sys.argv[1])
