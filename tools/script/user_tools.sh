@@ -73,9 +73,9 @@ function out_bmake()
     param1=$1
     param2=$2
     if [ "$param1" == "clean" ]; then
-        bmake build/obj/apps/$param2/_clean
+        bear --append -- make build/obj/apps/$param2/_clean
     else
-        bmake build/obj/apps/$param1/_compile && bmake build/obj/apps/$param1/_install
+        bear --append -- make build/obj/apps/$param1/_compile && bear --append -- make build/obj/apps/$param1/_install
     fi
 }
 
