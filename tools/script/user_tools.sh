@@ -6,7 +6,8 @@ PATH=$PATH:~/.user_tools/nvim-linux64/bin
 alias vim=nvim
 alias vi=nvim
 alias ll='ls -a -l'
-alias bmake='bear --append -- make'
+alias rmake='"make"'
+alias make='bear --append -- make'
 
 #启动fastgithub代理
 function fastgit_on()
