@@ -120,3 +120,9 @@ function set_mi30_env()
 {
     export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
 }
+
+function set_self_libs_env()
+{
+    cur=`pwd`
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$cur/build/install/lib:$cur/build/libs
+}
