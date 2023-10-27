@@ -125,5 +125,5 @@ function set_mi30_env()
 function set_self_libs_env()
 {
     cur=`pwd`
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$cur/build/install/lib:$cur/build/libs
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$cur/build/install/lib:$cur/build/install/lib64:$cur/build/libs
 }
