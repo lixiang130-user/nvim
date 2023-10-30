@@ -109,7 +109,7 @@ function uttelnet()
     param1=$1
     timestamp=$(date +%s)
 
-    /home/user/.config/nvim/tools/script/user_tool_telnet.sh $1 | tee -a /tmp/$1_$timestamp.log
+    /home/user/.config/nvim/tools/script/user_tool_telnet.sh $param1 | tee -a /tmp/$1_$timestamp.log
 }
 
 function vimtt()
@@ -126,4 +126,17 @@ function set_self_libs_env()
 {
     cur=`pwd`
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$cur/build/install/lib:$cur/build/install/lib64:$cur/build/libs
+}
+
+#GitHub删除某个文件及其提交历史记录
+function git_delete_file()
+{
+    param1=$1
+    echo "GitHub删除某个文件及其提交历史记录:"$param1
+    # 删除包括历史
+    git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch '$param1 \
+        --prune-empty --tag-name-filter cat -- --all
+    # 同步到远程
+    echo "同步到远程仓库,执行:git push origin master --force"
+    git push origin master --force
 }
