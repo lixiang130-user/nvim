@@ -280,11 +280,11 @@ class python_rely(object):
 
 #run
 if len(sys.argv) <= 1:
-    print('plase set step 1 2 ...')
+    print('plase set step 1 2 work ...')
 elif sys.argv[1] == '1':
     print('run step 1')
-    apt_source = apt_sources_update()
-    apt_source.update()
+    #apt_source = apt_sources_update()
+    #apt_source.update()
     #安装常用工具
     apt = apt_install()
     apt.install()
@@ -304,6 +304,6 @@ elif sys.argv[1] == 'work': #工作需要的环境
     if(os.system('sudo ln -s /usr/bin/python2 /usr/bin/python') != 0):exit(-1)  #创建python的连接符
     #lvgl在linux上运行所需的sdl环境,展示界面用的:https://github.com/lvgl/lv_port_pc_vscode
     if(os.system('sudo apt-get install -y build-essential libsdl2-dev') != 0):exit(-1)  
-else:
+elif sys.argv[1] == 'spider':
     print('run step ', sys.argv[1])
     python_rely().install(sys.argv[1])
