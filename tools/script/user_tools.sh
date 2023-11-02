@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #添加用户环境变量
-PATH=$PATH:~/.user_tools/nvim-linux64/bin
+PATH=$PATH:~/.config/nvim-linux64/bin
 
 alias vim=nvim
 alias vi=nvim
@@ -14,7 +14,7 @@ function fastgit_on()
 {
     export http_proxy="http://127.0.0.1:38457"
     export https_proxy="http://127.0.0.1:38457"
-    ~/.user_tools/fastgithub_start.sh &
+    ~/.config/fastgithub_start.sh &
     echo 'fastgithub已启动'
 }
 function fastgit_off()

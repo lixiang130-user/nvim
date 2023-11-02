@@ -26,7 +26,7 @@ nvim中需要执行PackerSynv,
 
 
 class script_install(object):
-    __user_tools = os.path.expanduser('~')+'/.user_tools/'
+    __user_tools = os.path.expanduser('~')+'/.config/'
     __fastgithub = __user_tools+'fastgithub_linux-x64/fastgithub'
     __script_dir = os.path.expanduser('~')+'/.config/nvim/tools/script/'
     __user_tools_sh = __script_dir+'user_tools.sh'
@@ -42,18 +42,11 @@ class script_install(object):
     def install(self):
         if not os.path.isdir(self.__user_tools):
             os.makedirs(self.__user_tools)
-        #1.解压文件到user_tools,fastgithub_linux-x64/fastgithub需要root权限执行一次注册
+        #1.解压文件到.config
         if os.path.isdir(self.__user_tools+'/nvim-linux64'):
             #os.removedirs(self.__user_tools+'/nvim-linux64')  #非空文件不能删除
             os.system('rm -rf '+self.__user_tools+'/nvim-linux64')
-        if os.path.isdir(self.__user_tools+'/fastgithub_linux-x64'):
-            os.system('rm -rf '+self.__user_tools+'/fastgithub_linux-x64')
         if(os.system('tar -xzvf ../compressed/nvim-linux64.tar.gz -C  '+self.__user_tools) != 0):exit(-1)
-        if(os.system('tar -xzvf ../compressed/fastgithub_linux-x64.tar.gz -C  '+self.__user_tools) != 0):exit(-1)
-
-        #2.复制脚本
-        # if(os.system('sudo cp '+self.__user_tools_sh+' /etc/profile.d/') != 0):exit(-1)
-        if(os.system('cp '+self.__script_dir+'/fastgithub_start.sh '+self.__user_tools) != 0):exit(-1)
 
         #3.~/.bashrc中配置默认vim为neovim"alias vim='nvim',alias vi='nvim'"
         #f = open(self.__bashrc,'ab')
@@ -74,10 +67,20 @@ GXN1eh9FbDiX1ACdd7XKMV7hL7x0ClBJLUJ-zFfKofjaj2yxE53xauIfkqZ8FoLpcZ0Ux6McTyNmODDS
         os.system('sudo sed -i "s/keexjEP3t4Mue23hrnuPtY4TdcsqNiJL-5174TsUdLmJSIXKfG2NGPwBL6vnRPddT7tH29qpkneX63DO9ECSPE9rzY1zhThHERg8lHM9IBFT+rVuiY823aQJuqzxCKIE1bcDqM4wgW01FH6oCBP1G4ub01xmb4BGSUG6ZrjxWHJyNLyIlGvOhoY2HAYzEtzYGwxFZn2JZ66o4RONkXjX0DF9EzsdUef3UAS+JQ+fCYReLawdjEe6tXCv88GKaaPKWxCeaUL9PejICQgRQOLGOZtZQkLgAelrOtehxz5ANOOqCaJgy2mJLQVLM5SJ9Dli909c5ybvEhVmIC0dc9dWH+/N9KmiLVlKMU7RJqnE+WXEEPI1SgglmfmLc1yVH7dqBb9ehOoKG9UE+HAE1YvH1XX2XVGeEqYUY-Tsk7YBTz0WpSpoYyPgx6Iki5KLtQ5G-aKP9eysnkuOAkrvHU8bLbGtZteGwJarev03PhfCioJL4OSqsmQGEvDbHFEbNl1qJtdwEriR+VNZts9vNNLk7UGfeNwIiqpxjk4Mn09nmSd8FhM4ifvcaIbNCRoMPGl6KU12iseSe+w+1kFsLhX+OhQM8WXcWV10cGqBzQE9OqOLUcg9n0krrR3KrohstS9smTwEx9olyLYppvC0p5i7dAx2deWvM1ZxKNs0BvcXGukR+/g" /usr/lib/beyondcompare/BCompare')
         #if(os.system('sudo apt autoremove -y --purge bcompare') != 0):exit(-1)
 
+        '''
+        #安装fastgithub
+        if os.path.isdir(self.__user_tools+'/fastgithub_linux-x64'):
+            os.system('rm -rf '+self.__user_tools+'/fastgithub_linux-x64')
+        if(os.system('tar -xzvf ../compressed/fastgithub_linux-x64.tar.gz -C  '+self.__user_tools) != 0):exit(-1)
+        #2.复制脚本
+        # if(os.system('sudo cp '+self.__user_tools_sh+' /etc/profile.d/') != 0):exit(-1)
+        if(os.system('cp '+self.__script_dir+'/fastgithub_start.sh '+self.__user_tools) != 0):exit(-1)
+        #fastgithub_linux-x64/fastgithub需要root权限执行一次注册
         print('fastgithub frist running')
         if(os.system('sudo '+self.__fastgithub+' &') != 0):exit(-1)
         if(os.system('sleep 8') != 0):exit(-1)
         if(os.system('sudo killall fastgithub') != 0):exit(-1)
+        '''
         return True
     pass
 
