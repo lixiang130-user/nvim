@@ -125,6 +125,9 @@ function set_mi30_env()
 function set_self_libs_env()
 {
     cur=`pwd`
+    ulimit -c 1024000
+    echo "已配置自己动态库目录环境,开启coredump,生成coredump文件在这里:"
+    cat /proc/sys/kernel/core_pattern
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$cur/build/install/lib:$cur/build/install/lib64:$cur/build/libs
 }
 
