@@ -109,12 +109,17 @@ function uttelnet()
     param1=$1
     timestamp=$(date +%s)
 
-    /home/user/.config/nvim/tools/script/user_tool_telnet.sh $param1 | tee -a /tmp/$1_$timestamp.log
+    /home/user/.config/nvim/tools/script/expect_telnet.sh $param1 | tee -a /tmp/$1_$timestamp.log
 }
 
 function vimtt()
 {
-    /home/user/.config/nvim/tools/script/user_tool_vimtt.sh
+    /home/user/.config/nvim/tools/script/expect_vimttr.sh
+}
+
+function vimttl()
+{
+    /home/user/.config/nvim/tools/script/expect_vimttl.sh
 }
 
 function set_mi30_env()
