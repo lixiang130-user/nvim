@@ -112,15 +112,16 @@ function uttelnet()
     /home/user/.config/nvim/tools/script/expect_telnet.sh $param1 | tee -a /tmp/$1_$timestamp.log
 }
 
-function vimt()
-{
-    /home/user/.config/nvim/tools/script/expect_vimtr.sh
-}
-
 function vimtl()
 {
     /home/user/.config/nvim/tools/script/expect_vimtl.sh
 }
+function vimtr()
+{
+    /home/user/.config/nvim/tools/script/expect_vimtr.sh
+}
+alias vimt=vimtl
+alias vimtt=vimtl
 
 function set_mi30_env()
 {
