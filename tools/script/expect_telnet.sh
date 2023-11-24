@@ -8,4 +8,5 @@ send "root\r"
 expect "Password:"
 send "comtom@admin\r"
 send "ulimit -c 20480\r"
+send "cd /app/comtom/bin/\r"
 interact
