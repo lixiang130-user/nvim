@@ -7,4 +7,5 @@ expect "login:"
 send "root\r"
 expect "Password:"
 send "comtom@admin\r"
+send "ulimit -c 20480\r"
 interact
