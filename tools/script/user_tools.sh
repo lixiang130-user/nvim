@@ -149,3 +149,9 @@ function git_delete_file()
     echo "同步到远程仓库,执行:git push origin master --force"
     git push origin master --force
 }
+
+#mi30的gdb遍历脚本工具
+function mgdb()
+{
+    /home/user/.config/nvim/tools/script/expect_mi30_gdb.sh $1 $2 $3 $4 $5
+}
