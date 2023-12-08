@@ -154,5 +154,5 @@ function mgdb()
 }
 
 #默认启动执行程序
-google_translator_vim_on   #默认打开google翻译
+#google_translator_vim_on   #默认打开google翻译
 proxy_on
