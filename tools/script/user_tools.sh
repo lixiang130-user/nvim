@@ -8,7 +8,6 @@ alias vi=nvim
 alias ll='ls -a -l'
 alias rmake='"make"'
 alias make='bear --append -- make'
-
 #启动fastgithub代理
 function fastgit_on()
 {
@@ -26,7 +25,7 @@ function fastgit_off()
 }
 
 #vim使用google翻译
-function google_translator_vim()
+function google_translator_vim_on()
 {
     export google_translator_vim='google_translator_vim'
 }
@@ -34,7 +33,6 @@ function google_translator_vim_off()
 {
     unset google_translator_vim
 }
-google_translator_vim   #默认打开google翻译
 
 #使用外部代理,外部翻墙即可
 function proxy_on()
@@ -42,9 +40,8 @@ function proxy_on()
     wsl2ip=$(cat /etc/resolv.conf | grep 'nameserver' | cut -f 2 -d ' ')
     export http_proxy="http://$wsl2ip:7890"
     export https_proxy=$http_proxy
-    google_translator_vim
     #export all_proxy=socks5://127.0.0.1:7890 # or this line
-    echo -e "已开启代理"
+    #echo -e "已开启代理"
 }
 function proxy_off()
 {
@@ -155,3 +152,7 @@ function mgdb()
 {
     /home/user/.config/nvim/tools/script/expect_mi30_gdb.sh $1 $2 $3 $4 $5
 }
+
+#默认启动执行程序
+google_translator_vim_on   #默认打开google翻译
+proxy_on
