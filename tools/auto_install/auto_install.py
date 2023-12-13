@@ -26,12 +26,14 @@ nvim中需要执行PackerSynv,
 
 
 class script_install(object):
-    __user_tools = os.path.expanduser('~')+'/.config/'
-    __fastgithub = __user_tools+'fastgithub_linux-x64/fastgithub'
-    __script_dir = os.path.expanduser('~')+'/.config/nvim/tools/script/'
-    __user_tools_sh = __script_dir+'user_tools.sh'
-    __becompare =  os.path.expanduser('~')+'/.config/nvim/tools/compressed/bcompare-4.4.6.27483_amd64.deb'
-    __bashrc = os.path.expanduser('~')+'/.bashrc'
+    __user_root = os.path.expanduser('~')
+    __pwd_path = os.getcwd()
+    __pwd_root = __pwd_path+'/../../'
+    __bashrc = __user_root+'/.bashrc'
+    __user_tools = __user_root+'/.config/'
+    #__fastgithub = __user_tools+'fastgithub_linux-x64/fastgithub'
+    __user_tools_sh = __user_tools+'nvim/tools/script/user_tools.sh'
+    __becompare =  __pwd_root+'/tools/compressed/bcompare-4.4.6.27483_amd64.deb'
 
     def __init__(self):
         print('scripy_install __init__')
@@ -55,18 +57,6 @@ class script_install(object):
         #f.write(b'alias ll=\'ls -a -l\'\n')
         #f.close()
         if(os.system('echo "source '+self.__user_tools_sh+'" >> '+self.__bashrc) != 0):exit(-1)
-
-        #bcompare安装和其依赖和破解
-        '''
---- BEGIN LICENSE KEY ---
-GXN1eh9FbDiX1ACdd7XKMV7hL7x0ClBJLUJ-zFfKofjaj2yxE53xauIfkqZ8FoLpcZ0Ux6McTyNmODDSvSIHLYhg1QkTxjCeSCk6ARz0ABJcnUmd3dZYJNWFyJun14rmGByRnVPL49QH+Rs0kjRGKCB-cb8IT4Gf0Ue9WMQ1A6t31MO9jmjoYUeoUmbeAQSofvuK8GN1rLRv7WXfUJ0uyvYlGLqzq1ZoJAJDyo0Kdr4ThF-IXcv2cxVyWVW1SaMq8GFosDEGThnY7C-SgNXW30jqAOgiRjKKRX9RuNeDMFqgP2cuf0NMvyMrMScnM1ZyiAaJJtzbxqN5hZOMClUTE+++
---- END LICENSE KEY -----
-        '''
-        os.system('sudo apt install '+self.__becompare)
-        if(os.system('sudo apt --fix-broken install') != 0):exit(-1)
-        os.system('rm -rf ~/.config/bcompare')
-        os.system('sudo sed -i "s/keexjEP3t4Mue23hrnuPtY4TdcsqNiJL-5174TsUdLmJSIXKfG2NGPwBL6vnRPddT7tH29qpkneX63DO9ECSPE9rzY1zhThHERg8lHM9IBFT+rVuiY823aQJuqzxCKIE1bcDqM4wgW01FH6oCBP1G4ub01xmb4BGSUG6ZrjxWHJyNLyIlGvOhoY2HAYzEtzYGwxFZn2JZ66o4RONkXjX0DF9EzsdUef3UAS+JQ+fCYReLawdjEe6tXCv88GKaaPKWxCeaUL9PejICQgRQOLGOZtZQkLgAelrOtehxz5ANOOqCaJgy2mJLQVLM5SJ9Dli909c5ybvEhVmIC0dc9dWH+/N9KmiLVlKMU7RJqnE+WXEEPI1SgglmfmLc1yVH7dqBb9ehOoKG9UE+HAE1YvH1XX2XVGeEqYUY-Tsk7YBTz0WpSpoYyPgx6Iki5KLtQ5G-aKP9eysnkuOAkrvHU8bLbGtZteGwJarev03PhfCioJL4OSqsmQGEvDbHFEbNl1qJtdwEriR+VNZts9vNNLk7UGfeNwIiqpxjk4Mn09nmSd8FhM4ifvcaIbNCRoMPGl6KU12iseSe+w+1kFsLhX+OhQM8WXcWV10cGqBzQE9OqOLUcg9n0krrR3KrohstS9smTwEx9olyLYppvC0p5i7dAx2deWvM1ZxKNs0BvcXGukR+/g" /usr/lib/beyondcompare/BCompare')
-        #if(os.system('sudo apt autoremove -y --purge bcompare') != 0):exit(-1)
 
         '''
         #安装fastgithub
@@ -138,6 +128,35 @@ class cfg_config(object):
         print('cfg_config install end')
         pass
     pass
+
+class bcompare_install(object):
+    __pwd_path = os.getcwd()
+    __pwd_root = __pwd_path+'/../../'
+    __becompare =  __pwd_root+'/tools/compressed/bcompare-4.4.6.27483_amd64.deb'
+
+    def __init__(self):
+        print('bcompare_install __init__')
+
+    def __del__(self):
+        print('bcompare_install __def__')
+
+    def install(self):
+        #bcompare安装和其依赖和破解
+        '''
+--- BEGIN LICENSE KEY ---
+GXN1eh9FbDiX1ACdd7XKMV7hL7x0ClBJLUJ-zFfKofjaj2yxE53xauIfkqZ8FoLpcZ0Ux6McTyNmODDSvSIHLYhg1QkTxjCeSCk6ARz0ABJcnUmd3dZYJNWFyJun14rmGByRnVPL49QH+Rs0kjRGKCB-cb8IT4Gf0Ue9WMQ1A6t31MO9jmjoYUeoUmbeAQSofvuK8GN1rLRv7WXfUJ0uyvYlGLqzq1ZoJAJDyo0Kdr4ThF-IXcv2cxVyWVW1SaMq8GFosDEGThnY7C-SgNXW30jqAOgiRjKKRX9RuNeDMFqgP2cuf0NMvyMrMScnM1ZyiAaJJtzbxqN5hZOMClUTE+++
+--- END LICENSE KEY -----
+        '''
+        if(os.system('sudo apt install -y '+self.__becompare) != 0): exit(-1)
+        if(os.system('sudo apt --fix-broken install -y') != 0):exit(-2)
+        if(os.system('rm -rf ~/.config/bcompare') != 0): exit(-3)
+        if(os.system('sudo sed -i "s/keexjEP3t4Mue23hrnuPtY4TdcsqNiJL-5174TsUdLmJSIXKfG2NGPwBL6vnRPddT7tH29qpkneX63DO9ECSPE9rzY1zhThHERg8lHM9IBFT+rVuiY823aQJuqzxCKIE1bcDqM4wgW01FH6oCBP1G4ub01xmb4BGSUG6ZrjxWHJyNLyIlGvOhoY2HAYzEtzYGwxFZn2JZ66o4RONkXjX0DF9EzsdUef3UAS+JQ+fCYReLawdjEe6tXCv88GKaaPKWxCeaUL9PejICQgRQOLGOZtZQkLgAelrOtehxz5ANOOqCaJgy2mJLQVLM5SJ9Dli909c5ybvEhVmIC0dc9dWH+/N9KmiLVlKMU7RJqnE+WXEEPI1SgglmfmLc1yVH7dqBb9ehOoKG9UE+HAE1YvH1XX2XVGeEqYUY-Tsk7YBTz0WpSpoYyPgx6Iki5KLtQ5G-aKP9eysnkuOAkrvHU8bLbGtZteGwJarev03PhfCioJL4OSqsmQGEvDbHFEbNl1qJtdwEriR+VNZts9vNNLk7UGfeNwIiqpxjk4Mn09nmSd8FhM4ifvcaIbNCRoMPGl6KU12iseSe+w+1kFsLhX+OhQM8WXcWV10cGqBzQE9OqOLUcg9n0krrR3KrohstS9smTwEx9olyLYppvC0p5i7dAx2deWvM1ZxKNs0BvcXGukR+/g" /usr/lib/beyondcompare/BCompare') != 0):
+            exit(-4)
+        #if(os.system('sudo apt autoremove -y --purge bcompare') != 0):exit(-1)
+
+        return True
+    pass
+
 
 class git_install(object):
     __packer = os.path.expanduser('~')+'/.local/share/nvim/site/pack/packer/start/packer.nvim'
@@ -299,6 +318,8 @@ elif sys.argv[1] == '1':
     print('please logout and login for user, then run this script by param 2 again')
 elif sys.argv[1] == '2':
     print('run step 2')
+    bc = bcompare_install();
+    bc.install()
     git = git_install()
     git.install()
 elif sys.argv[1] == 'work': #工作需要的环境
