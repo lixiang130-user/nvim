@@ -175,8 +175,10 @@ class git_install(object):
         if(os.system('git config --global pull.rebase false') != 0):exit(-1)
         if(os.system('git config --global core.fileMode false') != 0):exit(-1)
         if(os.system('git config --global alias.st status') != 0):exit(-1)
-        if(os.system('git config --global http.postbuffer 1048576000') != 0):exit(-1)   #更新git的http post缓冲区值
-        if(os.system('git config --global https.postBuffer 1048576000') != 0):exit(-1)
+        #if(os.system('git config --global http.postbuffer 1048576000') != 0):exit(-1)   #更新git的http post缓冲区值
+        #if(os.system('git config --global https.postBuffer 1048576000') != 0):exit(-1)
+        #if(os.system('git config --global http.version HTTP/1.1') != 0):exit(-1)    #git使用http1.1,使用2遇到过问题
+        #if(os.system('git config --global http.version HTTP/2') != 0):exit(-1)
         if os.path.isdir(self.__nvim):
             os.system('rm -rf '+self.__nvim)
         if os.path.isdir(self.__packer):
