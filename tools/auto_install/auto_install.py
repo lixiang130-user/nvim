@@ -33,7 +33,6 @@ class script_install(object):
     __user_tools = __user_root+'/.config/'
     #__fastgithub = __user_tools+'fastgithub_linux-x64/fastgithub'
     __user_tools_sh = __user_tools+'nvim/tools/script/user_tools.sh'
-    __becompare =  __pwd_root+'/tools/compressed/bcompare-4.4.6.27483_amd64.deb'
 
     def __init__(self):
         print('scripy_install __init__')
@@ -322,8 +321,6 @@ elif sys.argv[1] == '1':
     print('please logout and login for user, then run this script by param 2 again')
 elif sys.argv[1] == '2':
     print('run step 2')
-    bc = bcompare_install();
-    bc.install()
     git = git_install()
     git.install()
 elif sys.argv[1] == 'work': #工作需要的环境
@@ -333,6 +330,9 @@ elif sys.argv[1] == 'work': #工作需要的环境
     if(os.system('sudo ln -s /usr/bin/python2 /usr/bin/python') != 0):exit(-1)  #创建python的连接符
     #lvgl在linux上运行所需的sdl环境,展示界面用的:https://github.com/lvgl/lv_port_pc_vscode
     if(os.system('sudo apt-get install -y build-essential libsdl2-dev') != 0):exit(-1)  
+elif sys.argv[1] == 'bc': #工作需要的环境
+    bc = bcompare_install();
+    bc.install()
 elif sys.argv[1] == 'spider':
     print('run step ', sys.argv[1])
     python_rely().install(sys.argv[1])
