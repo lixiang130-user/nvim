@@ -3,7 +3,7 @@
 #添加用户环境变量
 PATH=$PATH:~/.config/nvim-linux64/bin
 
-alias vim=nvim
+#alias vim=nvim
 alias vi=nvim
 alias ll='ls -a -l'
 alias rmake='"make"'
@@ -111,11 +111,15 @@ function uttelnet()
 
 function vimtl()
 {
+    proxy_on
     /home/user/.config/nvim/tools/script/expect_vimtl.sh
+    proxy_off
 }
 function vimtr()
 {
+    proxy_on
     /home/user/.config/nvim/tools/script/expect_vimtr.sh
+    proxy_off
 }
 alias vimt=vimtl
 alias vimtt=vimtl
@@ -153,6 +157,14 @@ function mgdb()
     /home/user/.config/nvim/tools/script/expect_mi30_gdb.sh $1 $2 $3 $4 $5
 }
 
-#默认启动执行程序
+function vim()
+{
+    proxy_on
+    nvim $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
+    proxy_off
+}
+
+
+###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
 #proxy_on    #开启了代理能google翻译了
