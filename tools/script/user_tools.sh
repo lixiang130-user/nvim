@@ -111,15 +111,11 @@ function uttelnet()
 
 function vimtl()
 {
-    proxy_on
     /home/user/.config/nvim/tools/script/expect_vimtl.sh
-    proxy_off
 }
 function vimtr()
 {
-    proxy_on
     /home/user/.config/nvim/tools/script/expect_vimtr.sh
-    proxy_off
 }
 alias vimt=vimtl
 alias vimtt=vimtl
