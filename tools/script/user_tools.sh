@@ -48,7 +48,7 @@ function proxy_off()
     unset http_proxy
     unset https_proxy
     google_translator_vim_off
-    echo -e "已关闭代理"
+    #echo -e "已关闭代理"
 }
 
 #esp32的idf所需要的编译工具默认路径在~/.espressif,可以设置IDF_TOOLS_PATH修改
