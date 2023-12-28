@@ -174,6 +174,10 @@ function make()
     fi
 }
 
+function git_submodule_sync()
+{
+    git submodule update --init --recursive
+}
 
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
