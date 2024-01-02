@@ -124,6 +124,15 @@ class cfg_config(object):
         if(os.system('locale') != 0):exit(-1)
         if(os.system('sudo apt-get install -y fontconfig') != 0):exit(-1)
         if(os.system('sudo cp '+self.__local_conf_dir+' /etc/fonts/local.conf') != 0):exit(-1)
+
+        # 无法查看gbk编码中文问题 https://codeantenna.com/a/BY90IMFcTY
+        # 实际与utf8互斥,不能同时用,中断很多中文也不正常了,不建议用
+        #zh_CN_str = '\nzh_CN GB2312\nzh_CN.GB18030 GB18030\nzh_CN.GBK GBK\nzh_CN.UTF-8 UTF-8\n'
+        #if(os.system('sudo apt-get install -y language-pack-zh-hans') != 0):exit(-1)
+        #if(os.system('sudo echo ' + zh_CN_str + ' >> /etc/locale.gen') != 0):exit(-1)
+        #if(os.system('sudo locale-gen') != 0):exit(-1)
+        #if(os.system('sudo echo "LANG=zh_CN.GBK" > /etc/locale.gen') != 0):exit(-1)
+
         print('cfg_config install end')
         pass
     pass
