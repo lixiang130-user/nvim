@@ -181,4 +181,4 @@ function git_submodule_sync()
 
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
-#proxy_on    #开启了代理能google翻译了
+proxy_on    #开启了代理能google翻译了
