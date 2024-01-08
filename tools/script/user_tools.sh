@@ -155,9 +155,9 @@ function mgdb()
 
 function vim()
 {
-    #proxy_on
+    proxy_on
     nvim $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
-    #proxy_off
+    proxy_off
 }
 
 function make()
