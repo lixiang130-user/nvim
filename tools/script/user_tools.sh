@@ -106,16 +106,16 @@ function uttelnet()
     param1=$1
     timestamp=$(date +%s)
 
-    /home/user/.config/nvim/tools/script/expect_telnet.sh $param1 | tee -a /tmp/$1_$timestamp.log
+    ~/.config/nvim/tools/script/expect_telnet.sh $param1 | tee -a /tmp/$1_$timestamp.log
 }
 
 function vimtl()
 {
-    /home/user/.config/nvim/tools/script/expect_vimtl.sh
+    ~/.config/nvim/tools/script/expect_vimtl.sh
 }
 function vimtr()
 {
-    /home/user/.config/nvim/tools/script/expect_vimtr.sh
+    ~/.config/nvim/tools/script/expect_vimtr.sh
 }
 alias vimt=vimtr
 alias vimtt=vimtr
@@ -150,7 +150,7 @@ function git_delete_file()
 #mi30的gdb遍历脚本工具
 function mgdb()
 {
-    /home/user/.config/nvim/tools/script/expect_mi30_gdb.sh $1 $2 $3 $4 $5
+    ~/.config/nvim/tools/script/expect_mi30_gdb.sh $1 $2 $3 $4 $5
 }
 
 function vim()
