@@ -117,8 +117,8 @@ function vimtr()
 {
     /home/user/.config/nvim/tools/script/expect_vimtr.sh
 }
-alias vimt=vimtl
-alias vimtt=vimtl
+alias vimt=vimtr
+alias vimtt=vimtr
 
 function set_mi30_env()
 {
