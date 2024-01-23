@@ -3,7 +3,7 @@
 set ip [lindex $argv 0]
 #设置等待超时时间
 set timeout 500
-spawn telnet 192.168.61.$ip
+spawn telnet 192.168.222.$ip
 expect "login:"
 send "root\r"
 expect "Password:"
