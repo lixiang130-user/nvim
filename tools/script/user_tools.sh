@@ -7,6 +7,7 @@ PATH=$PATH:~/.config/nvim-linux64/bin
 alias vi=nvim
 alias ll='ls -a -l'
 alias rmake='"make"'
+alias make='make_fun'
 #alias make='bear --append -- make'
 #启动fastgithub代理
 function fastgit_on()
@@ -160,7 +161,7 @@ function vim()
     proxy_off
 }
 
-function make()
+function make_fun()
 {
     open_proxy=`env | grep "proxy"`
     if [[ "$open_proxy" != "" ]]
