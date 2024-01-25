@@ -3,8 +3,9 @@
 #添加用户环境变量
 PATH=$PATH:~/.config/nvim-linux64/bin
 
-#alias vim=nvim
-alias vi=nvim
+alias vim=nvim
+#alias vi=nvim
+alias vi=vim_proxy
 alias ll='ls -a -l'
 alias rmake='"make"'
 alias make='make_fun'
@@ -154,7 +155,7 @@ function mgdb()
     ~/.config/nvim/tools/script/expect_mi30_gdb.sh $1 $2 $3 $4 $5
 }
 
-function vim()
+function vim_proxy()
 {
     proxy_on
     nvim $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
