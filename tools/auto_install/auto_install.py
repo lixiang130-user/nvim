@@ -333,12 +333,24 @@ elif sys.argv[1] == '2':
     git = git_install()
     git.install()
 elif sys.argv[1] == 'work': #工作需要的环境
-    if(os.system('sudo apt-get install -y cmake zip kconfig-frontends') != 0):exit(-1)
-    if(os.system('sudo apt-get install -y flex bison bc libncurses5 libpython2.7 python2') != 0):exit(-1)
-    if(os.system('sudo apt-get install -y device-tree-compiler') != 0):exit(-1)
-    if(os.system('sudo ln -s /usr/bin/python2 /usr/bin/python') != 0):exit(-1)  #创建python的连接符
+    ret = os.system('sudo apt-get install -y cmake zip kconfig-frontends')
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+    ret = os.system('sudo apt-get install -y flex bison bc libncurses5 libpython2.7 python2')
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+    ret = os.system('sudo apt-get install -y device-tree-compiler')
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+    ret = os.system('sudo ln -s /usr/bin/python2 /usr/bin/python')  #创建python的连接符
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
     #lvgl在linux上运行所需的sdl环境,展示界面用的:https://github.com/lvgl/lv_port_pc_vscode
-    if(os.system('sudo apt-get install -y build-essential libsdl2-dev') != 0):exit(-1)  
+    ret = os.system('sudo apt-get install -y build-essential libsdl2-dev')
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+    #esp32编译环境安装 https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/linux-macos-setup.html
+    ret = os.system('sudo apt-get install -y git wget flex bison gperf')
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+    ret = os.system('sudo apt-get install -y python3 python3-pip python3-venv')
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+    ret = os.system('sudo apt-get install -y cmake ninja-build ccache libffi-dev libssl-dev dfu-util libusb-1.0-0');
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
 elif sys.argv[1] == 'bc': #工作需要的环境
     bc = bcompare_install();
     bc.install()
