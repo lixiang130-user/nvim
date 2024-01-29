@@ -57,8 +57,12 @@ function proxy_off()
 #需要在运行idf的终端窗口运行 ". $IDF_PATH/export.sh"
 function set_esp32_env()
 {
-    export ADF_PATH=~/tools/esp-adf
-    . $ADF_PATH/esp-idf/export.sh
+    esp_path="/usr/local/comtom_toolchain/esp"
+    export IDF_TOOLS_PATH=$esp_path"/espressif"
+    sh_path=$esp_path"/esp-idf/export.sh"
+    . $sh_path
+    #export ADF_PATH="~/tools/esp-adf"
+    #. $ADF_PATH/esp-idf/export.sh
 }
 #当esp32发生崩溃时在32esp_addr2line后跟崩溃指针将展示调用堆栈
 alias 32esp_addr2line='xtensa-esp32-elf-addr2line -pfiaC -e build/*.elf '
