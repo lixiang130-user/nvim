@@ -131,10 +131,13 @@ function vimtr()
 alias vimt=vimtr
 alias vimtt=vimtr
 
-function set_mi30_mi20_env()
+function set_mi30_env()
 {
     export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
-    export PATH=$PATH:/usr/local/comtom_toolchain/mi20x/arm_linux_4.8/bin/
+}
+function set_mi20_env()
+{
+    source /usr/local/comtom_toolchain/mi20x/arm_linux_4.8/nuvoton-crosstool-env-init-comtom
 }
 
 function set_self_libs_env()
