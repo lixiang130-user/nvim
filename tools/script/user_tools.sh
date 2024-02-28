@@ -57,12 +57,17 @@ function proxy_off()
 #需要在运行idf的终端窗口运行 ". $IDF_PATH/export.sh"
 function set_esp32_env()
 {
+    param1=$1
     esp_path="/usr/local/comtom_toolchain/esp"
-    export IDF_TOOLS_PATH=$esp_path"/espressif"
-    sh_path=$esp_path"/esp-idf/export.sh"
-    . $sh_path
-    #export ADF_PATH="~/tools/esp-adf"
-    #. $ADF_PATH/esp-idf/export.sh
+
+    if [ "$param1" == "1" ]; then
+        export ADF_PATH=$esp_path"/esp-adf"
+        . $ADF_PATH/esp-idf/export.sh
+    else
+        export IDF_TOOLS_PATH=$esp_path"/espressif"
+        sh_path=$esp_path"/esp-idf/export.sh"
+        . $sh_path
+    fi
 }
 #当esp32发生崩溃时在32esp_addr2line后跟崩溃指针将展示调用堆栈
 alias 32esp_addr2line='xtensa-esp32-elf-addr2line -pfiaC -e build/*.elf '
@@ -126,9 +131,10 @@ function vimtr()
 alias vimt=vimtr
 alias vimtt=vimtr
 
-function set_mi30_env()
+function set_mi30_mi20_env()
 {
     export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
+    export PATH=$PATH:/usr/local/comtom_toolchain/mi20x/arm_linux_4.8/bin/
 }
 
 function set_self_libs_env()
