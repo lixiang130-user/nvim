@@ -134,6 +134,7 @@ alias vimtt=vimtr
 function set_mi30_env()
 {
     export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
+    source /usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/comtom-crosstool-env-init-sdk
 }
 function set_mi20_env()
 {
