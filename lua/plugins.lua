@@ -33,8 +33,7 @@ require('packer').startup(function()
     -- vista.vim 插件,显示大纲,函数变量
     use 'liuchengxu/vista.vim'
     -- telescope 强大的文件搜索 预览 等
-    -- use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
-    use {'nvim-telescope/telescope-file-browser.nvim', requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }}
+    use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
     -- vim-translatoruse 翻译插件
     use 'voldikss/vim-translator'
     -- lualine 状态栏插件
