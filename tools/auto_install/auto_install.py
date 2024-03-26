@@ -109,7 +109,7 @@ class apt_install(object):
         if(os.system('sudo apt-get install -y python3-venv jq') != 0):exit(-1)
         if(os.system('sudo apt-get autoremove -y man*') != 0):exit(-1)  #重新安装man,默认的不能用
         if(os.system('sudo apt-get install -y man-db manpages-de manpages-de-dev manpages-dev glibc-doc manpages-posix-dev manpages-posix') != 0):exit(-1)
-        if(os.system('sudo apt-get install -y expect') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y expect fd-find') != 0):exit(-1)
         return True
     pass
 

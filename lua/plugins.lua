@@ -285,3 +285,17 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
+
+-- 望远镜配置
+require('telescope').setup({
+    extensions = {
+        file_browser = {
+            respect_gitignore = true,
+        },
+    },
+    defaults = {
+        file_ignore_patterns = {
+            '.git', --忽略特定的文件/文件夹
+        },
+    },
+})
