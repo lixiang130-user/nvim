@@ -107,7 +107,8 @@ map("v", "Y", ":w !uclip.exe<CR><CR>", opt) -- 通过wsl中的clip.exe拷贝内�
 -- telescope(望远镜) 强大的文件搜索 预览, 可以通过命令和函数的方式调用
 map('n', '<leader>ts', '<cmd>Telescope<CR>', opt)   -- 调用telescope
 -- 查找文件 lsp解析的文件
-map('n', '<leader>ff', '<cmd>Telescope find_files<CR>', opt)    -- 查找文件
+--map('n', '<leader>ff', '<cmd>Telescope find_files<CR>', opt)    -- 查找文件 https://zhuanlan.zhihu.com/p/665219554
+map('n', '<leader>ff', '<cmd>lua require(\'telescope.builtin\').find_files({respect_gitignore=false,no_ignore=true})<CR>', opt)
 -- 查找字符串 类似grep精准方式
 map('n', '<leader>fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<CR>', opt)
 -- 查找符号,lsp解析过的符号表,不能找到每一处
