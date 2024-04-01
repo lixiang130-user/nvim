@@ -177,12 +177,14 @@ require'mason-lspconfig'.setup({
         'pyright',
         'clangd',
         'bashls',
+        'pylsp',
     },
 })
 require'lspconfig'['lua_ls'].setup{ on_attach =  on_attach}
-require'lspconfig'['pyright'].setup{ on_attach =  on_attach}
 require'lspconfig'['clangd'].setup{ on_attach =  on_attach}
 require'lspconfig'['bashls'].setup{ on_attach =  on_attach}
+require'lspconfig'['pylsp'].setup{ on_attach =  on_attach}
+require'lspconfig'['pyright'].setup{ on_attach =  on_attach}
 
 -- lsp 自动补全功能
 local cmp = require'cmp'
