@@ -10,6 +10,10 @@ alias ll='ls -a -l'
 alias rmake='"make"'
 alias make='make_fun'
 #alias make='bear --append -- make'
+
+#bash进入vi模式
+set -o vi
+
 #启动fastgithub代理
 function fastgit_on()
 {

@@ -90,7 +90,7 @@ map("n", "cl", ":BufferLineCloseLeft<CR>", opt) -- close left 关闭当前窗口
 map("n", "cr", ":BufferLineCloseRight<CR>", opt) -- close right 关闭当前窗口右侧所有窗口
 map('n', 'co', ':BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>', opt) -- co(close others)关闭其他窗口
 -- terminal终端操作
-map("t", "<Esc>", "<C-\\><C-n>", opt) -- 命令行模式下terminal输入模式下切换到正常模式
+-- map("t", "<Esc>", "<C-\\><C-n>", opt) -- 命令行模式下terminal输入模式下切换到正常模式
 map("t", "<C-[>", "<C-\\><C-n>", opt)
 map("i", "<C-【>", "<C-\\><C-n>", opt)
 map("n", "tt", ":sp<CR>:terminal<CR>", opt) -- terminal 开启终端
