@@ -182,6 +182,7 @@ function vim_proxy()
 
 function make_fun()
 {
+    param1=$1
     open_proxy=`env | grep "proxy"`
     if [[ "$open_proxy" != "" ]]
     then
@@ -191,6 +192,10 @@ function make_fun()
     if [[ "$open_proxy" != "" ]]
     then
         proxy_on
+    fi
+    if [[ $param1 == "clean" ]]
+    then
+        rm ./compile_commands.json
     fi
 }
 
