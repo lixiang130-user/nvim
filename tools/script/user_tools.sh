@@ -11,8 +11,9 @@ alias rmake='"make"'
 alias make='make_fun'
 #alias make='bear --append -- make'
 
-#bash进入vi模式
-set -o vi
+#bash进入vi模式,set -o可以查看值,-o配置键位,+o 设置值
+alias vibash_on='set -o vi'
+alias vibash_off='set +o vi off && set -o emacs'
 
 #启动fastgithub代理
 function fastgit_on()
