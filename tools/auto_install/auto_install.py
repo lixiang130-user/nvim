@@ -113,6 +113,8 @@ class apt_install(object):
         #安装网卡相关工具,可以重启网络服务 https://wenku.csdn.net/answer/090260ad71424adb956f41585fd24c1b
         #sudo service networking restart    重启网络服务
         if(os.system('sudo apt-get install -y ifupdown') != 0):exit(-1)
+        #配置虚拟网卡需要   https://www.cnblogs.com/eleclsc/p/11677100.html
+        if(os.system('sudo apt-get install -y uml-utilities bridge-utils') != 0):exit(-1)
         return True
     pass
 
