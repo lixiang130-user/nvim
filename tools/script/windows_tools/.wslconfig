@@ -1,11 +1,8 @@
-# Settings apply across all Linux distros running on WSL 2
-# 按下Windows + R 键，输入 %UserProfile% 并运行进入用户文件夹
-# 新建文件 .wslconfig ，如果存在就覆盖，重新配置一个，然后记事本编辑:
-# memory：分配给WSL的内存，根据自己的内存去分配，电脑功内存是16G的，我分配了5G
-# swap：设置交换分区的容量
-# localhostForwarding：用于指定绑定到 WSL VM 中的通配符或 localhost 的端口是否应可通过 localhost:port 从主机连接。
-# 如果需要更多配置可查看 .wslconfig 的配置设置
-[wsl2]
-memory=5GB
-swap=2GB
-localhostforwarding=true
+#使用镜像网络模式,ip地址和自己电脑一样
+#文件管理器访问 %USERPROFILE%, 将此文件拷贝过去
+#教程 https://zhuanlan.zhihu.com/p/593263088
+[experimental]
+networkingMode=mirrored		#wsl使用镜像网络模式
+dnsTunneling=true			#dns隧道
+firewall=false				#不打开防火墙
+autoProxy=true				#自动代理
