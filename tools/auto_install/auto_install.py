@@ -110,6 +110,9 @@ class apt_install(object):
         if(os.system('sudo apt-get autoremove -y man*') != 0):exit(-1)  #重新安装man,默认的不能用
         if(os.system('sudo apt-get install -y man-db manpages-de manpages-de-dev manpages-dev glibc-doc manpages-posix-dev manpages-posix') != 0):exit(-1)
         if(os.system('sudo apt-get install -y expect fd-find') != 0):exit(-1)
+        #安装网卡相关工具,可以重启网络服务 https://wenku.csdn.net/answer/090260ad71424adb956f41585fd24c1b
+        #sudo service networking restart    重启网络服务
+        if(os.system('sudo apt-get install -y ifupdown') != 0):exit(-1)
         return True
     pass
 
