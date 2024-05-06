@@ -6,3 +6,5 @@ networkingMode=mirrored		#wsl使用镜像网络模式
 dnsTunneling=true			#dns隧道
 firewall=false				#不打开防火墙
 autoProxy=true				#自动代理
+[wsl2]
+localhostForwarding=true	#Windows端口==WSL端口
