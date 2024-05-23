@@ -1,6 +1,6 @@
 https://zhuanlan.zhihu.com/p/425312804
 配置转发
-netsh interface portproxy add v4tov4  listenport=1500 listenaddress=0.0.0.0 connectport=1500 connectaddress=172.22.251.206
+netsh interface portproxy add v4tov4  listenport=1500 listenaddress=0.0.0.0 connectport=1500 connectaddress=172.31.249.192
 删除转发
 netsh interface portproxy delete v4tov4 listenport=1500 listenaddress=0.0.0.0
 查看:
