@@ -5,10 +5,10 @@ require('packer').startup(function()
     use 'wbthomason/packer.nvim'
     -- 好看的主体配色,最开始用的是zephyr-nvim
     use 'glepnir/zephyr-nvim'
-    use 'morhetz/gruvbox'
-    use 'nanotech/jellybeans.vim'
-    use 'tomasr/molokai'
-    use 'kabbamine/yowish.vim'
+    -- use 'morhetz/gruvbox'
+    -- use 'nanotech/jellybeans.vim'
+    -- use 'tomasr/molokai'
+    -- use 'kabbamine/yowish.vim'
     -- treesitter 语法高亮, :TSInstallInfo查看支持的语言
     -- :TSInstall lua,安装语言解析器, :TSBufToggle highlight 可根据语法高亮显示
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -54,7 +54,7 @@ vim.api.nvim_command('set background=dark') -- 设置背景色,调用vim设置�
 -- vim.cmd("colorscheme zephyr")
 -- vim.cmd("colorscheme gruvbox")
 -- vim.cmd("colorscheme jellybeans")
-vim.cmd("colorscheme molokai")
+vim.cmd("colorscheme zephyr")
 -- vim.cmd("colorscheme yowish")
 
 -- treesitter 语法高亮配置
