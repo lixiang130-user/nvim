@@ -59,7 +59,7 @@ vim.cmd("colorscheme zephyr")
 -- treesitter 语法高亮配置
 require 'nvim-treesitter.configs'.setup {
     -- 安装 language parser :TSInstallInfo 命令查看支持的语言
-    ensure_installed = { 'lua', 'c', 'cpp', 'python', 'make', 'json'},
+    ensure_installed = { 'lua', 'c', 'cpp', 'python', 'make', 'json', 'go'},
     -- 启动代码高亮功能
     highlight = { enable = true, additional_vim_regex_highlighting = false },
     -- 启动增量选择
@@ -182,6 +182,7 @@ require'mason-lspconfig'.setup({
         'clangd',
         'bashls',
         'pylsp',
+        'gopls',
     },
 })
 require'lspconfig'['lua_ls'].setup{ on_attach =  on_attach}
@@ -199,6 +200,7 @@ require'lspconfig'['pylsp'].setup{
             'E201', 'E221', 'W504', 'W605', 'E125'
     }}}}},
 }
+require'lspconfig'['gopls'].setup{ on_attach =  on_attach}
 
 -- lsp 自动补全功能
 local cmp = require'cmp'
