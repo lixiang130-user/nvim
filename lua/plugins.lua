@@ -4,13 +4,13 @@ require('packer').startup(function()
     -- Packer can manage itself 包工具可以管理自己
     use 'wbthomason/packer.nvim'
     -- 好看的主体配色,最开始用的是zephyr-nvim
-    use 'glepnir/zephyr-nvim'
+    use 'glepnir/zephyr-nvim'   -- 1
     use 'nyoom-engineering/oxocarbon.nvim'
-    use 'ayu-theme/ayu-vim'
-    use 'morhetz/gruvbox'
-    use 'nanotech/jellybeans.vim'
-    use 'tomasr/molokai'
-    use 'kabbamine/yowish.vim'
+    use 'ayu-theme/ayu-vim' -- 2
+    use 'morhetz/gruvbox'   -- 3
+    use 'nanotech/jellybeans.vim'   -- 5
+    use 'tomasr/molokai'        -- 4
+    use 'kabbamine/yowish.vim'  -- 5
 
     -- treesitter 语法高亮, :TSInstallInfo查看支持的语言
     -- :TSInstall lua,安装语言解析器, :TSBufToggle highlight 可根据语法高亮显示
@@ -21,7 +21,6 @@ require('packer').startup(function()
     use { 'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons' }
     -- lspconfig 提供跳转到定义，查找引用，悬停文档提示等功能
     use { 'neovim/nvim-lspconfig'} -- 'williamboman/nvim-lsp-installer' }
-    use { 'williamboman/mason.nvim' }
     -- :mason update更新注册表内容, 手动更新语言解析服务器 MasonInstall <package> ... 安装/重新安装提供的软件包
     use {'williamboman/mason.nvim', run = ':MasonUpdate'}
     use { 'williamboman/mason-lspconfig.nvim' }
@@ -54,7 +53,7 @@ end)
 -- gruvbox nord zephyr-nvim 等主题插件配置
 vim.api.nvim_command('set background=dark') -- 设置背景色,调用vim设置的方式
 -- vim.api.nvim_command('colorscheme zephyr') -- 设置主题,调用vim设置的方式
-vim.cmd("colorscheme zephyr")
+vim.cmd("colorscheme ayu")
 
 -- treesitter 语法高亮配置
 require 'nvim-treesitter.configs'.setup {
