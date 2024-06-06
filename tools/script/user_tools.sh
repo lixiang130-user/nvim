@@ -184,7 +184,7 @@ function vim_proxy()
 function make_fun()
 {
     param1=$1
-    open_proxy=`env | grep "proxy"`
+    open_proxy=`env | grep "http_proxy"`
     if [[ "$open_proxy" != "" ]]
     then
         proxy_off

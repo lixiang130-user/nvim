@@ -53,7 +53,7 @@ end)
 -- gruvbox nord zephyr-nvim 等主题插件配置
 vim.api.nvim_command('set background=dark') -- 设置背景色,调用vim设置的方式
 -- vim.api.nvim_command('colorscheme zephyr') -- 设置主题,调用vim设置的方式
-vim.cmd("colorscheme ayu")
+vim.cmd("colorscheme zephyr")
 
 -- treesitter 语法高亮配置
 require 'nvim-treesitter.configs'.setup {
