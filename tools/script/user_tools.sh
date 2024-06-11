@@ -183,6 +183,7 @@ function vim_proxy()
 
 function make_fun()
 {
+    ret=0
     param1=$1
     open_proxy=`env | grep "http_proxy"`
     if [[ "$open_proxy" != "" ]]
@@ -190,6 +191,7 @@ function make_fun()
         proxy_off
     fi
     bear --append -- make $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
+    ret=$?
     if [[ "$open_proxy" != "" ]]
     then
         proxy_on
@@ -198,6 +200,7 @@ function make_fun()
     then
         rm ./compile_commands.json
     fi
+    return $ret
 }
 
 function git_submodule_sync()
