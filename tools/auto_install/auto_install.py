@@ -115,6 +115,8 @@ class apt_install(object):
         if(os.system('sudo apt-get install -y ifupdown') != 0):exit(-1)
         #配置虚拟网卡需要   https://www.cnblogs.com/eleclsc/p/11677100.html
         if(os.system('sudo apt-get install -y uml-utilities bridge-utils') != 0):exit(-1)
+        #执行工具替换riggrep,可以修复telescope不能忽略gitignore的问题
+        if(os.system('cd ../script/ && ./rg.py user_replace && cd -') != 0):exit(-1)
         return True
     pass
 
