@@ -110,7 +110,8 @@ map('n', '<leader>ts', '<cmd>Telescope<CR>', opt)   -- 调用telescope
 --map('n', '<leader>ff', '<cmd>Telescope find_files<CR>', opt)    -- 查找文件 https://zhuanlan.zhihu.com/p/665219554
 map('n', '<leader>ff', '<cmd>lua require(\'telescope.builtin\').find_files({respect_gitignore=false,no_ignore=true})<CR>', opt)
 -- 查找字符串 类似grep精准方式
-map('n', '<leader>fg', '<cmd>lua require(\'telescope.builtin\').live_grep()<CR>', opt)
+map('n', '<leader>fl', '<cmd>lua require(\'telescope.builtin\').live_grep()<CR>', opt)
+map('n', '<leader>fg', '<cmd>lua require(\'telescope.builtin\').grep_string()<CR>', opt)
 -- 查找符号,lsp解析过的符号表,不能找到每一处
 map('n', '<leader>fs', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opt)
 -- <C-q> 将所有未过滤的条目,发送到qlist(在屏幕下方的小窗口,类似以前的cw弹出小窗口)
