@@ -45,6 +45,7 @@ function google_translator_vim_off()
 function proxy_on()
 {
     wsl2ip=$(cat /etc/resolv.conf | grep 'nameserver' | cut -f 2 -d ' ')
+    wsl2ip='192.168.222.222'    #后来这样才行了,用windows的ip地址,有时间时改成python解析ipconfig.exe返回值的方式
     export http_proxy="http://$wsl2ip:7890"
     export https_proxy=$http_proxy
     #export all_proxy=socks5://127.0.0.1:7890 # or this line
