@@ -146,6 +146,10 @@ function set_mi20_env()
 {
     source /usr/local/comtom_toolchain/mi20x/arm_linux_4.8/nuvoton-crosstool-env-init-comtom
 }
+function set_ssc337_env()
+{
+    export PATH=$PATH:/usr/local/comtom_toolchain/ssc337/bin/
+}
 
 function set_self_libs_env()
 {
