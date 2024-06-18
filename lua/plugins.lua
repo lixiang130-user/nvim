@@ -309,6 +309,8 @@ require('telescope').setup({
         file_ignore_patterns = {
             '.git', --忽略特定的文件/文件夹
             '.cache',
+            'compile_commands.json',
+            '*.d',
         },
     },
 })
