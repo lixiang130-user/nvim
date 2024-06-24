@@ -131,16 +131,16 @@ function uttelnet()
         ip=192.168.222.$param1
     fi
     #echo "result:$result ip:$ip"
-    ~/.config/nvim/tools/script/expect_telnet.sh $ip | tee -a /tmp/$1_$timestamp.log
+    ~/.config/nvim/tools/script/expect/expect_telnet.sh $ip | tee -a /tmp/$1_$timestamp.log
 }
 
 function vimtl()
 {
-    ~/.config/nvim/tools/script/expect_vimtl.sh
+    ~/.config/nvim/tools/script/expect/expect_vimtl.sh
 }
 function vimtr()
 {
-    ~/.config/nvim/tools/script/expect_vimtr.sh
+    ~/.config/nvim/tools/script/expect/expect_vimtr.sh
 }
 alias vimt=vimtr
 alias vimtt=vimtr
@@ -184,7 +184,7 @@ function git_delete_file()
 #mi30的gdb遍历脚本工具
 function mgdb()
 {
-    ~/.config/nvim/tools/script/expect_mi30_gdb.sh $1 $2 $3 $4 $5
+    ~/.config/nvim/tools/script/expect/expect_mi30_gdb.sh $1 $2 $3 $4 $5
 }
 
 function vim_proxy()
@@ -228,6 +228,29 @@ function rg_replace()
 function rg_recover()
 {
     cd ~/.config/nvim/tools/script/ && ./rg.py user_recover && cd -
+}
+
+function utssh()
+{
+    param1=$1
+    if [[ "$param1" == "" ]]; then    #grep 判断字符串包含
+        param1="lixiang"
+    fi
+    timestamp=$(date +%s)
+    addr=$param1@192.168.111.21
+    echo "addr:$addr"
+    ~/.config/nvim/tools/script/expect/expect_ssh.sh $addr | tee -a /tmp/$1_$timestamp.log
+}
+
+function utscp()
+{
+    param1=$1
+    src=$2
+    dst=$2
+    timestamp=$(date +%s)
+    addr=$param1@192.168.111.21:
+    echo "addr:$addr"
+    ~/.config/nvim/tools/script/expect/expect_scp.sh $addr $src $dst
 }
 
 ###########################默认启动执行程序#############################
