@@ -5,7 +5,7 @@ set param3 [lindex $argv 2]
 set param4 [lindex $argv 3]
 set param5 [lindex $argv 4]
 #设置等待超时时间
-set timeout 500
+set timeout 5
 spawn /usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gdb $param1 $param2 $param3 $param4 $param5
 #等待gdb可以输入指令
 expect "(gdb)"
