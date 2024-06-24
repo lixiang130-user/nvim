@@ -14,7 +14,7 @@ if len(sys.argv) == 2 and sys.argv[1] == "user_recover":
     os.system('sudo mv /usr/bin/rg_real /usr/bin/rg ')
     exit(0)
 
-#忽略特定文件*.d 不尊重.gitignore
+#忽略特定文件*.d (!filename包含的话去掉叹号),不尊重.gitignore
 cmd = 'rg_real -g="!*.d" --no-ignore '
 #cmd = "rg_real "
 for i in sys.argv[1:-1]:
