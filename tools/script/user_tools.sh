@@ -253,6 +253,13 @@ function utscp()
     ~/.config/nvim/tools/script/expect/expect_scp.sh $addr $src $dst
 }
 
+function bc_reset()
+{
+    cd ~/.config/nvim/tools/auto_install/
+    ./auto_install.py bc
+    cd -
+}
+
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
 #proxy_on    #开启了代理能google翻译了
