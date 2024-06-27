@@ -3,12 +3,12 @@
 #添加用户环境变量
 PATH=$PATH:~/.config/nvim-linux64/bin
 
-alias vim=nvim
+#alias vim=nvim
 #alias vi=nvim
-alias vi=vim_proxy
+#alias vi=vim_proxy
 alias ll='ls -a -l'
-alias rmake='"make"'
-alias make='make_fun'
+#alias rmake='"make"'
+#alias make='make_fun'
 #alias make='bear --append -- make'
 
 #bash进入vi模式,set -o可以查看值,-o配置键位,+o 设置值
