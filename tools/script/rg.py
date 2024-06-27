@@ -21,5 +21,5 @@ for i in sys.argv[1:-1]:
     cmd = cmd + " " + i
 cmd = cmd + ' "' + sys.argv[-1] + '"'
 #print(cmd)
-os.system(f"echo {cmd} >> /tmp/rg_tmp.log")
+os.system("echo " + cmd + " >> /tmp/rg_tmp.log")
 os.system(cmd)
