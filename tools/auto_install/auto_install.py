@@ -361,8 +361,11 @@ elif sys.argv[1] == 'work': #工作需要的环境
     #libiconv安装教程:https://blog.csdn.net/chinawangfei/article/details/51219740
     ret = os.system('sudo ln -s /usr/lib/x86_64-linux-gnu/libmpfr.so.6 /usr/lib/x86_64-linux-gnu/libmpfr.so.4')
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+    #找不到库的话,需要源码安装https://blog.csdn.net/zz460833359/article/details/117561692
+    ret = os.system('sudo ln -s /usr/lib/x86_64-linux-gnu/libiconv.so.2 /usr/lib/libiconv.so.2')
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret, '如果失败了,请使用源码安装libiconv')
 elif sys.argv[1] == 'bc': #工作需要的环境
-    bc = bcompare_install();
+    bc = bcompare_install()
     bc.install()
 elif sys.argv[1] == 'spider':
     print('run step ', sys.argv[1])
