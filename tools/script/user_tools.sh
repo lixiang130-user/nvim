@@ -222,7 +222,8 @@ function git_submodule_sync()
 }
 
 function rg_replace()
-{#望远镜查找字符串使用rg工具,会尊重.gitignore,这里修改成不尊重的方式
+{
+    #望远镜查找字符串使用rg工具,会尊重.gitignore,这里修改成不尊重的方式
     cd ~/.config/nvim/tools/script/ && ./rg.py user_replace && cd -
 }
 function rg_recover()
