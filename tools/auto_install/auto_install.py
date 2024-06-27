@@ -147,7 +147,7 @@ class cfg_config(object):
 class bcompare_install(object):
     __pwd_path = os.getcwd()
     __pwd_root = __pwd_path+'/../../'
-    __becompare =  __pwd_root+'/tools/compressed/bcompare-4.4.6.27483_amd64.deb'
+    __becompare = __pwd_root+'/tools/compressed/bcompare-4.4.6.27483_amd64.deb'
 
     def __init__(self):
         print('bcompare_install __init__')
