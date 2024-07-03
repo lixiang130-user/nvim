@@ -182,7 +182,7 @@ function git_delete_file()
 }
 
 #mi30的gdb遍历脚本工具
-function mgdb()
+function gdb_mi30()
 {
     ~/.config/nvim/tools/script/expect/expect_mi30_gdb.sh $1 $2 $3 $4 $5
 }
