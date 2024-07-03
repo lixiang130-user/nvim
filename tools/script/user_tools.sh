@@ -150,6 +150,10 @@ function set_mi30_env()
     #export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
     source /usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf_sdk/comtom-crosstool-env-init-sdk
 }
+function set_mi30_env_app()
+{
+    export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
+}
 function set_mi20_env()
 {
     source /usr/local/comtom_toolchain/mi20x/arm_linux_4.8/nuvoton-crosstool-env-init-comtom
