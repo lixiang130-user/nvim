@@ -180,7 +180,7 @@ require'mason-lspconfig'.setup({
         'pyright',
         'clangd',
         'bashls',
-        'pylsp',
+        --'pylsp',
         'gopls',
     },
 })
@@ -188,18 +188,18 @@ require'lspconfig'['lua_ls'].setup{ on_attach =  on_attach}
 require'lspconfig'['clangd'].setup{ on_attach =  on_attach}
 require'lspconfig'['bashls'].setup{ on_attach =  on_attach}
 require'lspconfig'['pyright'].setup{ on_attach =  on_attach}
-require'lspconfig'['pylsp'].setup{
-    on_attach =  on_attach,
-    settings = { pylsp = { plugins = { pycodestyle = {
-        maxLineLength = 300,
-        ignore = {
-            'W391', 'E401', 'E265', 'E262', 'E128', 'E231', 'E402',
-            'E123', 'E126', 'E225', 'E701', 'E261', 'E226', 'W291',
-            'W293', 'E251', 'E127', 'E227', 'E241', 'W503', 'E124',
-            'E201', 'E221', 'W504', 'W605', 'E125', 'E275', 'E703',
-            'E302', 'E301', 'E501',
-    }}}}},
-}
+--require'lspconfig'['pylsp'].setup{
+--    on_attach =  on_attach,
+--    settings = { pylsp = { plugins = { pycodestyle = {
+--        maxLineLength = 300,
+--        ignore = {
+--            'W391', 'E401', 'E265', 'E262', 'E128', 'E231', 'E402',
+--            'E123', 'E126', 'E225', 'E701', 'E261', 'E226', 'W291',
+--            'W293', 'E251', 'E127', 'E227', 'E241', 'W503', 'E124',
+--            'E201', 'E221', 'W504', 'W605', 'E125', 'E275', 'E703',
+--            'E302', 'E301', 'E501',
+--    }}}}},
+--}
 require'lspconfig'['gopls'].setup{ on_attach =  on_attach}
 
 -- lsp 自动补全功能
