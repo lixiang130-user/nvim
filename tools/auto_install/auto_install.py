@@ -117,6 +117,8 @@ class apt_install(object):
         if(os.system('sudo apt-get install -y uml-utilities bridge-utils') != 0):exit(-1)
         #执行工具替换riggrep,可以修复telescope不能忽略gitignore的问题
         if(os.system('cd ../script/ && ./rg.py user_replace && cd -') != 0):exit(-1)
+        #安装go语言
+        if(os.system('sudo snap install go --classic') != 0):exit(-1)
         return True
     pass
 
