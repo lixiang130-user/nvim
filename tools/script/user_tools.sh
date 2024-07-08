@@ -3,9 +3,8 @@
 #添加用户环境变量
 PATH=$PATH:~/.config/nvim-linux64/bin
 
-alias vim=nvim
-#alias vi=nvim
-alias vi=vim_proxy
+alias vim=vim_proxy
+alias vi=nvim
 alias ll='ls -a -l'
 alias rmake='"make"'
 alias make='make_fun'
@@ -263,6 +262,12 @@ function bc_reset()
     cd ~/.config/nvim/tools/auto_install/
     ./auto_install.py bc
     cd -
+}
+
+function utf8_encode_files()
+{
+    #将当前目录下的所有.c.h.cpp转换成utf8编码格式
+    ~/.config/nvim/tools/script/python/file_to_utf8.py
 }
 
 ###########################默认启动执行程序#############################
