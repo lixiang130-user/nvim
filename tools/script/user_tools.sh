@@ -218,7 +218,13 @@ function make_fun()
     then
         proxy_off
     fi
-    bear --append -- make $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
+    if [[ $param1 == "reprepare" ]]
+    then
+        bear --append -- make reprepare
+        bear --append -- make prepare
+    else
+        bear --append -- make $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
+    fi
     ret=$?
     if [[ "$open_proxy" != "" ]]
     then
