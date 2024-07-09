@@ -85,10 +85,22 @@ function out_bmake()
 {
     param1=$1
     param2=$2
+
+    open_proxy=`env | grep "http_proxy"`
+    if [[ "$open_proxy" != "" ]]
+    then
+        proxy_off
+    fi
+
     if [ "$param1" == "clean" ]; then
         bear --append -- make build/obj/apps/$param2/_clean
     else
         bear --append -- make build/obj/apps/$param1/_compile && bear --append -- make build/obj/apps/$param1/_install
+    fi
+
+    if [[ "$open_proxy" != "" ]]
+    then
+        proxy_on
     fi
 }
 
@@ -212,7 +224,12 @@ function make_fun()
     then
         proxy_on
     fi
+
     if [[ $param1 == "clean" ]]
+    then
+        rm ./compile_commands.json
+    fi
+    if [[ $param1 == "clean_all" ]]
     then
         rm ./compile_commands.json
     fi
