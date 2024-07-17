@@ -41,7 +41,8 @@ vim.g.interestingWordsDefaultMappings = 1
 
 -- map("n", "<leader>gd", ":set nohlsearch<cr>", opt) -- 取消搜索高亮
 -- map("n", "<leader>gd", ":set hlsearch<cr>", opt) -- 打开搜索高亮
-map("n", "<leader>gd", "/\\w\\{999\\}<cr>", opt) -- 取消搜索高亮
+--map("n", "<leader>gd", "/\\w\\{999\\}<cr>", opt) -- 取消搜索高亮
+map("n", "<leader>gd", ":nohl<cr>", opt) -- 取消搜索高亮
 -- map("n", "gd", "\"zyiwk$/\\<<C-r>z\\><cr>", opt) -- 复制当前光标单词到寄存器z,在搜索\<xxxx\>k$上一行行尾
 map("n", "gd", "\"zyiwb/\\<<C-r>z\\><cr>", opt) -- 复制当前光标单词到寄存器z,在搜索\<xxxx\>b当前单词的第一个字母
 
