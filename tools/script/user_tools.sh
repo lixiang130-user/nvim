@@ -8,6 +8,8 @@ alias vi=nvim
 alias ll='ls -a -l'
 alias rmake='"make"'
 alias make='make_fun'
+alias rrm='"rm"'
+alias rm='rm_fun'
 #alias make='bear --append -- make'
 
 #bash进入vi模式,set -o可以查看值,-o配置键位,+o 设置值
@@ -199,13 +201,16 @@ function git_delete_file()
 #mi30的gdb遍历脚本工具
 function gdb_mi30()
 {
-    ~/.config/nvim/tools/script/expect/expect_mi30_gdb.sh $1 $2 $3 $4 $5
+    #~/.config/nvim/tools/script/expect/expect_mi30_gdb.sh $1 $2 $3 $4 $5
+    ~/.config/nvim/tools/script/expect/expect_mi30_gdb.sh $@
 }
 
 function vim_proxy()
 {
     proxy_on
-    nvim $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
+    #nvim $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
+    #$@表示所有参数!!!
+    nvim $@
     proxy_off
 }
 
@@ -223,7 +228,8 @@ function make_fun()
         bear --append -- make reprepare
         bear --append -- make prepare
     else
-        bear --append -- make $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
+        #bear --append -- make $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
+        bear --append -- make $@
     fi
     ret=$?
     if [[ "$open_proxy" != "" ]]
@@ -244,6 +250,7 @@ function make_fun()
 
 function git_submodule_sync()
 {
+    echo "git submodule update --init --recursive"
     git submodule update --init --recursive
 }
 
@@ -291,6 +298,56 @@ function utf8_encode_files()
 {
     #将当前目录下的所有.c.h.cpp转换成utf8编码格式
     ~/.config/nvim/tools/script/python/file_to_utf8.py
+}
+
+user_trash_name=.trash
+user_trash_dir=~/$user_trash_name
+function rm_fun()
+{
+    if [ ! -d "$user_trash_dir" ]; then
+        mkdir -p "$user_trash_dir"
+    fi
+    cur=`pwd`
+    # =~ 用于正则表达式匹配. (/.*)? 表示可选的零个或多个字符，用斜杠分隔。
+    if [[ $cur =~ ^${user_trash_dir}(/.*)?$ ]]; then
+        rrm $@
+        return $?
+    fi
+
+    files_to_trash=()
+    for arg in "$@"; do
+        case $arg in
+            -f|-r|-rf|-fr)
+                # 忽略这些选项
+                ;;
+            *)
+                # 将文件添加到垃圾箱列表
+                files_to_trash+=("$arg")
+                ;;
+        esac
+    done
+
+    # 将文件移至垃圾箱, ${FILES_TO_TRASH[@]} 是一个 Bash 语法，用于引用数组中的所有元素
+    # 如果数组包含三个元素 "file1.txt", "file2.txt", "file3.txt"，那么 ${FILES_TO_TRASH[@]} 会被扩展为 file1.txt file2.txt file3.txt。
+    for file in "${files_to_trash[@]}"; do
+        if [ -e "$file" ]; then
+            if [[ $file =~ ^${user_trash_name}(/.*)?$ ]]; then
+                echo "清空回收站 成功"
+                rrm $@
+                return $?
+            else
+                mv "$file" "$user_trash_dir/"
+            fi
+            #echo "moved to trash: $file"
+        else
+            echo "rm(trash): cannot remove '$file': no such file or directory"
+        fi
+    done
+}
+
+function cdtrash()
+{
+    cd $user_trash_dir
 }
 
 ###########################默认启动执行程序#############################
