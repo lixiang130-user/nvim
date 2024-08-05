@@ -336,6 +336,10 @@ function rm_fun()
                 rrm $@
                 return $?
             else
+                if [ -e "$file" ]; then
+                    echo "回收站存在同名文件夹,删除回收站中的同名文件夹"
+                    rrm -rf $user_trash_dir/$file
+                fi
                 mv "$file" "$user_trash_dir/"
             fi
             #echo "moved to trash: $file"
@@ -348,12 +352,32 @@ function rm_fun()
 function cdtrash()
 {
     cd $user_trash_dir
+    echo `pwd`
 }
-
 function cdcode_win()
 {
     echo "C:\Users\13097\Desktop\code"
     cd /mnt/c/Users/13097/Desktop/code
+    echo `pwd`
+}
+function cdnvim()
+{
+    cd ~/.config/nvim
+    echo `pwd`
+}
+function cdwork()
+{
+    cd ~/linux/work
+    echo `pwd`
+}
+function cduser()
+{
+    cd ~/linux/user
+    echo `pwd`
+}
+function cdmytools()
+{
+    cd ~/linux/user/mytools
     echo `pwd`
 }
 
