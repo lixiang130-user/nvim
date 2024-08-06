@@ -336,9 +336,9 @@ function rm_fun()
                 rrm $@
                 return $?
             else
-                if [ -e "$file" ]; then
-                    echo "回收站存在同名文件夹,删除回收站中的同名文件夹,移动到回收站成功!"
-                    rrm $user_trash_dir/$file
+                if [ -e "$user_trash_dir/$(basename "$file")" ]; then
+                    #echo "回收站存在同名文件夹,删除回收站中的同名文件夹,移动到回收站成功!rrm "$user_trash_dir/$(basename "$file")""
+                    rrm "$user_trash_dir/$(basename "$file")"
                 fi
                 mv "$file" "$user_trash_dir/"
             fi
