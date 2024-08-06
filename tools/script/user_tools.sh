@@ -8,7 +8,7 @@ alias vi=nvim
 alias ll='ls -a -l'
 alias rmake='"make"'
 alias make='make_fun'
-alias rrm='"rm"'
+alias rrm='"rm" -rf'
 alias rm='rm_fun'
 #alias make='bear --append -- make'
 
@@ -337,8 +337,8 @@ function rm_fun()
                 return $?
             else
                 if [ -e "$file" ]; then
-                    echo "回收站存在同名文件夹,删除回收站中的同名文件夹"
-                    rrm -rf $user_trash_dir/$file
+                    echo "回收站存在同名文件夹,删除回收站中的同名文件夹,移动到回收站成功!"
+                    rrm $user_trash_dir/$file
                 fi
                 mv "$file" "$user_trash_dir/"
             fi
@@ -348,7 +348,11 @@ function rm_fun()
         fi
     done
 }
-
+function clear_trash()
+{
+    echo "已清空回收站"
+    rrm $user_trash_dir
+}
 function cdtrash()
 {
     cd $user_trash_dir
@@ -378,6 +382,11 @@ function cduser()
 function cdmytools()
 {
     cd ~/linux/user/mytools
+    echo `pwd`
+}
+function cdscript()
+{
+    cd ~/.config/nvim/tools/script
     echo `pwd`
 }
 
