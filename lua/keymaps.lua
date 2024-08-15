@@ -69,6 +69,7 @@ map('n', 'ww', ':wa<CR>', opt)
 map('n', 'wa', ':wa<CR>', opt)
 -- 关闭窗口操作
 map('n', 'ca<CR>', ':wa<CR>:qa<CR>', opt) -- ca(close all)关闭所有窗口并退出
+map('n', 'co', '<C-w>o', opt) -- co(close others)关闭当前窗口
 map('n', 'cc', '<C-w>c', opt) -- cc(close)关闭当前窗口
 -- map('n', 'co', '<C-w>o', opt) -- co(close others)关闭其他窗口
 map('n', '<C-h>', '<C-w>h', opt) -- ctrl+hjkl替换ctrl-w +hjkl 切换窗口
@@ -89,7 +90,7 @@ map("n", "<S-j>", ":BufferLineCycleNext<CR>", opt)
 map("n", "cii", ":bw!<CR>", opt) -- close windows 关闭当前窗口(bw or bd)
 map("n", "cl", ":BufferLineCloseLeft<CR>", opt) -- close left 关闭当前窗口左侧所有窗口
 map("n", "cr", ":BufferLineCloseRight<CR>", opt) -- close right 关闭当前窗口右侧所有窗口
-map('n', 'co', ':BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>', opt) -- co(close others)关闭其他窗口
+map('n', 'cio', ':BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>', opt) -- co(close noI others)关闭其他窗口
 -- terminal终端操作
 map("t", "<Esc>", "<C-\\><C-n>", opt) -- 命令行模式下terminal输入模式下切换到正常模式
 map("t", "<C-[>", "<C-\\><C-n>", opt)
