@@ -240,6 +240,7 @@ function make_fun()
     if [[ $param1 == "clean" ]]
     then
         rm ./compile_commands.json
+        rm -rf ./.cache
     fi
     if [[ $param1 == "clean_all" ]]
     then
@@ -350,8 +351,8 @@ function rm_fun()
 }
 function clear_trash()
 {
-    echo "已清空回收站"
     rrm $user_trash_dir
+    echo "已清空回收站"
 }
 function cdtrash()
 {
