@@ -194,13 +194,19 @@ class git_install(object):
         if(os.system('git config --global alias.st status') != 0):exit(-1)
         if(os.system('git config --global http.postbuffer 1048576000') != 0):exit(-1)   #更新git的http post缓冲区值
         if(os.system('git config --global https.postBuffer 1048576000') != 0):exit(-1)
+        #在终端中运行以下命令来配置 Git 的差异工具为 nvim：
+        os.system('git config --global diff.tool nvimdiff')
+        #需要设置 nvimdiff 的命令。这需要使用 difftool 配置来指定 Neovim 的命令行启动参数：
+        #这里，"$LOCAL" 和 "$REMOTE" 是 Git 用来表示需要比较的两个文件的占位符。
+        os.system('''git config --global difftool.nvimdiff.cmd 'nvim -d "$LOCAL" "$REMOTE"' ''')
         #if(os.system('git config --global http.version HTTP/1.1') != 0):exit(-1)    #git使用http1.1,使用2遇到过问题
         #if(os.system('git config --global http.version HTTP/2') != 0):exit(-1)
+
+        #更新nvim仓库
         if os.path.isdir(self.__nvim):
             os.system('rm -rf '+self.__nvim)
         if os.path.isdir(self.__packer):
             os.system('rm -rf '+self.__packer)
-
         if(os.system('git clone https://github.com/lixiang130-user/nvim '+self.__nvim) != 0):exit(-1)
         if(os.system('git clone --depth 1 https://github.com/wbthomason/packer.nvim '+self.__packer) != 0):exit(-1)
         return True

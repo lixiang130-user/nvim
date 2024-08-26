@@ -240,7 +240,7 @@ function make_fun()
     if [[ $param1 == "clean" ]]
     then
         rm ./compile_commands.json
-        rm -rf ./.cache
+        rm -rf ./.cache > /dev/null
     fi
     if [[ $param1 == "clean_all" ]]
     then
