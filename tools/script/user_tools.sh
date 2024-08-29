@@ -361,6 +361,10 @@ alias cdwork='cd ~/linux/work ; echo `pwd`'
 alias cduser='cd ~/linux/user ; echo `pwd`'
 alias cdmytools='cd ~/linux/user/mytools ; echo `pwd`'
 alias cdscript='cd ~/.config/nvim/tools/script ; echo `pwd`'
+alias cd20='cd ~/linux/work/20 ; echo `pwd`'
+alias cd80='cd ~/linux/work/80 ; echo `pwd`'
+alias cd81='cd ~/linux/work/81 ; echo `pwd`'
+alias cdsdk='cd ~/linux/work/sdk ; echo `pwd`'
 
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译

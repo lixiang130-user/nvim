@@ -366,6 +366,8 @@ elif sys.argv[1] == 'work': #工作需要的环境
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
     ret = os.system('sudo apt-get install -y cmake ninja-build ccache libffi-dev libssl-dev dfu-util libusb-1.0-0')
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+    ret = os.system('sudo apt install -y inetutils-telnet libpcre3-dev')
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
 elif sys.argv[1] == 'bc': #工作需要的环境
     bc = bcompare_install()
     bc.install()
