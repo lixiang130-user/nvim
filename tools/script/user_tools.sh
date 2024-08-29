@@ -354,42 +354,13 @@ function clear_trash()
     rrm $user_trash_dir
     echo "已清空回收站"
 }
-function cdtrash()
-{
-    cd $user_trash_dir
-    echo `pwd`
-}
-function cdcode_win()
-{
-    echo "C:\Users\13097\Desktop\code"
-    cd /mnt/c/Users/13097/Desktop/code
-    echo `pwd`
-}
-function cdnvim()
-{
-    cd ~/.config/nvim
-    echo `pwd`
-}
-function cdwork()
-{
-    cd ~/linux/work
-    echo `pwd`
-}
-function cduser()
-{
-    cd ~/linux/user
-    echo `pwd`
-}
-function cdmytools()
-{
-    cd ~/linux/user/mytools
-    echo `pwd`
-}
-function cdscript()
-{
-    cd ~/.config/nvim/tools/script
-    echo `pwd`
-}
+alias cdtrash='cd $user_trash_dir ; echo `pwd`'
+alias cdcode_win='cd /mnt/c/Users/13097/Desktop/code ; echo `pwd`'
+alias cdnvim='cd ~/.config/nvim ; echo `pwd`'
+alias cdwork='cd ~/linux/work ; echo `pwd`'
+alias cduser='cd ~/linux/user ; echo `pwd`'
+alias cdmytools='cd ~/linux/user/mytools ; echo `pwd`'
+alias cdscript='cd ~/.config/nvim/tools/script ; echo `pwd`'
 
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
