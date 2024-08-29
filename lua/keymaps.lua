@@ -22,6 +22,14 @@ vim.g.maplocalleader = ' '
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
+-- bufferline 跳转配置
+-- 定义命令 :Bgoto ，用法为 :Bgoto [ordinal]
+vim.api.nvim_command('command! -nargs=1 Bgoto lua BufferlineGoToBuffer(tonumber(<f-args>))')
+vim.api.nvim_command('command! -nargs=1 B lua BufferlineGoToBuffer(tonumber(<f-args>))')
+-- 绑定快捷键（可选）
+vim.api.nvim_set_keymap('c', 'b', 'B', opt)
+vim.api.nvim_set_keymap('n', '<Leader>b', ':B ', opt)
+
 map("n", "<leader>==", ":%!jq .<cr>", opt) -- json格式化,使用ubuntu安装的工具js
 
 -- leap 插件按键配置

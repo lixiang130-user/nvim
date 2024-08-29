@@ -102,7 +102,8 @@ require('bufferline').setup {
         diagnostics = 'nvim_lsp', -- 使用nvim内置lsp
         show_buffer_icons = false, -- 禁用缓冲区的文件类型图标
         show_buffer_close_icons = false, -- 禁用缓冲区的关闭图标
-        numbers = 'buffer_id', -- 显示缓冲区文件编号
+        numbers = 'ordinal', -- 显示缓冲区文件编号
+        --numbers = 'buffer_id', -- 显示缓冲区文件编号
         max_name_length = 18, -- 最大显示tab的字节数
         tab_size = 5, -- table最小宽度,给小了无影响,给大了浪费空间
         offsets = { { -- 左侧让出nvim-tree的位置
@@ -115,6 +116,19 @@ require('bufferline').setup {
         indicator = {style = 'underline'},    -- 展示下划线
     }
 }
+-- 创建一个函数用于根据 `bufferline` 的序号跳转
+function BufferlineGoToBuffer(buf_index)
+  local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+
+  if buf_index < 1 or buf_index > #buffers then
+    print("Buffer index out of range")
+    return
+  end
+  -- 转成了缓冲区id了,就是原始的:b numid 可以跳转的数字
+  local target_bufnr = buffers[buf_index].bufnr
+  vim.api.nvim_set_current_buf(target_bufnr)
+end
+
 
 -- lspconfig 配置, servers 参考对应语言
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.txt
