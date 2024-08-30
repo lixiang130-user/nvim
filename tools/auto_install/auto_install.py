@@ -101,24 +101,38 @@ class apt_install(object):
 
     def install(self):
         if(os.system('sudo apt-get update -y') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         if(os.system('sudo apt-get upgrade -y') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         if(os.system('sudo apt-get install -y universal-ctags') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         if(os.system('sudo apt-get install -y unzip make bear git tree') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         if(os.system('sudo apt-get install -y npm dos2unix ripgrep gcc') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         if(os.system('sudo apt-get install -y g++ gcc-multilib g++-multilib gitk') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         if(os.system('sudo apt-get install -y python3-venv jq') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         if(os.system('sudo apt-get autoremove -y man*') != 0):exit(-1)  #重新安装man,默认的不能用
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         if(os.system('sudo apt-get install -y man-db manpages-de manpages-de-dev manpages-dev glibc-doc manpages-posix-dev manpages-posix') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         if(os.system('sudo apt-get install -y expect fd-find') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         #安装网卡相关工具,可以重启网络服务 https://wenku.csdn.net/answer/090260ad71424adb956f41585fd24c1b
         #sudo service networking restart    重启网络服务
         if(os.system('sudo apt-get install -y ifupdown') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         #配置虚拟网卡需要   https://www.cnblogs.com/eleclsc/p/11677100.html
         if(os.system('sudo apt-get install -y uml-utilities bridge-utils') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         #执行工具替换riggrep,可以修复telescope不能忽略gitignore的问题
         if(os.system('cd ../script/ && ./rg.py user_replace && cd -') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         #安装go语言
         if(os.system('sudo snap install go --classic') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         return True
     pass
 
@@ -374,3 +388,14 @@ elif sys.argv[1] == 'bc': #工作需要的环境
 elif sys.argv[1] == 'spider':
     print('run step ', sys.argv[1])
     python_rely().install(sys.argv[1])
+elif sys.argv[1] == 'docker':
+    print('run step ', sys.argv[1])
+    #安装
+    ret = os.system('proxy_on &&  curl -fsSL https://test.docker.com -o test-docker.sh && sudo sh test-docker.sh')
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+    #禁止docker开机自启
+    ret = os.system('sudo systemctl disable docker && sudo systemctl is-enabled docker')
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+    #将普通用户添加到docker组中,可以不用sudo就可以执行docker
+    ret = os.system("grep '^docker' /etc/group && sudo usermod -aG docker user && newgrp docker")
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
