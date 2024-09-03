@@ -116,19 +116,6 @@ require('bufferline').setup {
         indicator = {style = 'underline'},    -- 展示下划线
     }
 }
--- 创建一个函数用于根据 `bufferline` 的序号跳转
-function BufferlineGoToBuffer(buf_index)
-  local buffers = vim.fn.getbufinfo({ buflisted = 1 })
-
-  if buf_index < 1 or buf_index > #buffers then
-    print("Buffer index out of range")
-    return
-  end
-  -- 转成了缓冲区id了,就是原始的:b numid 可以跳转的数字
-  local target_bufnr = buffers[buf_index].bufnr
-  vim.api.nvim_set_current_buf(target_bufnr)
-end
-
 
 -- lspconfig 配置, servers 参考对应语言
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.txt

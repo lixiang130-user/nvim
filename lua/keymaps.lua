@@ -22,7 +22,54 @@ vim.g.maplocalleader = ' '
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
+-- 关闭所有带有bash的buffer
+-- Function to close all buffers with 'bash' in their name
+function CloseBuffersWithBash()
+  -- Get a list of all buffers
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    -- Check if the buffer is loaded and the name contains 'bash'
+    if vim.api.nvim_buf_is_loaded(buf) then
+      local bufname = vim.api.nvim_buf_get_name(buf)
+      if bufname:match("/bin/bash") then
+        -- Delete the buffer
+        vim.api.nvim_buf_delete(buf, { force = true })
+      end
+    end
+  end
+end
+-- 创建一个 Neovim 命令来关闭包含 'bash' 的 buffers
+vim.api.nvim_create_user_command('CloseBashBuffers', CloseBuffersWithBash, {})
+
+-- Function to close all buffers with 'bash' in their name and close other windows
+function CloseBashBuffersAndCloseOthers()
+  -- Close buffers with 'bash' in their name
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(buf) then
+      local bufname = vim.api.nvim_buf_get_name(buf)
+      if bufname:match("/bin/bash") then
+        vim.api.nvim_buf_delete(buf, { force = true })
+      end
+    end
+  end
+  -- Close all other windows
+  vim.cmd('only')
+end
+
+
 -- bufferline 跳转配置
+-- 创建一个函数用于根据 `bufferline` 的序号跳转
+function BufferlineGoToBuffer(buf_index)
+  local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+
+  if buf_index < 1 or buf_index > #buffers then
+    print("Buffer index out of range")
+    return
+  end
+  -- 转成了缓冲区id了,就是原始的:b numid 可以跳转的数字
+  local target_bufnr = buffers[buf_index].bufnr
+  vim.api.nvim_set_current_buf(target_bufnr)
+end
+
 -- 定义命令 :Bgoto ，用法为 :Bgoto [ordinal]
 vim.api.nvim_command('command! -nargs=1 Bgoto lua BufferlineGoToBuffer(tonumber(<f-args>))')
 -- 绑定快捷键（可选）
@@ -79,9 +126,10 @@ map('n', 'ww', ':wa<CR>', opt)
 map('n', 'wa', ':wa<CR>', opt)
 -- 关闭窗口操作
 map('n', 'ca<CR>', ':wa<CR>:qa<CR>', opt) -- ca(close all)关闭所有窗口并退出
-map('n', 'co', '<C-w>o', opt) -- co(close others)关闭当前窗口
+map('n', 'cb', ':lua CloseBuffersWithBash()<CR>', opt)  --关闭所有ubash命令行窗口
+map('n', '<leader>co', '<C-w>o', opt) -- co(close others)关闭当前窗口,但还在buffer中
+map('n', 'co', ':lua CloseBashBuffersAndCloseOthers()<CR>', opt)    --<leader>co + cb
 map('n', 'cc', '<C-w>c', opt) -- cc(close)关闭当前窗口
--- map('n', 'co', '<C-w>o', opt) -- co(close others)关闭其他窗口
 map('n', '<C-h>', '<C-w>h', opt) -- ctrl+hjkl替换ctrl-w +hjkl 切换窗口
 map('n', '<C-j>', '<C-w>j', opt)
 map('n', '<C-k>', '<C-w>k', opt)

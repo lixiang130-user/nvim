@@ -2,7 +2,7 @@
 set timeout 500
 spawn nvim
 send "tt\r"
-send "co\r"
+send "cio\r"
 send "tv\r"
 send "ts\r"
 send "15w.\r"
