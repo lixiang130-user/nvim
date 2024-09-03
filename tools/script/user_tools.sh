@@ -113,7 +113,7 @@ function cdroot()
     do 
         for file in `la .`
         do 
-            if [ ".git" == $file ]
+            if [ ".git" == $file ] && [ -d "$file" ]    #文件名叫".git"且是文件夹
             then
                 #echo root="$file"
                 cd $cur
