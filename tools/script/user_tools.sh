@@ -368,6 +368,7 @@ alias cd80='cd ~/linux/work/80 ; echo `pwd`'
 alias cd81='cd ~/linux/work/81 ; echo `pwd`'
 alias cdsdk='cd ~/linux/work/sdk ; echo `pwd`'
 alias cdtongzhou_transportation='cd ~/linux/work/tongzhou_transportation ; echo `pwd`'
+alias cdkernel='cd ~/linux/work/kernel ; echo `pwd`'
 
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译

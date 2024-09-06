@@ -364,11 +364,12 @@ elif sys.argv[1] == '2':
 elif sys.argv[1] == 'work': #工作需要的环境
     ret = os.system('sudo apt-get install -y cmake zip kconfig-frontends')
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
-    ret = os.system('sudo apt-get install -y flex bison bc libncurses5 libpython2.7 python2')
+    #ret = os.system('sudo apt-get install -y flex bison bc libncurses5 libpython2.7 python2')
+    ret = os.system('sudo apt-get install -y flex bison libncurses5 libpython2.7 python2')
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
     ret = os.system('sudo apt-get install -y device-tree-compiler')
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
-    ret = os.system('sudo ln -s /usr/bin/python2 /usr/bin/python')  #创建python的连接符
+    ret = os.system('sudo rm /usr/bin/python ; sudo ln -s /usr/bin/python2 /usr/bin/python')  #创建python的连接符
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
     #lvgl在linux上运行所需的sdl环境,展示界面用的:https://github.com/lvgl/lv_port_pc_vscode
     ret = os.system('sudo apt-get install -y build-essential libsdl2-dev')
