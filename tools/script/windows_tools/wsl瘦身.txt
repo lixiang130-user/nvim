@@ -1,10 +1,10 @@
 虚拟机路径:
-C:\Users\ABC\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc\LocalState\ext4.vhdx
+"C:\Users\13097\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu24.04LTS_79rhkp1fndgsc\LocalState\ext4.vhdx"
 
 管理员shell 运行
 wsl --shutdown
 diskpart.exe
-select vdisk file="C:\Users\ABC\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc\LocalState\ext4.vhdx"
+select vdisk file=""C:\Users\13097\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu24.04LTS_79rhkp1fndgsc\LocalState\ext4.vhdx""
 attach vdisk readonly
 compact vdisk
 detach vdisk
