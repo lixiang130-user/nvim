@@ -58,23 +58,27 @@ end
 
 -- bufferline 跳转配置
 -- 创建一个函数用于根据 `bufferline` 的序号跳转
-function BufferlineGoToBuffer(buf_index)
+function BufferlineGoToBuffer(buf_arg)
   local buffers = vim.fn.getbufinfo({ buflisted = 1 })
-
-  if buf_index < 1 or buf_index > #buffers then
-    print("Buffer index out of range")
-    return
+  -- 如果参数是数字，跳转到指定的缓冲区索引
+  local buf_index = tonumber(buf_arg)
+  if buf_index then
+    if buf_index < 1 or buf_index > #buffers then
+      print("Buffer index out of range")
+      return
+    end
+    local target_bufnr = buffers[buf_index].bufnr
+    vim.api.nvim_set_current_buf(target_bufnr)
+  else
+    -- 如果参数是非数字，直接执行内置的 :b 跳转
+    vim.api.nvim_command('b ' .. buf_arg)
   end
-  -- 转成了缓冲区id了,就是原始的:b numid 可以跳转的数字
-  local target_bufnr = buffers[buf_index].bufnr
-  vim.api.nvim_set_current_buf(target_bufnr)
 end
-
--- 定义命令 :Bgoto ，用法为 :Bgoto [ordinal]
-vim.api.nvim_command('command! -nargs=1 Bgoto lua BufferlineGoToBuffer(tonumber(<f-args>))')
+-- 定义命令 :Bgoto ，用法为 :Bgoto [ordinal|buffer name]
+vim.api.nvim_command('command! -nargs=1 Bgoto lua BufferlineGoToBuffer(<f-args>)')
 -- 绑定快捷键（可选）
 vim.api.nvim_set_keymap('n', '<Leader>b', ':Bgoto ', opt)
--- 使用 cnoreabbrev 进行精确替换，仅在行首是 `b` 且后面有空格时替换
+-- 使用 cnoreabbrev 进行精确替换，仅在行首是 `b` 且后面有空格时且后面跟的是数字时 才替换
 vim.cmd([[
 cnoreabbrev <expr> b ((getcmdtype() == ':' && getcmdline() == 'b') ? 'Bgoto' : 'b')
 ]])
