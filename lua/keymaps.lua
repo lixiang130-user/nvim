@@ -22,6 +22,10 @@ vim.g.maplocalleader = ' '
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
+
+
+
+
 -- 关闭所有带有bash的buffer
 -- Function to close all buffers with 'bash' in their name
 function CloseBuffersWithBash()
@@ -83,6 +87,8 @@ vim.cmd([[
 cnoreabbrev <expr> b ((getcmdtype() == ':' && getcmdline() == 'b') ? 'Bgoto' : 'b')
 ]])
 
+
+-- json格式化
 map("n", "<leader>==", ":%!jq .<cr>", opt) -- json格式化,使用ubuntu安装的工具js
 
 -- leap 插件按键配置
@@ -209,6 +215,10 @@ map('n', 'we', ":set noequalalways<CR>:set equalalways<CR>", opt)
 map('n', 'wn', ":set noequalalways<CR>", opt)
 
 -- lspconfig keymap
+-- 禁用诊断 有些老代码错误太多时候,需要禁用,才能跳转
+vim.api.nvim_set_keymap('n', '<Leader>cd', '<cmd>lua vim.diagnostic.disable()<CR>', { noremap = true, silent = true })
+-- 启用诊断
+vim.api.nvim_set_keymap('n', '<Leader>ce', '<cmd>lua vim.diagnostic.enable()<CR>', { noremap = true, silent = true })
 local pluginKeys = {}
 pluginKeys.lsp_map = function()
     -- 参考文献,类似查找功能,查到单词级别的所有出现的地方
