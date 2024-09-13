@@ -16,6 +16,23 @@ alias rm='rm_fun'
 alias vibash_on='set -o vi'
 alias vibash_off='set +o vi off && set -o emacs'
 
+alias cdtrash='cd $user_trash_dir ; echo `pwd`'
+alias cdcode_win='cd /mnt/c/Users/13097/Desktop/code ; echo `pwd`'
+alias cdnvim='cd ~/.config/nvim ; echo `pwd`'
+alias cdwork='cd ~/linux/work ; echo `pwd`'
+alias cduser='cd ~/linux/user ; echo `pwd`'
+alias cdtemp='cd ~/linux/temp ; echo `pwd`'
+alias cdmytools='cd ~/linux/user/mytools ; echo `pwd`'
+alias cdscript='cd ~/.config/nvim/tools/script ; echo `pwd`'
+alias vimuser_tools='cd ~/.config/nvim/tools/script ; vim user_tools.sh'
+alias vimnvim='cd ~/.config/nvim/ ; vim init.lua'
+alias cd20='cd ~/linux/work/20 ; echo `pwd`'
+alias cd80='cd ~/linux/work/80 ; echo `pwd`'
+alias cd81='cd ~/linux/work/81 ; echo `pwd`'
+alias cdsdk='cd ~/linux/work/sdk ; echo `pwd`'
+alias cdtongzhou_transportation='cd ~/linux/work/tongzhou_transportation ; echo `pwd`'
+alias cdkernel='cd ~/linux/work/kernel ; echo `pwd`'
+
 #启动fastgithub代理
 function fastgit_on()
 {
@@ -354,22 +371,34 @@ function clear_trash()
     rrm $user_trash_dir
     echo "已清空回收站"
 }
-alias cdtrash='cd $user_trash_dir ; echo `pwd`'
-alias cdcode_win='cd /mnt/c/Users/13097/Desktop/code ; echo `pwd`'
-alias cdnvim='cd ~/.config/nvim ; echo `pwd`'
-alias cdwork='cd ~/linux/work ; echo `pwd`'
-alias cduser='cd ~/linux/user ; echo `pwd`'
-alias cdtemp='cd ~/linux/temp ; echo `pwd`'
-alias cdmytools='cd ~/linux/user/mytools ; echo `pwd`'
-alias cdscript='cd ~/.config/nvim/tools/script ; echo `pwd`'
-alias vimuser_tools='cd ~/.config/nvim/tools/script ; vim user_tools.sh'
-alias cd20='cd ~/linux/work/20 ; echo `pwd`'
-alias cd80='cd ~/linux/work/80 ; echo `pwd`'
-alias cd81='cd ~/linux/work/81 ; echo `pwd`'
-alias cdsdk='cd ~/linux/work/sdk ; echo `pwd`'
-alias cdtongzhou_transportation='cd ~/linux/work/tongzhou_transportation ; echo `pwd`'
-alias cdkernel='cd ~/linux/work/kernel ; echo `pwd`'
+
+function path_simplify()
+{
+    # 获取当前 PATH 并转换成数组
+    IFS=':' read -r -a path_array <<< "$PATH"
+    # 新的 PATH 数组
+    new_path_array=()
+    # 去除重复路径和/mnt下的path
+    declare -A seen_paths
+    for path in "${path_array[@]}"; do
+        if [[ -z "${seen_paths[$path]}" && "$path" != /mnt/* ]]; then
+            seen_paths[$path]=1
+            new_path_array+=("$path")
+        fi
+    done
+    # 保留部分常用的 Windows 指令所在的路径
+    new_path_array+=("/mnt/c/Windows")
+    new_path_array+=("/mnt/c/Windows/system32")
+    # 重新设置 PATH
+    new_path="${new_path_array[*]}"
+    new_path="${new_path// /:}"
+
+    #echo "旧的 PATH: $PATH"
+    export PATH="$new_path"
+    #echo "新的 PATH: $PATH"
+}
 
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
 #proxy_on    #开启了代理能google翻译了
+path_simplify
