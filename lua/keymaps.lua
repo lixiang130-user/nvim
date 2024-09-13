@@ -180,9 +180,9 @@ map('n', 'cio', ':BufferLineCloseLeft<CR>:BufferLineCloseRight<CR>', opt) -- co(
 map("t", "<Esc>", "<C-\\><C-n>", opt) -- 命令行模式下terminal输入模式下切换到正常模式
 map("t", "<C-[>", "<C-\\><C-n>", opt)
 map("i", "<C-【>", "<C-\\><C-n>", opt)
-map("n", "tt", ":sp<CR>:terminal<CR>", opt) -- terminal 开启终端
-map("n", "ts", ":sp<CR>:terminal<CR>", opt) -- terminal 开启终端
-map("n", "tv", ":vsp<CR>:terminal<CR>", opt) -- terminal 开启终端
+map("n", "tt", ":sp<CR>:terminal<CR>i", opt) -- terminal 开启终端
+map("n", "ts", ":sp<CR>:terminal<CR>i", opt) -- terminal 开启终端
+map("n", "tv", ":vsp<CR>:terminal<CR>i", opt) -- terminal 开启终端
 -- 剪切板操作 wsl子系统无法使用xsel实现剪切板,但是可以用过clip.exe实现系统剪切板:
 -- map('v', 'Y', '"+y', opt)   -- mac下复制到剪切板
 -- map("v", "Y", ":w !clip.exe<CR><CR>", opt) -- 通过wsl中的clip.exe拷贝内容到系统剪切板,只读文件也可以复制
