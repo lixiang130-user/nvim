@@ -75,24 +75,44 @@ function CloseBashBuffersAndCloseOthers()
   vim.cmd('only')
 end
 
+-- 创建一个自动命令组
+vim.api.nvim_create_augroup("Replace_Bgoto_With_b_Group", { clear = true })
+
+-- 处理命令行输入的自动命令
+vim.api.nvim_create_autocmd("CmdlineChanged", {
+  group = "Replace_Bgoto_With_b_Group",
+  pattern = ":",
+  callback = function()
+    local cmdline = vim.fn.getcmdline()
+
+    -- 检查命令是否以 'Bgoto' 开头，且后续字符为非数字和非空格
+    local Bgoto_match = cmdline:match("^Bgoto%s*(.*)")
+    if Bgoto_match and Bgoto_match:match("^[^%d%s]") then
+      -- 构建新命令，将 Bgoto 替换为 " b "
+      local new_cmd = " b " .. Bgoto_match
+      -- 使用 `vim.fn.setcmdline` 来更新命令行内容
+      vim.fn.setcmdline(new_cmd)
+    end
+  end
+})
 
 -- bufferline 跳转配置
 -- 创建一个函数用于根据 `bufferline` 的序号跳转
 function BufferlineGoToBuffer(buf_arg)
-  local buffers = vim.fn.getbufinfo({ buflisted = 1 })
-  -- 如果参数是数字，跳转到指定的缓冲区索引
-  local buf_index = tonumber(buf_arg)
-  if buf_index then
-    if buf_index < 1 or buf_index > #buffers then
-      print("Buffer index out of range")
-      return
+    local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+    -- 如果参数是数字，跳转到指定的缓冲区索引
+    local buf_index = tonumber(buf_arg)
+    if buf_index then
+        if buf_index < 1 or buf_index > #buffers then
+            print("Buffer index out of range")
+            return
+        end
+        local target_bufnr = buffers[buf_index].bufnr
+        vim.api.nvim_set_current_buf(target_bufnr)
+    else
+        -- 如果参数是非数字，直接执行内置的 :b 跳转
+        vim.api.nvim_command('b ' .. buf_arg)
     end
-    local target_bufnr = buffers[buf_index].bufnr
-    vim.api.nvim_set_current_buf(target_bufnr)
-  else
-    -- 如果参数是非数字，直接执行内置的 :b 跳转
-    vim.api.nvim_command('b ' .. buf_arg)
-  end
 end
 -- 定义命令 :Bgoto ，用法为 :Bgoto [ordinal|buffer name]
 vim.api.nvim_command('command! -nargs=1 Bgoto lua BufferlineGoToBuffer(<f-args>)')
