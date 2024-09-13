@@ -25,6 +25,22 @@ local opt = { noremap = true, silent = true }
 
 
 
+function CloseWindow()
+    local win_count = vim.fn.winnr('$')  -- 获取窗口总数
+    -- 检查当前窗口是否是最后一个
+    if win_count == 1 then
+        print("最后一个窗口无法关闭")
+        return  -- 如果是最后一个窗口，就不执行任何操作
+    end
+
+    local buf_name = vim.api.nvim_buf_get_name(0)  -- 获取当前缓冲区的名称
+    print("关闭终端:" .. buf_name)
+    if string.match(buf_name, "term://") then
+        vim.cmd('bwipeout!')
+    else
+        vim.cmd('wincmd c')
+    end
+end
 
 -- 关闭所有带有bash的buffer
 -- Function to close all buffers with 'bash' in their name
@@ -139,7 +155,8 @@ map('n', 'ca<CR>', ':wa<CR>:qa<CR>', opt) -- ca(close all)关闭所有窗口并�
 map('n', 'cb', ':lua CloseBuffersWithBash()<CR>', opt)  --关闭所有ubash命令行窗口
 map('n', '<leader>co', '<C-w>o', opt) -- co(close others)关闭当前窗口,但还在buffer中
 map('n', 'co', ':lua CloseBashBuffersAndCloseOthers()<CR>', opt)    --<leader>co + cb
-map('n', 'cc', '<C-w>c', opt) -- cc(close)关闭当前窗口
+map('n', 'cc', ':lua CloseWindow()<CR>', opt)   --若当前窗口是/bin/bash直接退出,否则只是关闭窗口
+map('n', 'cw', '<C-w>c', opt) -- cc(close)关闭当前窗口
 map('n', '<C-h>', '<C-w>h', opt) -- ctrl+hjkl替换ctrl-w +hjkl 切换窗口
 map('n', '<C-j>', '<C-w>j', opt)
 map('n', '<C-k>', '<C-w>k', opt)
@@ -211,7 +228,7 @@ map('v', '<leader>fc', t_map_cmd, opt)
 map('n', '<leader>fc', t_map_cmd, opt)
 
 -- 自动等价排列所有窗口 windows (not) eq
-map('n', 'we', ":set noequalalways<CR>:set equalalways<CR>", opt)
+map('n', 'wee', ":set noequalalways<CR>:set equalalways<CR>", opt)
 map('n', 'wn', ":set noequalalways<CR>", opt)
 
 -- lspconfig keymap
