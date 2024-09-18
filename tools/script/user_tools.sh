@@ -372,6 +372,7 @@ function clear_trash()
     echo "已清空回收站"
 }
 
+#精简path环境变量,加快tab补全和其他指令速度
 function path_simplify()
 {
     # 获取当前 PATH 并转换成数组
