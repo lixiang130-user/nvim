@@ -45,6 +45,9 @@ require('packer').startup(function()
     use 'lfv89/vim-interestingwords'
     -- leap 快速跳转搜索
     use {'ggandor/leap.nvim', requires = {'tpope/vim-repeat',}}
+    -- 使用 packer 安装 CodeGPT.nvim
+    use({"dpayne/CodeGPT.nvim",requires = {"nvim-lua/plenary.nvim","MunifTanjim/nui.nvim"}})
+
 end)
 
 --leap 使用s/S char1 char2 即可跳转到对应位置, 多个字符是,会展示字符,选择字母跳转过去
@@ -316,3 +319,20 @@ require('telescope').setup({
         },
     },
 })
+
+-- codeGPT配置
+-- 设置 Op_en_A_I A_P_I K_e_y
+vim.g["codegpt_openai_api_key"] =   "sk-proj-bVe6Ad" ..
+                                    "CmkaNlAJhWaWqC" ..
+                                    "y1VF1YP3vike96z_" ..
+                                    "mX3HAZW-cOYWm7" ..
+                                    "OpQaOU1fMRGEsuo5" ..
+                                    "QAcgKCT4T3Blbk" ..
+                                    "FJzC1rKHCMbM" ..
+                                    "zWp6kouh-6nV" ..
+                                    "FlLERX85vDN" ..
+                                    "ol4kaFynF8m" ..
+                                    "WRxZtODs9At" ..
+                                    "HeaPMuIQ" ..
+                                    "wvojEDH8rgA"
+
