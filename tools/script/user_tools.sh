@@ -400,6 +400,13 @@ function path_simplify()
     #echo "新的 PATH: $PATH"
 }
 
+function adb()
+{
+    echo "/mnt/d/Program\ Files/platform-tools/adb.exe $@"
+    timestamp=$(date +%s)
+    /mnt/d/Program\ Files/platform-tools/adb.exe $@ | tee -a /tmp/adb_$timestamp.log
+}
+
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
 #proxy_on    #开启了代理能google翻译了
