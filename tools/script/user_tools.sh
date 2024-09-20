@@ -218,6 +218,7 @@ function git_delete_file()
 #mi30的gdb遍历脚本工具
 function gdb_mi30()
 {
+    echo "gdb app coredump"
     #~/.config/nvim/tools/script/expect/expect_mi30_gdb.sh $1 $2 $3 $4 $5
     ~/.config/nvim/tools/script/expect/expect_mi30_gdb.sh $@
 }

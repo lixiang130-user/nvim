@@ -10,7 +10,7 @@ spawn /usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/arm-linux-gnueab
 #等待gdb可以输入指令
 expect "(gdb)"
 send "\r"
-send "set solib-search-path ./build/image/libs/\r"
+send "set solib-search-path ./build*/libs/\r"
 send "\r"
 send "bt\r"
 interact
