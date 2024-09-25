@@ -192,7 +192,6 @@ function set_ssc337_env()
 {
     export PATH=$PATH:/usr/local/comtom_toolchain/ssc337/bin/
 }
-
 function set_self_libs_env()
 {
     cur=`pwd`
@@ -200,6 +199,10 @@ function set_self_libs_env()
     echo "已配置自己动态库目录环境,开启coredump,生成coredump文件在这里:"
     cat /proc/sys/kernel/core_pattern
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$cur/build/install/lib:$cur/build/install/lib64:$cur/build/libs
+}
+function set_mg21x_env()
+{
+    cd /usr/local/comtom_toolchain/mg21x/arm_linux_4.9.broadmobi_sdk && source bm_sdk/environment-setup-armv7a-vfp-neon-oe-linux-gnueabi-comtom && cd - > /dev/null
 }
 
 #GitHub删除某个文件及其提交历史记录
