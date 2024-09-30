@@ -22,11 +22,12 @@ vim.g.maplocalleader = ' '
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
--- 配置普通模式单个案件进行上下翻半页,一页的按键映射
-vim.keymap.set("n", "-", "<C-f>")
-vim.keymap.set("n", "0", "<C-b>")
-vim.keymap.set("n", "9", "<C-d>")
-vim.keymap.set("n", "8", "<C-u>")
+-- 配置普通模式单个案件进行上下翻半页,一页的按键映射 设置普通模式下的箭头键映射
+vim.keymap.set('n', '<Up>',     '<C-u>')
+vim.keymap.set('n', '<Down>',   '<C-d>')
+vim.keymap.set('n', '<Left>',   '<C-b>')
+vim.keymap.set('n', '<Right>',  '<C-f>')
+
 
 -- bufferline 跳转配置
 -- 定义命令 :Bgoto ，用法为 :Bgoto [ordinal|buffer name]
