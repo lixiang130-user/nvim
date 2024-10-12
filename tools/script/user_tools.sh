@@ -175,12 +175,12 @@ function vimtr()
 alias vimt=vimtr
 alias vimtt=vimtr
 
-function set_mi30_env()
+function set_mi30_env_sdk_old()
 {
     #export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
     source /usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf_sdk/comtom-crosstool-env-init-sdk
 }
-function set_mi30_env_app()
+function set_mi30_env()
 {
     export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
 }
@@ -266,6 +266,7 @@ function make_fun()
     if [[ $param1 == "clean_all" ]]
     then
         rm ./compile_commands.json
+        rm -rf ./.cache > /dev/null
     fi
     return $ret
 }
