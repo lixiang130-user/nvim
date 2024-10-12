@@ -32,6 +32,7 @@ alias cd81='cd ~/linux/work/81 ; echo `pwd`'
 alias cdsdk='cd ~/linux/work/sdk ; echo `pwd`'
 alias cdtongzhou_transportation='cd ~/linux/work/tongzhou_transportation ; echo `pwd`'
 alias cdkernel='cd ~/linux/work/kernel ; echo `pwd`'
+alias vimgitnote='cd ~/linux/user/mytools/note_for_all/git ; vim note_git.txt'
 
 #启动fastgithub代理
 function fastgit_on()
