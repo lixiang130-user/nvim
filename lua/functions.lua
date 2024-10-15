@@ -1,4 +1,45 @@
 require('keymaps')
+
+
+-- 翻译插件使用的函数
+-- 检测是否为中文字符的函数
+local function is_chinese(text)
+    -- 匹配中文字符的十六进制范围
+    return string.match(text, "[\xE4-\xE9][\x80-\xBF][\x80-\xBF]") ~= nil
+end
+
+-- 自动识别并设置翻译方向，并根据模式执行不同的行为
+function Auto_translate(mode)
+    -- 获取当前选择的文本
+    local text = vim.fn.getreg("v")  -- 获取当前视觉模式选择的内容
+    if text == "" then
+        text = vim.fn.expand("<cword>")  -- 没有选择内容则获取光标下的单词
+    end
+
+    -- 判断内容是否包含中文字符并设置翻译方向
+    if is_chinese(text) then
+        vim.g.translator_source_lang = 'zh-cn'
+        vim.g.translator_target_lang = 'en-us'
+    else
+        vim.g.translator_source_lang = 'en-us'
+        vim.g.translator_target_lang = 'zh-cn'
+    end
+
+    -- 根据模式决定是否执行命令
+    if mode == 'w' then
+        vim.cmd("TranslateW", 'n', true)  -- 执行命令
+    elseif mode == 't' then
+        vim.cmd("Translate", 'n', true)  -- 执行命令
+    elseif mode == 'r' then
+        vim.cmd("TranslateR", 'n', true)  -- 执行命令
+    elseif mode == 'x' then
+        vim.api.nvim_feedkeys(":TranslateX ", 'n', false)  -- 留空等待用户输入文本
+    else
+        vim.cmd("TranslateW", 'n', true)  -- 执行命令
+    end
+end
+
+
 --cc指令 若当前窗口是/bin/bash直接退出,否则只是关闭窗口
 function CloseWindow()
     local win_count = vim.fn.winnr('$')  -- 获取窗口总数
@@ -51,20 +92,20 @@ end
 
 --":b "->"Bgoto "指令 将Bgoto后跟非数字是替换回 ": b xxx", " b",空格b,避免了b循环替换成Bgoto
 vim.api.nvim_create_autocmd("CmdlineChanged", {
-  group = "Replace_Bgoto_With_b_Group",
-  pattern = ":",
-  callback = function()
-    local cmdline = vim.fn.getcmdline()
+    group = "Replace_Bgoto_With_b_Group",
+    pattern = ":",
+    callback = function()
+        local cmdline = vim.fn.getcmdline()
 
-    -- 检查命令是否以 'Bgoto' 开头，且后续字符为非数字和非空格
-    local Bgoto_match = cmdline:match("^Bgoto%s*(.*)")
-    if Bgoto_match and Bgoto_match:match("^[^%d%s]") then
-      -- 构建新命令，将 Bgoto 替换为 " b "
-      local new_cmd = " b " .. Bgoto_match
-      -- 使用 `vim.fn.setcmdline` 来更新命令行内容
-      vim.fn.setcmdline(new_cmd)
+        -- 检查命令是否以 'Bgoto' 开头，且后续字符为非数字和非空格
+        local Bgoto_match = cmdline:match("^Bgoto%s*(.*)")
+        if Bgoto_match and Bgoto_match:match("^[^%d%s]") then
+            -- 构建新命令，将 Bgoto 替换为 " b "
+            local new_cmd = " b " .. Bgoto_match
+            -- 使用 `vim.fn.setcmdline` 来更新命令行内容
+            vim.fn.setcmdline(new_cmd)
+        end
     end
-  end
 })
 
 

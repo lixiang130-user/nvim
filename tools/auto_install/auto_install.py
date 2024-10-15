@@ -156,6 +156,10 @@ class cfg_config(object):
         #if(os.system('sudo locale-gen') != 0):exit(-1)
         #if(os.system('sudo echo "LANG=zh_CN.GBK" > /etc/locale.gen') != 0):exit(-1)
 
+        #一些nvim依赖 npm安装
+        ret = os.system('sudo npm install -g neovim')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+
         print('cfg_config install end')
         pass
     pass
