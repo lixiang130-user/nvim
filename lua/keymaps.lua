@@ -62,6 +62,8 @@ vim.g.interestingWordsDefaultMappings = 1
 map("n", "<leader>gd", ":nohl<cr>", opt) -- 取消搜索高亮
 -- map("n", "gd", "\"zyiwk$/\\<<C-r>z\\><cr>", opt) -- 复制当前光标单词到寄存器z,在搜索\<xxxx\>k$上一行行尾
 map("n", "gd", "\"zyiwb/\\<<C-r>z\\><cr>", opt) -- 复制当前光标单词到寄存器z,在搜索\<xxxx\>b当前单词的第一个字母
+-- v 模式下 * 和 # 可以直接匹配选中的内容
+vim.api.nvim_set_keymap('v', 'gd', '"*y/\\V<C-R>"<CR>', { noremap = true, silent = true }) -- 将v模式下选中的内容进行匹配搜索
 
 -- lvimgrep "xxxx" % <cr> :lopen<cr> 当前文件搜索字符串xxx并窗口打开搜索结果
 -- 命令模式下的百分号 是当前文件的文件名, <C-r>/ 是粘贴搜索模式寄存器
