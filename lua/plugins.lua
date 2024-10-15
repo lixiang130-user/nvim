@@ -312,8 +312,8 @@ require('lualine').setup {
 require('telescope').setup({
     defaults = {
         file_ignore_patterns = {
-            '.git', --忽略特定的文件/文件夹
-            '.cache',
+            '.git/',    --忽略特定的文件/文件夹
+            '.cache/',  --添加'/' 修复xxxx_cache文件也会忽略,无法搜索的问题
             'compile_commands.json',
             '*.d',
         },
