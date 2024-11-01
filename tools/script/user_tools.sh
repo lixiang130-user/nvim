@@ -173,8 +173,10 @@ function vimtr()
 {
     ~/.config/nvim/tools/script/expect/expect_vimtr.sh
 }
-alias vimt=vimtr
-alias vimtt=vimtr
+function vimt()
+{
+    ~/.config/nvim/tools/script/expect/expect_vimt.sh
+}
 
 function set_mi30_env_sdk_old()
 {
@@ -416,3 +418,6 @@ function adb()
 #google_translator_vim_on   #默认打开google翻译
 #proxy_on    #开启了代理能google翻译了
 path_simplify
+#常用的临时自定义工作目录,修改路径,直接进入到这个目录里
+alias cdd='cd ~/linux/work/20/6038 ; echo `pwd`'
+
