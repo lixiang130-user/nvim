@@ -180,12 +180,12 @@ function vimt()
 
 function set_mi30_env_sdk_old()
 {
-    #export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
-    source /usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf_sdk/comtom-crosstool-env-init-sdk
+    #export PATH=$PATH:/usr/local/comtom_toolchain/arm-linux-gnueabihf/bin/
+    source /usr/local/comtom_toolchain/arm-linux-gnueabihf_sdk/comtom-crosstool-env-init-sdk
 }
 function set_mi30_env()
 {
-    export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
+    export PATH=$PATH:/usr/local/comtom_toolchain/arm-linux-gnueabihf/bin/
 }
 function set_mi20_env()
 {
@@ -419,5 +419,5 @@ function adb()
 #proxy_on    #开启了代理能google翻译了
 path_simplify
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-alias cdd='cd ~/linux/work/20/6038 ; echo `pwd`'
+alias cdd='cd ~/linux/work/20/h6010 ; echo `pwd`'
 
