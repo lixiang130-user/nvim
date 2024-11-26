@@ -180,12 +180,12 @@ function vimt()
 
 function set_mi30_env_sdk_old()
 {
-    #export PATH=$PATH:/usr/local/comtom_toolchain/arm-linux-gnueabihf/bin/
-    source /usr/local/comtom_toolchain/arm-linux-gnueabihf_sdk/comtom-crosstool-env-init-sdk
+    #export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
+    source /usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf_sdk/comtom-crosstool-env-init-sdk
 }
 function set_mi30_env()
 {
-    export PATH=$PATH:/usr/local/comtom_toolchain/arm-linux-gnueabihf/bin/
+    export PATH=$PATH:/usr/local/comtom_toolchain/mi30x/arm-linux-gnueabihf/bin/
 }
 function set_mi20_env()
 {
