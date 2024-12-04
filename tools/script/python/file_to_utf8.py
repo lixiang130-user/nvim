@@ -2,6 +2,7 @@
 import chardet
 import io
 import os
+import sys
 
 def detect_encoding(file_path):
     with open(file_path, 'rb') as f:
@@ -10,7 +11,7 @@ def detect_encoding(file_path):
     encoding = result['encoding']
     return encoding
 
-def convert_to_utf8_bom(input_file_path, output_file_path):
+def convert_to_utf8_bom(input_file_path, output_file_path, bom):
     # Detect the original encoding
     original_encoding = detect_encoding(input_file_path)
     
@@ -29,17 +30,24 @@ def convert_to_utf8_bom(input_file_path, output_file_path):
                 text = f.read()
     
     # Write the text to a new file with UTF-8 BOM encoding
-    with io.open(output_file_path, 'w', encoding='utf-8-sig') as f:
-        f.write(text)
+    if bom:
+        with io.open(output_file_path, 'w', encoding='utf-8-sig') as f:
+            f.write(text)
+    else:
+        with io.open(output_file_path, 'w', encoding='utf-8') as f:
+            f.write(text)
+
 
 if __name__ == "__main__":
-    fd = os.popen('find . -type f -regex ".*\.\(c\|h\|cpp\)"')
+    bom = True if len(sys.argv) < 2 or sys.argv[1].lower() != "nobom" else False
+    print("bom:", bom)
+    fd = os.popen(r'find . -type f -regex ".*\.\(c\|h\|cpp\)"')
     while True:
         data = fd.readline()
         if not data:
             break
         file_name = data.split('\n')[0]
         print(f'开始转换为 UTF-8 BOM 格式: {file_name}', end='\n')
-        convert_to_utf8_bom(file_name, file_name)
+        convert_to_utf8_bom(file_name, file_name, bom)
         print(f'完成转换: {file_name}')
 
