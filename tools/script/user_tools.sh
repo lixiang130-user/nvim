@@ -106,7 +106,6 @@ function out_bmake()
     param1=$1
     param2=$2
 
-    echo "make build/obj/apps/$param1/_compile && make build/obj/apps/$param1/_install"
     open_proxy=`env | grep "http_proxy"`
 
     if [[ "$open_proxy" != "" ]]; then
@@ -114,12 +113,15 @@ function out_bmake()
     fi
 
     if [[ "$param1" == "clean" ]]; then
+        echo "bear --append -- make build/obj/apps/$param2/_clean"
         bear --append -- make build/obj/apps/$param2/_clean
     elif [[ "$param1" == *"/"* ]]; then
         # 如果param1包含路径，则直接使用param1路径
+        echo "bear --append -- make $param1/_compile && bear --append -- make $param1/_install"
         bear --append -- make $param1/_compile && bear --append -- make $param1/_install
     else
         # 否则继续使用默认路径
+        echo "bear --append -- make build/obj/apps/$param1/_compile && bear --append -- make build/obj/apps/$param1/_install"
         bear --append -- make build/obj/apps/$param1/_compile && bear --append -- make build/obj/apps/$param1/_install
     fi
 
