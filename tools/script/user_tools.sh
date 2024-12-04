@@ -106,20 +106,24 @@ function out_bmake()
     param1=$1
     param2=$2
 
+    echo "make build/obj/apps/$param1/_compile && make build/obj/apps/$param1/_install"
     open_proxy=`env | grep "http_proxy"`
-    if [[ "$open_proxy" != "" ]]
-    then
+
+    if [[ "$open_proxy" != "" ]]; then
         proxy_off
     fi
 
-    if [ "$param1" == "clean" ]; then
+    if [[ "$param1" == "clean" ]]; then
         bear --append -- make build/obj/apps/$param2/_clean
+    elif [[ "$param1" == *"/"* ]]; then
+        # 如果param1包含路径，则直接使用param1路径
+        bear --append -- make $param1/_compile && bear --append -- make $param1/_install
     else
+        # 否则继续使用默认路径
         bear --append -- make build/obj/apps/$param1/_compile && bear --append -- make build/obj/apps/$param1/_install
     fi
 
-    if [[ "$open_proxy" != "" ]]
-    then
+    if [[ "$open_proxy" != "" ]]; then
         proxy_on
     fi
 }
@@ -419,5 +423,6 @@ function adb()
 #proxy_on    #开启了代理能google翻译了
 path_simplify
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-alias cdd='cd ~/linux/work/20/h6010 ; echo `pwd`'
+#alias cdd='cd ~/linux/work/20/h6010 ; echo `pwd`'
+alias cdd='cd ~/linux/work/81/ped_call-station ; echo `pwd`'
 
