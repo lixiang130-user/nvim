@@ -326,6 +326,12 @@ function bc_reset()
     cd -
 }
 
+function utf8_encode_files_nobom()
+{
+    #将当前目录下的所有.c.h.cpp转换成utf8编码格式
+    ~/.config/nvim/tools/script/python/file_to_utf8.py nobom
+}
+
 function utf8_encode_files()
 {
     #将当前目录下的所有.c.h.cpp转换成utf8编码格式
