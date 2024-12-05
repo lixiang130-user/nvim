@@ -141,13 +141,37 @@ map('n', '<leader>fd', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', opt)
 -- <C-q> 将所有未过滤的条目,发送到qlist(在屏幕下方的小窗口,类似以前的cw弹出小窗口)
 
 -- vim-translator 插件键位映射, <ctrl-w>p可以进入翻译悬浮窗,再次按下退出
-map('v', '<leader>fw', ':lua Auto_translate("w")<CR>', opt)  -- 视觉模式下使用悬浮窗
-map('n', '<leader>fw', ':lua Auto_translate("w")<CR>', opt)  -- 正常模式下使用悬浮窗
-map('v', '<leader>ft', ':lua Auto_translate("t")<CR>', opt)  -- 视觉模式下命令行显示结果
-map('n', '<leader>ft', ':lua Auto_translate("t")<CR>', opt)  -- 正常模式下命令行显示结果
-map('v', '<leader>fr', ':lua Auto_translate("r")<CR>', opt)  -- 视觉模式下替换文本
-map('n', '<leader>fr', ':lua Auto_translate("r")<CR>', opt)  -- 正常模式下替换文本
-map('n', '<leader>fx', ':lua Auto_translate("x")<CR>', opt)  -- 正常模式下翻译终端输入的文本
+--map('v', '<leader>fw', ':lua Auto_translate("w")<CR>', opt)  -- 视觉模式下使用悬浮窗
+--map('n', '<leader>fw', ':lua Auto_translate("w")<CR>', opt)  -- 正常模式下使用悬浮窗
+--map('v', '<leader>ft', ':lua Auto_translate("t")<CR>', opt)  -- 视觉模式下命令行显示结果
+--map('n', '<leader>ft', ':lua Auto_translate("t")<CR>', opt)  -- 正常模式下命令行显示结果
+--map('v', '<leader>fr', ':lua Auto_translate("r")<CR>', opt)  -- 视觉模式下替换文本
+--map('n', '<leader>fr', ':lua Auto_translate("r")<CR>', opt)  -- 正常模式下替换文本
+--map('n', '<leader>fx', ':lua Auto_translate("x")<CR>', opt)  -- 正常模式下翻译终端输入的文本
+-- vim-translator 插件, <ctrl-w>p可以进入翻译悬浮窗,再次按下退出
+-- 翻译结果展示在命令行
+map('v', '<leader>ft', ':Translate<CR>', opt)
+map('n', '<leader>ft', ':Translate<CR>', opt)
+-- 翻译结果展示在悬浮窗
+map('v', '<leader>fw', ':TranslateW<CR>', opt)
+map('n', '<leader>fw', ':TranslateW<CR>', opt)
+-- 翻译结果替换原文本(不可用)
+map('v', '<leader>fr', ':TranslateR<CR>', opt)
+map('n', '<leader>fr', ':TranslateR<CR>', opt)
+-- 翻译终端输入的文本
+map('n', '<leader>fx', ':TranslateX ', opt)
+-- 中英文翻译互换 fc convert 转换
+local t_src_eq_en = 'vim.g.translator_source_lang == \'en-us\''
+local t_src_cn = 'vim.g.translator_source_lang = \'zh-cn\''
+local t_tar_en = 'vim.g.translator_target_lang = \'en-us\''
+local t_src_en = 'vim.g.translator_source_lang = \'en-us\''
+local t_tar_cn = 'vim.g.translator_target_lang = \'zh-cn\''
+local t_map_cmd = ':lua if '..t_src_eq_en..' then '..t_src_cn..' '..t_tar_en..' else '..t_src_en..' '..t_tar_cn..' end<CR>'
+vim.g.translator_target_lang = 'zh-cn'
+vim.g.translator_source_lang = 'en-us'
+map('v', '<leader>fc', t_map_cmd, opt)
+map('n', '<leader>fc', t_map_cmd, opt)
+
 
 -- 自动等价排列所有窗口 windows (not) eq
 map('n', 'wee', ":set noequalalways<CR>:set equalalways<CR>", opt)
