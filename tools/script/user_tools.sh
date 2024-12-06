@@ -437,15 +437,10 @@ function mount_sshfs()
     sshfs $param1@192.168.111.21:/home/$param1 $mount_path
     echo "挂载完成 $?:sshfs $param1@192.168.111.21:/home/$param1 $mount_path"
     #mount | grep sshfs
-}
-function umount_sshfs()
-{
-    param1=$1
-    mount_path=/home/user/linux/temp/$param1
     #取消挂在点
-    fusermount -u $mount_path
-    echo "取消挂载完成 $?:fusermount -u $mount_path"
-    #mount | grep sshfs
+    #fusermount -u $mount_path
+    #umount -u $mount_path
+    #echo "取消挂载完成 $?:fusermount -u $mount_path"
 }
 
 ###########################默认启动执行程序#############################
