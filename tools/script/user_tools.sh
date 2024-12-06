@@ -426,6 +426,28 @@ function adb()
     /mnt/d/Program\ Files/platform-tools/adb.exe $@ | tee -a /tmp/adb_$timestamp.log
 }
 
+function mount_sshfs()
+{
+    param1=$1
+    #安装工具
+    #sudo apt update
+    #sudo apt install sshfs sshpass
+    mount_path=/home/user/linux/temp/$param1
+    mkdir -p $mount_path
+    sshfs $param1@192.168.111.21:/home/$param1 $mount_path
+    echo "挂载完成 $?:sshfs $param1@192.168.111.21:/home/$param1 $mount_path"
+    #mount | grep sshfs
+}
+function umount_sshfs()
+{
+    param1=$1
+    mount_path=/home/user/linux/temp/$param1
+    #取消挂在点
+    fusermount -u $mount_path
+    echo "取消挂载完成 $?:fusermount -u $mount_path"
+    #mount | grep sshfs
+}
+
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
 #proxy_on    #开启了代理能google翻译了
