@@ -444,11 +444,26 @@ function mount_sshfs()
     #echo "取消挂载完成 $?:fusermount -u $mount_path"
 }
 
+# 使用 nvimdiff 比較兩個文件
+function nvimdiff()
+{
+    if [ $# -ne 2 ]; then
+        echo "請提供兩個文件作為參數"
+        return 1
+    fi
+    
+    local LOCAL="$1"
+    local REMOTE="$2"
+    
+    nvim -d "$LOCAL" "$REMOTE"
+}
+alias vimdiff=nvimdiff
+
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
 #proxy_on    #开启了代理能google翻译了
 path_simplify
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-tmp_cdd_path=~/linux/temp/lixiang/linux/videointercom
+tmp_cdd_path=~/linux/work/81/ped_call-station
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 
