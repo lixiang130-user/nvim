@@ -432,6 +432,7 @@ function mount_sshfs()
     #安装工具
     #sudo apt update
     #sudo apt install sshfs sshpass
+    #通过ssh_key公钥私钥的方式给到服务器,就可以不用每次都输入密码了
     mount_path=/home/user/linux/temp/$param1
     mkdir -p $mount_path
     sshfs $param1@192.168.111.21:/home/$param1 $mount_path
