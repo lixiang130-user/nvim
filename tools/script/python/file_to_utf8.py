@@ -40,14 +40,25 @@ def convert_to_utf8_bom(input_file_path, output_file_path, bom):
 
 if __name__ == "__main__":
     bom = True if len(sys.argv) < 2 or sys.argv[1].lower() != "nobom" else False
-    print("bom:", bom)
-    fd = os.popen(r'find . -type f -regex ".*\.\(c\|h\|cpp\)"')
-    while True:
-        data = fd.readline()
-        if not data:
-            break
-        file_name = data.split('\n')[0]
-        print(f'开始转换为 UTF-8 BOM 格式: {file_name}', end='\n')
-        convert_to_utf8_bom(file_name, file_name, bom)
-        print(f'完成转换: {file_name}')
+    target_file = sys.argv[2] if len(sys.argv) > 2 else None
+
+    if target_file:
+        # 如果指定了文件，则只处理该文件
+        if os.path.isfile(target_file):
+            print(f'开始转换为 UTF-8 {"BOM" if bom else "无 BOM"} 格式: {target_file}')
+            convert_to_utf8_bom(target_file, target_file, bom)
+            print(f'完成转换: {target_file}')
+        else:
+            print(f'指定的文件不存在: {target_file}')
+    else:
+        # 未指定文件，处理当前目录下的所有符合条件的文件
+        fd = os.popen(r'find . -type f -regex ".*\.\(c\|h\|cpp\)"')
+        while True:
+            data = fd.readline()
+            if not data:
+                break
+            file_name = data.strip()
+            print(f'开始转换为 UTF-8 {"BOM" if bom else "无 BOM"} 格式: {file_name}')
+            convert_to_utf8_bom(file_name, file_name, bom)
+            print(f'完成转换: {file_name}')
 
