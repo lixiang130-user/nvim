@@ -284,6 +284,7 @@ function git_submodule_sync()
 {
     echo "git submodule update --init --recursive"
     git submodule update --init --recursive
+    #添加一个将子仓库的分支切换到预设定的分支上的功能,或者给根据commitid找到对应分支
 }
 
 function rg_replace()
@@ -329,13 +330,13 @@ function bc_reset()
 function utf8_encode_files_nobom()
 {
     #将当前目录下的所有.c.h.cpp转换成utf8编码格式
-    ~/.config/nvim/tools/script/python/file_to_utf8.py nobom
+    ~/.config/nvim/tools/script/python/file_to_utf8.py nobom $@
 }
 
 function utf8_encode_files()
 {
     #将当前目录下的所有.c.h.cpp转换成utf8编码格式
-    ~/.config/nvim/tools/script/python/file_to_utf8.py
+    ~/.config/nvim/tools/script/python/file_to_utf8.py bom  $@
 }
 
 user_trash_name=.trash
@@ -464,6 +465,6 @@ alias vimdiff=nvimdiff
 #proxy_on    #开启了代理能google翻译了
 path_simplify
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-tmp_cdd_path=~/linux/work/81/ped_call-station
+tmp_cdd_path=/home/user/linux/work/81/ped_call-station
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 
