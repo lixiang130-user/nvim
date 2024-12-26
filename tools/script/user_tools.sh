@@ -61,7 +61,7 @@ function google_translator_vim_off()
 }
 
 #使用外部代理,外部翻墙即可
-function proxy_on()
+function proxy_on_bak()
 {
     wsl2ip=$(cat /etc/resolv.conf | grep 'nameserver' | cut -f 2 -d ' ')
     wsl2ip='192.168.222.222'    #后来这样才行了,用windows的ip地址,有时间时改成python解析ipconfig.exe返回值的方式
@@ -69,6 +69,33 @@ function proxy_on()
     export https_proxy=$http_proxy
     #export all_proxy=socks5://127.0.0.1:7890 # or this line
     #echo -e "已开启代理"
+}
+function proxy_on()
+{
+    # 使用 Python 脚本获取 Windows 的 IP 地址
+    # 缩进敏感,不要自动对齐
+    wsl2ip=$(python3 -c "
+import subprocess
+import re
+
+def get_windows_ip():
+    # 执行 ipconfig.exe 并读取输出，使用 gbk 编码避免 UnicodeDecodeError
+    result = subprocess.run(['ipconfig.exe'], stdout=subprocess.PIPE, text=True, encoding='gbk')
+    match = re.search(r'IPv4 地址[. ]*[:]*[ ]*(\d+\.\d+\.\d+\.\d+)', result.stdout)
+    if match:
+        return match.group(1)
+    return None
+
+print(get_windows_ip())")
+
+    # 如果成功获取到 IP 地址，设置代理
+    if [[ -n "$wsl2ip" ]]; then
+        export http_proxy="http://$wsl2ip:7890"
+        export https_proxy=$http_proxy
+        echo -e "已开启代理，使用 Windows IP: $wsl2ip"
+    else
+        echo -e "开启代理失败,未能获取到 Windows IP 地址"
+    fi
 }
 function proxy_off()
 {
