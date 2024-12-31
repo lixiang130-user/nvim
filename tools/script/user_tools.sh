@@ -481,6 +481,15 @@ function nvimdiff()
 }
 alias vimdiff=nvimdiff
 
+function codecheck()
+{
+    #比较简单的C语言代码扫描工具,能扫描出一些常见的问题
+    #sudo apt install cppcheck
+    #level=--enable=all
+    level=--enable=warning --enable=error
+    cppcheck --project=compile_commands.json $level --xml --xml-version=2 --output-file=report.xml -i build* && cppcheck-htmlreport --file=report.xml --report-dir=html_report
+}
+
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
 #proxy_on    #开启了代理能google翻译了
