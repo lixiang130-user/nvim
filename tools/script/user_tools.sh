@@ -86,7 +86,7 @@ print(get_windows_ip())")
         #wsl2ip='192.168.222.222'    #后来这样才行了,用windows的ip地址,有时间时改成python解析ipconfig.exe返回值的方式
         export http_proxy="http://$wsl2ip:7890"
         export https_proxy=$http_proxy
-        echo -e "已开启代理，使用 Windows IP: $wsl2ip"
+        #echo -e "已开启代理，使用 Windows IP: $wsl2ip"
     else
         echo -e "开启代理失败,未能获取到 Windows IP 地址"
     fi
@@ -486,6 +486,6 @@ alias vimdiff=nvimdiff
 #proxy_on    #开启了代理能google翻译了
 path_simplify
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-tmp_cdd_path=/home/user/linux/work/81/ped_call-station
+tmp_cdd_path=/home/user/linux/work/20/h6010
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 
