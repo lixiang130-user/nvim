@@ -483,11 +483,14 @@ alias vimdiff=nvimdiff
 
 function codecheck()
 {
-    #比较简单的C语言代码扫描工具,能扫描出一些常见的问题
-    #sudo apt install cppcheck
-    #level=--enable=all
-    level=--enable=warning --enable=error
-    cppcheck --project=compile_commands.json $level --xml --xml-version=2 --output-file=report.xml -i build* && cppcheck-htmlreport --file=report.xml --report-dir=html_report
+    # 比较简单的C语言代码扫描工具, 能扫描出一些常见的问题
+    # sudo apt install cppcheck
+    level="--enable=warning"
+    
+    # 查找所有的 .c 和 .cpp 文件，排除所有以 build 开头的目录
+    files=$(find . -type f \( -iname "*.c" -o -iname "*.cpp" \) ! -path "./build*" )
+    
+    cppcheck $files $level --xml --xml-version=2 --output-file=report.xml && cppcheck-htmlreport --file=report.xml --report-dir=html_report
 }
 
 ###########################默认启动执行程序#############################
