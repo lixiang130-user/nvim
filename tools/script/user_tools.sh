@@ -467,6 +467,7 @@ function mount_sshfs()
 }
 
 # 使用 nvimdiff 比較兩個文件
+alias vimdiff=nvimdiff
 function nvimdiff()
 {
     if [ $# -ne 2 ]; then
@@ -479,18 +480,22 @@ function nvimdiff()
     
     nvim -d "$LOCAL" "$REMOTE"
 }
-alias vimdiff=nvimdiff
+
+function bcompare()
+{
+    ~/.config/nvim/tools/script/windows_tools/use_win_bcompare.sh $@
+}
 
 function codecheck()
 {
     # 比较简单的C语言代码扫描工具, 能扫描出一些常见的问题
     # sudo apt install cppcheck
-    level="--enable=warning"
+    #level="--enable=warning"
     
     # 查找所有的 .c 和 .cpp 文件，排除所有以 build 开头的目录
-    files=$(find . -type f \( -iname "*.c" -o -iname "*.cpp" \) ! -path "./build*" )
-    
+    files=$(find . -type f \( -iname "*.c" -o -iname "*.cpp" \) ! -path "./build*" ! -path "./open_*" )
     cppcheck $files $level --xml --xml-version=2 --output-file=report.xml && cppcheck-htmlreport --file=report.xml --report-dir=html_report
+
 }
 
 ###########################默认启动执行程序#############################
@@ -499,5 +504,6 @@ function codecheck()
 path_simplify
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
 tmp_cdd_path=/home/user/linux/work/20/h6010
+tmp_cdd_path=/home/user/linux/work/81/call-station
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 
