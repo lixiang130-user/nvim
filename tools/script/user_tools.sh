@@ -26,6 +26,7 @@ alias cdmytools='cd ~/linux/user/mytools ; echo `pwd`'
 alias cdscript='cd ~/.config/nvim/tools/script ; echo `pwd`'
 alias vimuser_tools='cd ~/.config/nvim/tools/script ; vim user_tools.sh'
 alias vimnvim='cd ~/.config/nvim/ ; vim init.lua'
+alias viminitVim='cd ~/.config/nvim/ ; vim init.lua'
 alias cd20='cd ~/linux/work/20 ; echo `pwd`'
 alias cd80='cd ~/linux/work/80 ; echo `pwd`'
 alias cd81='cd ~/linux/work/81 ; echo `pwd`'
@@ -261,7 +262,7 @@ function vim_proxy()
     proxy_on
     #nvim $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
     #$@表示所有参数!!!
-    nvim $@
+    nvim $@ "run_code"
     proxy_off
 }
 
