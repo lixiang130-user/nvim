@@ -261,8 +261,7 @@ function vim_proxy()
     proxy_on
     #nvim $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
     #$@表示所有参数!!!
-    #nvim $@
-    ~/.config/nvim/tools/script/expect/expect_nvim.sh $@
+    nvim $@
     proxy_off
 }
 
