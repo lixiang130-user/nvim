@@ -260,11 +260,19 @@ function gdb_mi30()
 function vim_proxy()
 {
     proxy_on
+
+    # 如果 nvim_code 不存在，则复制 nvim 到 nvim_code
+    if [ ! -f ~/.config/nvim-linux64/bin/nvim_code ]; then
+        cp ~/.config/nvim-linux64/bin/nvim ~/.config/nvim-linux64/bin/nvim_code
+    fi
+
     #nvim $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
     #$@表示所有参数!!!
-    nvim $@ "run_code"
+    # 使用所有传入的参数运行 nvim_code
+    nvim_code "$@"
     proxy_off
 }
+
 
 function make_fun()
 {
