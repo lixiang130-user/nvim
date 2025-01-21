@@ -90,7 +90,8 @@ map('n', 'wa', ':wa<CR>', opt)
 map('n', 'ca<CR>', ':wa<CR>:qa<CR>', opt) -- ca(close all)关闭所有窗口并退出
 map('n', 'cb', ':lua CloseBuffersWithBash()<CR>', opt)  --关闭所有ubash命令行窗口
 map('n', '<leader>co', '<C-w>o', opt) -- co(close others)关闭当前窗口,但还在buffer中
-map('n', 'co', ':lua CloseBashBuffersAndCloseOthers()<CR>', opt)    --<leader>co + cb
+--map('n', 'co', ':lua CloseBashBuffersAndCloseOthers()<CR>', opt)    --<leader>co + cb
+map('n', 'co', ':lua CloseBashBuffersAndCloseOthers()<CR>:NvimTreeToggle<CR><C-w>l', opt)    --<leader>co + cb
 --map('n', 'cc', ':lua CloseWindow()<CR>', opt)   --若当前窗口是/bin/bash直接退出,否则只是关闭窗口
 map('n', 'cc', '<C-w>c', opt)   --若当前窗口是/bin/bash直接退出,否则只是关闭窗口
 map('n', 'cw', '<C-w>c', opt) -- cc(close)关闭当前窗口
