@@ -512,7 +512,7 @@ function codecheck()
 #proxy_on    #开启了代理能google翻译了
 path_simplify
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-tmp_cdd_path=/home/user/linux/work/20/h6010
 tmp_cdd_path=/home/user/linux/work/81/call-station
+tmp_cdd_path=/home/user/linux/work/20/h6010
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 
