@@ -34,6 +34,7 @@ alias cdsdk='cd ~/linux/work/sdk ; echo `pwd`'
 alias cdtongzhou_transportation='cd ~/linux/work/tongzhou_transportation ; echo `pwd`'
 alias cdkernel='cd ~/linux/work/kernel ; echo `pwd`'
 alias vimgitnote='cd ~/linux/user/mytools/note_for_all/git ; vim note_git.txt'
+alias cdbase='cd ~/linux/user/mytools/base'
 alias vimbase='cd ~/linux/user/mytools/base ; vim'
 
 #启动fastgithub代理
@@ -513,7 +514,7 @@ function codecheck()
 #proxy_on    #开启了代理能google翻译了
 path_simplify
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-tmp_cdd_path=/home/user/linux/work/81/call-station
 tmp_cdd_path=/home/user/linux/work/20/h6010
+tmp_cdd_path=/home/user/linux/work/81/call-station
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 

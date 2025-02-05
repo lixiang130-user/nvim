@@ -65,3 +65,9 @@ grep 使用领款断言执行 grep -oP "(?<=xx)xxxxx(?=xx)"
 
 -- 设置vim terminal的最大回滚行号,默认9999,最大目前只能到100000
 vim.api.nvim_command('set scrollback=100000')
+-- makefile中tab也可以替换成四个空格
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "make",
+    command = "setlocal expandtab"
+})
+
