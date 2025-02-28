@@ -100,6 +100,9 @@ class apt_install(object):
         print('apt_install __def__')
 
     def install(self):
+        #添加32位支持
+        if(os.system('sudo dpkg --add-architecture i386') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         if(os.system('sudo apt-get update -y') != 0):exit(-1)
         print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         if(os.system('sudo apt-get upgrade -y') != 0):exit(-1)
@@ -393,6 +396,43 @@ elif sys.argv[1] == 'work': #工作需要的环境
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
     ret = os.system('sudo apt-get install autoconf automake libtool texinfo')
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+
+    #安装libiconv1.13 编译ssc337需要
+    if(os.system('''
+                 wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.13.tar.gz &&
+                 tar -xzvf libiconv-1.13.tar.gz &&
+                 cd libiconv-1.13 &&
+                 ./configure --prefix=/usr/local &&
+                 make &&
+                 sudo make install &&
+                 sudo ln -s /usr/local/lib/libiconv.so.2 /usr/lib/libiconv.so.2 &&
+                 cd .. && rm -rf libiconv-1.13 libiconv-1.13.tar.gz
+                 ''') != 0):exit(-1)
+    #安装libmpfr.so.4.1.4 依赖libgmp 编译ssc337需要
+    if(os.system('''
+                 wget https://mirrors.aliyun.com/gnu/mpfr/mpfr-4.1.1.tar.gz &&
+                 tar -xzvf mpfr-4.1.1.tar.gz &&
+                 cd mpfr-4.1.1 &&
+                 sudo apt-get install libgmp-dev  &&
+                 ./configure --prefix=/usr/local --with-gmp=/usr && 
+                 make && 
+                 sudo make install && 
+                 sudo ln -sf /usr/local/lib/libmpfr.so /usr/lib/libmpfr.so.4 &&
+                 cd .. && rm -rf mpfr-4.1.1 mpfr-4.1.1.tar.gz
+                 ''') != 0):exit(-1)
+    #ssc337系统编译工具需要这个
+    if(os.system('sudo apt install zlib1g:i386') != 0):exit(-1)
+    #更新squashfs-tools到4.6.1 已有版本会崩溃
+    if(os.system('''
+                 wget https://github.com/plougher/squashfs-tools/archive/refs/tags/4.6.1.tar.gz &&
+                 tar -xzvf 4.6.1.tar.gz &&
+                 cd squashfs-tools-4.6.1/squashfs-tools &&
+                 sudo apt install build-essential zlib1g-dev liblzma-dev liblzo2-dev &&
+                 make XZ_SUPPORT=1 LZO_SUPPORT=1 -j$(nproc) &&
+                 sudo cp mksquashfs /usr/local/bin/mksquashfs_xz_new &&
+                 cd ../.. && rm -rf 4.6.1.tar.gz squashfs-tools-4.6.1
+                 ''') != 0):exit(-1)
+
 elif sys.argv[1] == 'bc': #工作需要的环境
     bc = bcompare_install()
     bc.install()
