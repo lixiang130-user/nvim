@@ -433,6 +433,35 @@ elif sys.argv[1] == 'work': #工作需要的环境
                  cd ../.. && rm -rf 4.6.1.tar.gz squashfs-tools-4.6.1
                  ''') != 0):exit(-1)
 
+elif sys.argv[1] == 't113': #工作需要的环境
+    #在docker容器中安装 t113编译所需环境
+    if(os.system('sudo docker pull ubuntu:14.04') != 0):exit(-1)
+    '''
+    docker run -it ubuntu:14.04 /bin/bash   #运行docker ubuntu14.04,启用多架构支持,并安装环境
+    sudo dpkg --add-architecture i386
+    sudo apt-get update -y
+    sudo apt-get upgrade -y
+    sudo apt-get install -y cpio bison autoconf wget patch texinfo dos2unix
+    sudo apt-get install -y git gnupg flex bison gperf build-essential zip curl libc6-dev
+    sudo apt-get install -y gcc g++ gcc-multilib g++-multilib
+    sudo apt-get install -y linux-libc-dev:i386 libc6-dev:i386 libncurses5-dev:i386 x11proto-core-dev libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 libgl1-mesa-dev
+    sudo apt-get install -y mingw32 tofrodos python-markdown libxml2-utils xsltproc zlib1g-dev:i386 gawk
+    sudo apt-get install -y bear bc libssl-dev u-boot-tools busybox
+    sudo dpkg-reconfigure dash #选择no
+    sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
+    #编译时 -w 进入到某个目录下
+    docker run -v /home/user/linux/:/home/user/linux  -w "$(pwd)" -it t113_ubuntu1404 /bin/sh --login
+    #再手动配置PS1 make ll 等常用指令
+
+    #删除所有镜像方式:
+    # 停止所有运行中的容器
+    docker stop $(docker ps -aq)
+    # 删除所有容器
+    docker rm $(docker ps -aq)
+    # 删除所有镜像
+    docker rmi $(docker images -q)
+    '''
+
 elif sys.argv[1] == 'bc': #工作需要的环境
     bc = bcompare_install()
     bc.install()
@@ -450,3 +479,5 @@ elif sys.argv[1] == 'docker':
     #将普通用户添加到docker组中,可以不用sudo就可以执行docker
     ret = os.system("grep '^docker' /etc/group && sudo usermod -aG docker user && newgrp docker")
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+    #docker支持代理 翻墙
+    ret = os.system("cp  ./docker_http_proxy.conf /etc/systemd/system/docker.service.d/http-proxy.conf")

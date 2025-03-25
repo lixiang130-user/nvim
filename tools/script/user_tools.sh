@@ -3,6 +3,10 @@
 #添加用户环境变量
 PATH=$PATH:~/.config/nvim-linux64/bin
 
+#将终端配置\w改为\W,绝对路径->当前路径：\u 显示username,\h 显示hosename, \W 显示当前目录
+#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\W\[\033[00m\]\$ '
+
 alias vim=vim_proxy
 alias vi=nvim
 alias ll='ls -a -l'
@@ -121,10 +125,6 @@ function set_esp32_env()
 #当esp32发生崩溃时在32esp_addr2line后跟崩溃指针将展示调用堆栈
 alias 32esp_addr2line='xtensa-esp32-elf-addr2line -pfiaC -e build/*.elf '
 
-#将终端配置\w改为\W,绝对路径->当前路径：\u 显示username,\h 显示hosename, \W 显示当前目录
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\W\[\033[00m\]\$ '
-
 function out_bmake()
 {
     param1=$1
@@ -236,6 +236,10 @@ function set_self_libs_env()
 function set_mg21x_env()
 {
     cd /usr/local/comtom_toolchain/mg21x/arm_linux_4.9.broadmobi_sdk && source bm_sdk/environment-setup-armv7a-vfp-neon-oe-linux-gnueabi-comtom && cd - > /dev/null
+}
+function set_t113_env()
+{
+    docker run -v /home/user/linux/:/home/user/linux  -w "$(pwd)" -it t113_ubuntu1404 /bin/sh --login #-c "source build/envsetup.sh > /dev/zero"
 }
 
 #GitHub删除某个文件及其提交历史记录
@@ -519,6 +523,6 @@ function codecheck()
 #proxy_on    #开启了代理能google翻译了
 path_simplify
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-tmp_cdd_path=/home/user/linux/work/81/call-station
+tmp_cdd_path=/home/user/linux/work/80/t113
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 
