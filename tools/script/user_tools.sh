@@ -195,6 +195,22 @@ function uttelnet()
     ~/.config/nvim/tools/script/expect/expect_telnet.sh $ip | tee -a /tmp/$1_$timestamp.log
 }
 
+function v3s_uttelnet()
+{
+    param1=$1
+    timestamp=$(date +%s)
+    result=$(echo $param1 | grep "\.")
+    if [[ $param1 == *.*.*.* ]]; then   #通配符判断字符串
+        ip=$param1
+    elif [[ "$result" != "" ]]; then    #grep 判断字符串包含
+        ip=192.168.$param1
+    else
+        ip=192.168.222.$param1
+    fi
+    #echo "result:$result ip:$ip"
+    ~/.config/nvim/tools/script/expect/expect_telnet_v3s.sh $ip | tee -a /tmp/$1_$timestamp.log
+}
+
 function vimtl()
 {
     ~/.config/nvim/tools/script/expect/expect_vimtl.sh
@@ -237,9 +253,11 @@ function set_mg21x_env()
 {
     cd /usr/local/comtom_toolchain/mg21x/arm_linux_4.9.broadmobi_sdk && source bm_sdk/environment-setup-armv7a-vfp-neon-oe-linux-gnueabi-comtom && cd - > /dev/null
 }
-function set_t113_env()
+function set_t113_kernel_env()
 {
-    docker run -v /home/user/linux/:/home/user/linux  -w "$(pwd)" -it t113_ubuntu1404 /bin/sh --login #-c "source build/envsetup.sh > /dev/zero"
+    timestamp=$(date +%s)
+    docker run -v /home/user/linux/:/home/user/linux  -w "$(pwd)" -it t113_ubuntu1404 /bin/sh --login | tee -a /tmp/t113_$timestamp.log
+    #-c "source build/envsetup.sh; exec bash
 }
 
 #GitHub删除某个文件及其提交历史记录
@@ -523,6 +541,6 @@ function codecheck()
 #proxy_on    #开启了代理能google翻译了
 path_simplify
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-tmp_cdd_path=/home/user/linux/work/80/t113
+tmp_cdd_path=/home/user/linux/work/kernel/kernel_t113
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 

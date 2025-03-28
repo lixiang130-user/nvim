@@ -446,7 +446,7 @@ elif sys.argv[1] == 't113': #工作需要的环境
     sudo apt-get install -y gcc g++ gcc-multilib g++-multilib
     sudo apt-get install -y linux-libc-dev:i386 libc6-dev:i386 libncurses5-dev:i386 x11proto-core-dev libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 libgl1-mesa-dev
     sudo apt-get install -y mingw32 tofrodos python-markdown libxml2-utils xsltproc zlib1g-dev:i386 gawk
-    sudo apt-get install -y bear bc libssl-dev u-boot-tools busybox
+    sudo apt-get install -y bear bc libssl-dev u-boot-tools busybox lsof libncurses5-dev libncursesw5-dev
     sudo dpkg-reconfigure dash #选择no
     sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
     #编译时 -w 进入到某个目录下
