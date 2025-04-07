@@ -22,12 +22,18 @@ vim.g.maplocalleader = ' '
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
+
+-- 使用 Astyle 格式化代码
+map("n", "<leader>==", ":!astyle --style=allman --indent=spaces=4 --align-pointer=type --pad-oper %<CR><CR>", { noremap = true, silent = true })
+
+-- json格式化
+map("n", "<leader>j=", ":%!jq .<cr>", opt) -- json格式化,使用ubuntu安装的工具js
+
 -- 配置普通模式单个案件进行上下翻半页,一页的按键映射 设置普通模式下的箭头键映射
 -- vim.keymap.set('n', '<Up>',     '<C-u>')
 -- vim.keymap.set('n', '<Down>',   '<C-d>')
 -- vim.keymap.set('n', '<Left>',   '<C-b>')
 -- vim.keymap.set('n', '<Right>',  '<C-f>')
-
 
 -- bufferline 跳转配置
 -- 定义命令 :Bgoto ，用法为 :Bgoto [ordinal|buffer name]
@@ -36,10 +42,6 @@ vim.api.nvim_command('command! -nargs=1 Bgoto lua BufferlineGoToBuffer(<f-args>)
 vim.cmd([[cnoreabbrev <expr> b ((getcmdtype() == ':' && getcmdline() == 'b') ? 'Bgoto' : 'b')]])
 -- ":Bgoto xxx"后跟着的xxx不是数字是替换回": b xxx",空格保证不会循环替换
 vim.api.nvim_create_augroup("Replace_Bgoto_With_b_Group", { clear = true })
-
-
--- json格式化
-map("n", "<leader>==", ":%!jq .<cr>", opt) -- json格式化,使用ubuntu安装的工具js
 
 -- leap 插件按键配置
 vim.keymap.set({'n', 'x', 'o'}, '<leader>s', '<Plug>(leap-forward-to)') --向后查找

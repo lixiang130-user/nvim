@@ -121,8 +121,9 @@ class apt_install(object):
         print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         if(os.system('sudo apt-get install -y man-db manpages-de manpages-de-dev manpages-dev glibc-doc manpages-posix-dev manpages-posix') != 0):exit(-1)
         print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
-        if(os.system('sudo apt-get install -y expect fd-find net-tools') != 0):exit(-1)
+        if(os.system('sudo apt-get install -y expect fd-find net-tools astyle') != 0):exit(-1)
         print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+
         #安装网卡相关工具,可以重启网络服务 https://wenku.csdn.net/answer/090260ad71424adb956f41585fd24c1b
         #sudo service networking restart    重启网络服务
         if(os.system('sudo apt-get install -y ifupdown') != 0):exit(-1)

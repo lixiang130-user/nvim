@@ -541,6 +541,8 @@ function codecheck()
 #proxy_on    #开启了代理能google翻译了
 path_simplify
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-tmp_cdd_path=/home/user/linux/work/kernel/kernel_t113
+tmp_cddd_path=/home/user/linux/work/kernel/kernel_t113
+tmp_cdd_path=//home/user/linux/work/80/sip_backend
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
+alias cddd='cd $tmp_cddd_path ; echo `pwd`'
 
