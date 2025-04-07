@@ -24,7 +24,7 @@ local opt = { noremap = true, silent = true }
 
 
 -- 使用 Astyle 格式化代码
-map("n", "<leader>==", ":!astyle --style=allman --indent=spaces=4 --align-pointer=type --pad-oper %<CR><CR>", { noremap = true, silent = true })
+map("n", "<leader>==", ":!astyle -n --style=allman --indent=spaces=4 --align-pointer=type --pad-oper %<CR><CR>", opt)
 
 -- json格式化
 map("n", "<leader>j=", ":%!jq .<cr>", opt) -- json格式化,使用ubuntu安装的工具js
