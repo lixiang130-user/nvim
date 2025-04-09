@@ -269,7 +269,8 @@ function git_delete_file()
     git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch '$param1 \
         --prune-empty --tag-name-filter cat -- --all
     # 同步到远程
-    echo "同步到远程仓库,执行:git push origin master --force"
+    echo "同步到远程仓库,请执行(若失败则不是在git根目录调用的本功能指令):"
+    echo "git push origin master --force"
     git push origin master --force
 }
 
