@@ -1,6 +1,14 @@
 require('keymaps')
 
 
+-- html格式化,使用ubuntu安装的工具prettier
+function Format_with_prettier()
+    local file = vim.fn.expand('%')
+    local cmd = string.format('prettier --write --tab-width 4 --use-tabs false %s', file)
+    vim.fn.system(cmd)
+    vim.cmd('e')  -- Reload the file to apply changes
+end
+
 -- 翻译插件使用的函数
 -- 检测是否为中文字符的函数
 local function is_chinese(text)
