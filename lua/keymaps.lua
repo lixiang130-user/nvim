@@ -23,11 +23,12 @@ local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
 
--- 使用 Astyle 格式化代码
+-- C语言格式化, 使用 Astyle 格式化代码
 map("n", "<leader>==", ":!astyle -n --style=allman --indent=spaces=4 --align-pointer=name --pad-oper %<CR><CR>", opt)
-
--- json格式化
-map("n", "<leader>j=", ":%!jq .<cr>", opt) -- json格式化,使用ubuntu安装的工具js
+-- go语言格式化, go语言内置的gofmt
+map("n", "<leader>g=", ":!gofmt -w %<CR><CR>", opt)
+-- json格式化,使用ubuntu安装的工具js
+map("n", "<leader>j=", ":%!jq .<cr>", opt)
 
 -- 配置普通模式单个案件进行上下翻半页,一页的按键映射 设置普通模式下的箭头键映射
 -- vim.keymap.set('n', '<Up>',     '<C-u>')
