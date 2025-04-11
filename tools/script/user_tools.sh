@@ -303,6 +303,16 @@ function make_fun()
 {
     ret=0
     param1=$1
+    #
+    # 获取当前目录的最后一部分名
+    current_dir_name=${PWD##*/}
+
+    # 判断是否是 "mytools"
+    if [ "$current_dir_name" = "mytools" ]; then
+        cd base
+        echo "进入 base 目录"
+    fi
+
     open_proxy=`env | grep "http_proxy"`
     if [[ "$open_proxy" != "" ]]
     then
