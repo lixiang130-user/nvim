@@ -24,13 +24,13 @@ local opt = { noremap = true, silent = true }
 
 
 -- html格式化,使用ubuntu安装的工具prettier
-map('n', '<leader>h=', ':lua Format_with_prettier()<CR>', opt)
+map('n', '<leader>h=', ':w<CR>:lua Format_with_prettier()<CR>', opt)
 -- C语言格式化, 使用 Astyle 格式化代码
-map("n", "<leader>==", ":!astyle -n --style=allman --indent=spaces=4 --align-pointer=name --pad-oper %<CR><CR>", opt)
+map("n", "<leader>==", ":w<CR>:!astyle -n --style=allman --indent=spaces=4 --align-pointer=name --pad-oper %<CR><CR>", opt)
 -- go语言格式化, go语言内置的gofmt
-map("n", "<leader>g=", ":!gofmt -w %<CR><CR>", opt)
+map("n", "<leader>g=", ":w<CR>:!gofmt -w %<CR><CR>", opt)
 -- json格式化,使用ubuntu安装的工具js
-map("n", "<leader>j=", ":%!jq .<cr>", opt)
+map("n", "<leader>j=", ":w<CR>:%!jq .<cr>", opt)
 
 -- 配置普通模式单个案件进行上下翻半页,一页的按键映射 设置普通模式下的箭头键映射
 -- vim.keymap.set('n', '<Up>',     '<C-u>')
