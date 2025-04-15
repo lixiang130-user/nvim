@@ -43,22 +43,6 @@ alias vimgitnote='cd ~/linux/user/mytools/note_for_all/git ; vim note_git.txt'
 alias cdbase='cd ~/linux/user/mytools/base'
 alias vimbase='cd ~/linux/user/mytools/base ; vim'
 
-#启动fastgithub代理
-function fastgit_on()
-{
-    export http_proxy="http://127.0.0.1:38457"
-    export https_proxy="http://127.0.0.1:38457"
-    ~/.config/fastgithub_start.sh &
-    echo 'fastgithub已启动'
-}
-function fastgit_off()
-{
-    killall fastgithub
-    unset http_proxy
-    unset https_proxy
-    echo 'fastgithub已关闭'
-}
-
 #vim使用google翻译
 function google_translator_vim_on()
 {
@@ -95,6 +79,7 @@ print(get_windows_ip())")
         #wsl2ip='192.168.222.222'    #后来这样才行了,用windows的ip地址,有时间时改成python解析ipconfig.exe返回值的方式
         export http_proxy="http://$wsl2ip:7890"
         export https_proxy=$http_proxy
+        export GOPROXY=https://goproxy.cn,direct
         #echo -e "已开启代理，使用 Windows IP: $wsl2ip"
     else
         echo -e "开启代理失败,未能获取到 Windows IP 地址"
@@ -104,6 +89,7 @@ function proxy_off()
 {
     unset http_proxy
     unset https_proxy
+    unset GOPROXY
     google_translator_vim_off
     #echo -e "已关闭代理"
 }
