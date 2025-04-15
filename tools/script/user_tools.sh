@@ -2,6 +2,8 @@
 
 #添加用户环境变量
 PATH=$PATH:~/.config/nvim-linux64/bin
+#添加go环境
+PATH=$(go env GOPATH)/bin:$PATH
 
 #将终端配置\w改为\W,绝对路径->当前路径：\u 显示username,\h 显示hosename, \W 显示当前目录
 #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '

@@ -140,6 +140,12 @@ class apt_install(object):
         #安装go语言
         if(os.system('sudo snap install go --classic') != 0):exit(-1)
         print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        #go工具,注释生成接口文档
+        if(os.system('go install github.com/swaggo/swag/cmd/swag@latest') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        #安装redoc-cli 用于生成静态html
+        if(os.system('sudo npm install -g redoc-cli') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
         return True
     pass
 
