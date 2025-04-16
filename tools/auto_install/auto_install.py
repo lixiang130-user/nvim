@@ -490,4 +490,4 @@ elif sys.argv[1] == 'docker':
     ret = os.system("grep '^docker' /etc/group && sudo usermod -aG docker user && newgrp docker")
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
     #docker支持代理 翻墙
-    ret = os.system("cp  ./docker_http_proxy.conf /etc/systemd/system/docker.service.d/http-proxy.conf")
+    ret = os.system("sudo mkdir /etc/systemd/system/docker.service.d && sudo cp  ./docker_http_proxy.conf /etc/systemd/system/docker.service.d/http-proxy.conf")
