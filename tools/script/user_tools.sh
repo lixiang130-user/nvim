@@ -42,6 +42,8 @@ alias cdkernel='cd ~/linux/work/kernel ; echo `pwd`'
 alias vimgitnote='cd ~/linux/user/mytools/note_for_all/git ; vim note_git.txt'
 alias cdbase='cd ~/linux/user/mytools/base'
 alias vimbase='cd ~/linux/user/mytools/base ; vim'
+alias vimauto_install='cd ~/.config/nvim/tools/auto_install ; vim auto_install.py'
+alias cdauto_install='cd ~/.config/nvim/tools/auto_install ; echo `pwd`'
 
 #vim使用google翻译
 function google_translator_vim_on()

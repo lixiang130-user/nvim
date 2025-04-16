@@ -102,50 +102,50 @@ class apt_install(object):
     def install(self):
         #添加32位支持
         if(os.system('sudo dpkg --add-architecture i386') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         if(os.system('sudo apt-get update -y') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         if(os.system('sudo apt-get upgrade -y') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         if(os.system('sudo apt-get install -y universal-ctags') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         if(os.system('sudo apt-get install -y unzip make bear git tree') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         if(os.system('sudo apt-get install -y npm dos2unix ripgrep gcc') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         if(os.system('sudo apt-get install -y g++ gcc-multilib g++-multilib gitk') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         if(os.system('sudo apt-get install -y python3-venv jq') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         if(os.system('sudo apt-get autoremove -y man*') != 0):exit(-1)  #重新安装man,默认的不能用
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         if(os.system('sudo apt-get install -y man-db manpages-de manpages-de-dev manpages-dev glibc-doc manpages-posix-dev manpages-posix') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         if(os.system('sudo apt-get install -y expect fd-find net-tools astyle') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         #html格式化工具
         if(os.system('sudo npm install --global prettier') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
 
         #安装网卡相关工具,可以重启网络服务 https://wenku.csdn.net/answer/090260ad71424adb956f41585fd24c1b
         #sudo service networking restart    重启网络服务
         if(os.system('sudo apt-get install -y ifupdown') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         #配置虚拟网卡需要   https://www.cnblogs.com/eleclsc/p/11677100.html
         if(os.system('sudo apt-get install -y uml-utilities bridge-utils') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         #执行工具替换riggrep,可以修复telescope不能忽略gitignore的问题
         if(os.system('cd ../script/python && ./rg.py user_replace && cd -') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         #安装go语言
         if(os.system('sudo snap install go --classic') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         #go工具,注释生成接口文档
-        if(os.system('go install github.com/swaggo/swag/cmd/swag@latest') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        if(os.system('export GOPROXY=https://goproxy.cn,direct && go install github.com/swaggo/swag/cmd/swag@latest') != 0):exit(-1)
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         #安装redoc-cli 用于生成静态html
         if(os.system('sudo npm install -g redoc-cli') != 0):exit(-1)
-        print('安装环境 行号:', sys._getframe().f_lineno, '返回值:')
+        print('安装环境 行号:', sys._getframe().f_lineno, '返回:')
         return True
     pass
 
