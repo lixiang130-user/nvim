@@ -40,7 +40,7 @@ alias cdsdk='cd ~/linux/work/sdk ; echo `pwd`'
 alias cdtongzhou_transportation='cd ~/linux/work/tongzhou_transportation ; echo `pwd`'
 alias cdkernel='cd ~/linux/work/kernel ; echo `pwd`'
 alias vimgitnote='cd ~/linux/user/mytools/note_for_all/git ; vim note_git.txt'
-alias cdbase='cd ~/linux/user/mytools/base'
+alias cdbase='cd ~/linux/user/mytools/base ; echo `pwd`'
 alias vimbase='cd ~/linux/user/mytools/base ; vim'
 alias vimauto_install='cd ~/.config/nvim/tools/auto_install ; vim auto_install.py'
 alias cdauto_install='cd ~/.config/nvim/tools/auto_install ; echo `pwd`'
@@ -185,7 +185,7 @@ function uttelnet()
     ~/.config/nvim/tools/script/expect/expect_telnet.sh $ip | tee -a /tmp/$1_$timestamp.log
 }
 
-function v3s_uttelnet()
+function uttelnet_v3s()
 {
     param1=$1
     timestamp=$(date +%s)
@@ -542,7 +542,7 @@ function codecheck()
 path_simplify
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
 tmp_cddd_path=/home/user/linux/work/kernel/kernel_t113
-tmp_cdd_path=//home/user/linux/work/80/sip_backend
+tmp_cdd_path=/home/user/linux/work/80/sip_backend
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 alias cddd='cd $tmp_cddd_path ; echo `pwd`'
 
