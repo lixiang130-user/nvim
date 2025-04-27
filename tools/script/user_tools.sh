@@ -279,6 +279,12 @@ function gdb_mi30()
     #~/.config/nvim/tools/script/expect/expect_mi30_gdb.sh $1 $2 $3 $4 $5
     ~/.config/nvim/tools/script/expect/expect_mi30_gdb.sh $@
 }
+#t113的gdb遍历脚本工具
+function gdb_t113()
+{
+    echo "gdb app coredump"
+    ~/.config/nvim/tools/script/expect/expect_t113_gdb.sh $@
+}
 
 function vim_proxy()
 {
