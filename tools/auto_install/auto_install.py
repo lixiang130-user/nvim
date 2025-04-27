@@ -406,6 +406,8 @@ elif sys.argv[1] == 'work': #工作需要的环境
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
     ret = os.system('sudo apt-get install -y autoconf automake libtool texinfo')
     print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
+    ret = os.system('sudo apt-get install -y make automake autoconf libtool pkg-config bzip2 wget gcc g++')
+    print('安装工作环境 行号:', sys._getframe().f_lineno, '返回值:', ret)
 
     #安装libiconv1.13 编译ssc337需要
     if(os.system('''
