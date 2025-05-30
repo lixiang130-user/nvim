@@ -85,6 +85,13 @@ print(get_windows_ip())")
     else
         echo -e "开启代理失败,未能获取到 Windows IP 地址"
     fi
+    #sudo apt-get 使用代理的方式
+    #sudo apt-get \
+    #    -o Acquire::ForceIPv4=true \
+    #    -o Acquire::http::Proxy="http://192.168.222.222:7890" \
+    #    -o Acquire::https::Proxy="http://192.168.222.222:7890" \
+    #    update
+
 }
 function proxy_off()
 {
