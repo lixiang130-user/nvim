@@ -10,6 +10,6 @@ send "root\r"
 send "ulimit -c unlimited\r"
 #send "echo '/app/comtom/log/coredump_%e' > /proc/sys/kernel/core_pattern"
 send "cd /app/comtom/bin/\r"
-send "killall comtom_app_start.sh 2>>/dev/null\r"
+#send "killall comtom_app_start.sh 2>>/dev/null\r"
 send "\r\r"
 interact

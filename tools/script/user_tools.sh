@@ -306,7 +306,11 @@ function vim_proxy()
     #$@表示所有参数!!!
     # 使用所有传入的参数运行 nvim_code
     #nvim_code "$@"
-    ~/.config/nvim/tools/script/expect/expect_nvim.sh $@
+    if [ $# -eq 0 ]; then
+        ~/.config/nvim/tools/script/expect/expect_nvim.sh
+    else
+        nvim "$@"
+    fi
     proxy_off
 }
 
