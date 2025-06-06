@@ -265,6 +265,10 @@ function set_t113_kernel_env()
     #-c "source build/envsetup.sh; exec bash
 }
 
+function git_show_big_file()
+{
+    git rev-list --all | xargs -rL1 git ls-tree -r --long | sort -uk3 | sort -rnk4
+}
 #GitHub删除某个文件及其提交历史记录
 function git_delete_file()
 {
