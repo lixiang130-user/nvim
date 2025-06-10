@@ -326,7 +326,7 @@ function vim_proxy()
     proxy_off
 }
 
-function vim1()
+function vimm()
 {
     proxy_on
 
