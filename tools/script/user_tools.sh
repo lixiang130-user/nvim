@@ -275,10 +275,18 @@ function git_delete_file()
     param1=$1
     echo "GitHub删除某个文件及其提交历史记录:"$param1
     # 删除包括历史
-    git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch '$param1 \
-        --prune-empty --tag-name-filter cat -- --all
+    #git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch '$param1 \
+    #    --prune-empty --tag-name-filter cat -- --all
+    #sudo apt install git-filter-repo  # 部分版本可能不支持
+    git remote -v
+    git filter-repo --path "$param1" --invert-paths
     # 同步到远程
     echo "同步到远程仓库,请执行(若失败则不是在git根目录调用的本功能指令):"
+    echo "先关联远端仓库:"
+    echo "git remote add origin <远程仓库URL>"
+    echo "同步所有分支所有tag:"
+    echo "git push origin --force --all"
+    echo "git push origin --force --tags"
     echo "git push origin master --force"
     git push origin master --force
 }
@@ -309,8 +317,29 @@ function vim_proxy()
     #nvim $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
     #$@表示所有参数!!!
     # 使用所有传入的参数运行 nvim_code
-    #nvim_code "$@"
     if [ $# -eq 0 ]; then
+        nvim_code "$@"
+        #~/.config/nvim/tools/script/expect/expect_nvim.sh
+    else
+        nvim "$@"
+    fi
+    proxy_off
+}
+
+function vim1()
+{
+    proxy_on
+
+    # 如果 nvim_code 不存在，则复制 nvim 到 nvim_code
+    if [ ! -f ~/.config/nvim-linux64/bin/nvim_code ]; then
+        cp ~/.config/nvim-linux64/bin/nvim ~/.config/nvim-linux64/bin/nvim_code
+    fi
+
+    #nvim $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
+    #$@表示所有参数!!!
+    # 使用所有传入的参数运行 nvim_code
+    if [ $# -eq 0 ]; then
+        #nvim_code "$@"
         ~/.config/nvim/tools/script/expect/expect_nvim.sh
     else
         nvim "$@"
