@@ -194,9 +194,11 @@ pluginKeys.lsp_map = function()
     map('n', '<leader>r', '<cmd>lua vim.lsp.buf.references()<CR>', opt)
     -- 跳转到定义处,还可以跳转到文件
     map('n', '<C-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
-    map('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
+    --map('n', '<leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
+    map('n', '<leader>d', '<cmd>lua Lsp_definition_and_first()<CR>', opt)
     -- 跳转到头文件声明
-    map('n', '<leader>D', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
+    --map('n', '<leader>D', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
+    map('n', '<leader>D', '<cmd>lua Lsp_declaration_and_first()<CR>', opt)
     -- 关闭诊断,当前行诊断,等待,交换参数位置等常用功能,展开宏定义等
     map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
     -- 格式化 不好用,全乱了
