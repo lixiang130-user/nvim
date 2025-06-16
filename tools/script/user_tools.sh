@@ -459,6 +459,9 @@ function gbk_gb2312_to_utf8_encode_files()
 
 user_trash_name=.trash
 user_trash_dir=~/$user_trash_name
+# 上一次删除时的目录和文件列表
+last_deleted_cwd=""
+last_deleted_files=()
 function rm_fun()
 {
     if [ ! -d "$user_trash_dir" ]; then
@@ -470,6 +473,9 @@ function rm_fun()
         rrm $@
         return $?
     fi
+    # 重置记录
+    last_deleted_cwd="$cur"
+    last_deleted_files=()
 
     files_to_trash=()
     for arg in "$@"; do
@@ -497,6 +503,8 @@ function rm_fun()
                     #echo "回收站存在同名文件夹,删除回收站中的同名文件夹,移动到回收站成功!rrm "$user_trash_dir/$(basename "$file")""
                     rrm "$user_trash_dir/$(basename "$file")"
                 fi
+                # 记录将要删除的文件名
+                last_deleted_files+=("$(basename "$file")")
                 mv "$file" "$user_trash_dir/"
             fi
             #echo "moved to trash: $file"
@@ -504,6 +512,34 @@ function rm_fun()
             echo "rm(trash): cannot remove '$file': no such file or directory"
         fi
     done
+}
+#撤销刚刚删除的操作,恢复文件
+function undo_trash() {
+    # 检查有没有要恢复的
+    if [ -z "$last_deleted_cwd" ] || [ "${#last_deleted_files[@]}" -eq 0 ]; then
+        echo "没有可撤销的删除操作"
+        return
+    fi
+
+    # 恢复文件
+    for file in "${last_deleted_files[@]}"; do
+        local src="$user_trash_dir/$file"
+        local dest="$last_deleted_cwd/$file"
+
+        if [ -e "$src" ]; then
+            # 确保目标目录存在
+            [ -d "$last_deleted_cwd" ] || mkdir -p "$last_deleted_cwd"
+            mv "$src" "$dest"
+            echo "恢复: $dest"
+            #echo "恢复删除: mv "$src" "$dest""
+        else
+            echo "undo_trash: 在回收站找不到 '$file'"
+        fi
+    done
+
+    # 清空记录
+    last_deleted_cwd=""
+    last_deleted_files=()
 }
 function clear_trash()
 {
