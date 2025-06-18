@@ -2,24 +2,28 @@ require('keymaps')
 
 -- 先调 definition、再跳到第一条，最后把列表关掉
 function Lsp_definition_and_first()
-    vim.lsp.buf.definition()
-    vim.defer_fn(function()
-        -- 跳到 quickfix 的第一条
-        vim.cmd('cfirst')
-        -- 关闭 quickfix 窗口
-        vim.cmd('cclose')
-        -- 这里的5毫秒和电脑性能有关,如果体验不好,减小或增大这个值
-    end, 5)
+    vim.lsp.buf.definition({
+        --监听异步的请求返回结果的时候,执行
+        on_list = function(opts)
+            vim.fn.setqflist({}, ' ', opts)
+            -- 跳到 quickfix 的第一条
+            vim.cmd('cfirst')
+            -- 关闭 quickfix 窗口
+            vim.cmd('cclose')
+        end
+    })
 end
 function Lsp_declaration_and_first()
-    vim.lsp.buf.declaration()
-    vim.defer_fn(function()
-        -- 跳到 quickfix 的第一条
-        vim.cmd('cfirst')
-        -- 关闭 quickfix 窗口
-        vim.cmd('cclose')
-        -- 这里的5毫秒和电脑性能有关,如果体验不好,减小或增大这个值
-    end, 5)
+    vim.lsp.buf.declaration({
+        --监听异步的请求返回结果的时候,执行
+        on_list = function(opts)
+            vim.fn.setqflist({}, ' ', opts)
+            -- 跳到 quickfix 的第一条
+            vim.cmd('cfirst')
+            -- 关闭 quickfix 窗口
+            vim.cmd('cclose')
+        end
+    })
 end
 
 
