@@ -308,15 +308,20 @@ function gdb_t113()
 function vim_proxy()
 {
     proxy_on
+    nvim "$@"
+    proxy_off
+}
+
+function vimd()
+{
+    proxy_on
 
     # 如果 nvim_code 不存在，则复制 nvim 到 nvim_code
     if [ ! -f ~/.config/nvim-linux64/bin/nvim_code ]; then
         cp ~/.config/nvim-linux64/bin/nvim ~/.config/nvim-linux64/bin/nvim_code
     fi
 
-    #nvim $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10}
     #$@表示所有参数!!!
-    # 使用所有传入的参数运行 nvim_code
     if [ $# -eq 0 ]; then
         nvim_code "$@"
         #~/.config/nvim/tools/script/expect/expect_nvim.sh
