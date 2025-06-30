@@ -307,6 +307,8 @@ function gdb_t113()
 
 function vim_proxy()
 {
+    vimd $@
+    return
     proxy_on
     nvim "$@"
     proxy_off
