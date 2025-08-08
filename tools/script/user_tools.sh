@@ -521,6 +521,8 @@ function rm_fun()
     done
 }
 #撤销刚刚删除的操作,恢复文件
+alias trash_undo='undo_trash'
+alias rm_trash_undo='undo_trash'
 function undo_trash() {
     # 检查有没有要恢复的
     if [ -z "$last_deleted_cwd" ] || [ "${#last_deleted_files[@]}" -eq 0 ]; then
@@ -645,7 +647,7 @@ path_simplify
 go_proxy_on
 
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-tmp_cddd_path=/home/user/linux/work/kernel/kernel_t113
+tmp_cddd_path=/home/user/linux/work/80/sip_backend/tools/products/sip_panel_ssc337/kernel_ssc337de/bsp/SSC337DE
 tmp_cdd_path=/home/user/linux/work/80/sip_backend
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 alias cddd='cd $tmp_cddd_path ; echo `pwd`'

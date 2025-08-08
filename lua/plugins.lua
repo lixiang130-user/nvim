@@ -183,6 +183,7 @@ require'mason-lspconfig'.setup({
         'bashls',
         --'pylsp',
         'gopls',
+        'ast_grep',
     },
 })
 require'lspconfig'['lua_ls'].setup{ on_attach =  on_attach}
@@ -202,6 +203,7 @@ require'lspconfig'['pyright'].setup{ on_attach =  on_attach}
 --    }}}}},
 --}
 require'lspconfig'['gopls'].setup{ on_attach =  on_attach}
+require'lspconfig'['ast_grep'].setup{ on_attach =  on_attach}
 
 -- lsp 自动补全功能
 local cmp = require'cmp'
