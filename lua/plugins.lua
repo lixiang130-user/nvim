@@ -315,6 +315,7 @@ require('telescope').setup({
             '.cache/',  --添加'/' 修复xxxx_cache文件也会忽略,无法搜索的问题
             'compile_commands.json',
             '*.d',
+            'kernel_ssc337de',  --忽略ssc337内核子仓库
         },
     },
 })
