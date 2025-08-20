@@ -22,6 +22,8 @@ vim.g.maplocalleader = ' '
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
+-- 多行数字加法快捷键
+map('v', '<leader>a', ":'<,'>!awk '{sum+=$1} END{print sum}'<CR>", opt)
 
 -- html格式化,使用ubuntu安装的工具prettier
 map('n', '<leader>h=', ':w<CR>:lua Format_with_prettier()<CR>', opt)
