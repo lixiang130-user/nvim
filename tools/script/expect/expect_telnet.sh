@@ -6,9 +6,11 @@ set timeout 1
 spawn telnet $ip
 expect "login:"
 send "root\r"
+expect "Password:"
+send "comtom@admin\r"
 #send "ulimit -c 40960\r"   #unlimited 不限制大小
 send "ulimit -c unlimited\r"
-#send "echo '/app/comtom/log/coredump_%e' > /proc/sys/kernel/core_pattern"
+send "echo '/app/comtom/log/coredump_%e' > /proc/sys/kernel/core_pattern \r"
 send "tftp 192.168.222.222 -gr \r"
 send "cd /app/comtom/bin/\r"
 #send "killall comtom_app_start.sh 2>>/dev/null\r"

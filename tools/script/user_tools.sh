@@ -200,22 +200,6 @@ function uttelnet()
     ~/.config/nvim/tools/script/expect/expect_telnet.sh $ip | tee -a /tmp/$1_$timestamp.log
 }
 
-function v3s_uttelnet()
-{
-    param1=$1
-    timestamp=$(date +%s)
-    result=$(echo $param1 | grep "\.")
-    if [[ $param1 == *.*.*.* ]]; then   #通配符判断字符串
-        ip=$param1
-    elif [[ "$result" != "" ]]; then    #grep 判断字符串包含
-        ip=192.168.$param1
-    else
-        ip=192.168.222.$param1
-    fi
-    #echo "result:$result ip:$ip"
-    ~/.config/nvim/tools/script/expect/expect_telnet_v3s.sh $ip | tee -a /tmp/$1_$timestamp.log
-}
-
 function vimtl()
 {
     ~/.config/nvim/tools/script/expect/expect_vimtl.sh
