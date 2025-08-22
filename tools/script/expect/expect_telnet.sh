@@ -2,7 +2,7 @@
 #expect_telnet 使用telnet连接设备,自动输入账号密码
 set ip [lindex $argv 0]
 #设置等待超时时间
-set timeout 1
+set timeout 0.5
 spawn telnet $ip
 expect "login:"
 send "root\r"
