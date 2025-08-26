@@ -371,11 +371,11 @@ function make_fun()
         proxy_on
     fi
 
-    if [[ $param1 == "clean" ]]
-    then
-        rm ./compile_commands.json
-        rm -rf ./.cache > /dev/null
-    fi
+    #if [[ $param1 == "clean" ]]
+    #then
+    #    rm ./compile_commands.json
+    #    rm -rf ./.cache > /dev/null
+    #fi
     if [[ $param1 == "clean_all" ]]
     then
         rm ./compile_commands.json
