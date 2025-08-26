@@ -196,8 +196,13 @@ function uttelnet()
     else
         ip=192.168.222.$param1
     fi
-    #echo "result:$result ip:$ip"
-    ~/.config/nvim/tools/script/expect/expect_telnet.sh $ip | tee -a /tmp/$1_$timestamp.log
+
+    param2=$2
+    if [[ "$param2" != "" ]]; then    #grep 判断字符串包含
+        ~/.config/nvim/tools/script/expect/expect_telnet_v3s.sh $ip | tee -a /tmp/$1_$timestamp.log
+    else
+        ~/.config/nvim/tools/script/expect/expect_telnet.sh $ip | tee -a /tmp/$1_$timestamp.log
+    fi
 }
 
 function vimtl()
