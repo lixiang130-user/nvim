@@ -259,6 +259,19 @@ function git_show_big_file()
     git rev-list --all | xargs -rL1 git ls-tree -r --long | sort -uk3 | sort -rnk4
 }
 #GitHub删除某个文件及其提交历史记录
+#GitHub删除某个文件及其提交历史记录
+function git_delete_file_v1()
+{
+    param1=$1
+    echo "GitHub删除某个文件及其提交历史记录:"$param1
+    # 删除包括历史
+    git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch '$param1 \
+        --prune-empty --tag-name-filter cat -- --all
+    # 同步到远程
+    echo "同步到远程仓库,请执行(若失败则不是在git根目录调用的本功能指令):"
+    echo "git push origin master --force"
+    git push origin master --force
+}
 function git_delete_file()
 {
     param1=$1
