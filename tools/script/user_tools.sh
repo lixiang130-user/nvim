@@ -198,9 +198,11 @@ function uttelnet()
     fi
 
     param2=$2
-    if [[ "$param2" != "" ]]; then    #grep 判断字符串包含
+    if [[ "$param2" == "s" ]]; then    #ssc337
+        ~/.config/nvim/tools/script/expect/expect_telnet_ssc337.sh $ip | tee -a /tmp/$1_$timestamp.log
+    elif [[ "$param2" != "" ]]; then    #v3s
         ~/.config/nvim/tools/script/expect/expect_telnet_v3s.sh $ip | tee -a /tmp/$1_$timestamp.log
-    else
+    else    #t113
         ~/.config/nvim/tools/script/expect/expect_telnet.sh $ip | tee -a /tmp/$1_$timestamp.log
     fi
 }
@@ -649,8 +651,10 @@ path_simplify
 go_proxy_on
 
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-tmp_cddd_path=/home/user/linux/work/80/sip_backend/tools/products/sip_panel_ssc337/kernel_ssc337de/bsp/SSC337DE
 tmp_cdd_path=/home/user/linux/work/80/sip_backend
+tmp_cddd_path=/home/user/linux/work/80/sip_backend_speak
+tmp_cdddd_path=/home/user/linux/work/80/sip_backend/tools/products/sip_panel_ssc337/kernel_ssc337de/bsp/SSC337DE
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 alias cddd='cd $tmp_cddd_path ; echo `pwd`'
+alias cdddd='cd $tmp_cdddd_path ; echo `pwd`'
 
