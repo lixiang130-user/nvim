@@ -316,6 +316,7 @@ require('telescope').setup({
             'compile_commands.json',
             '*.d',
             'kernel_ssc337de',  --忽略ssc337内核子仓库
+            'build*',
         },
     },
 })

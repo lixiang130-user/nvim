@@ -652,9 +652,7 @@ go_proxy_on
 
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
 tmp_cdd_path=/home/user/linux/work/80/sip_backend
-tmp_cddd_path=/home/user/linux/work/80/sip_backend_speak
-tmp_cdddd_path=/home/user/linux/work/80/sip_backend/tools/products/sip_panel_ssc337/kernel_ssc337de/bsp/SSC337DE
+tmp_cddd_path=/home/user/linux/work/80/sip_backend/tools/products/sip_panel_ssc337/kernel_ssc337de/bsp/SSC337DE
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 alias cddd='cd $tmp_cddd_path ; echo `pwd`'
-alias cdddd='cd $tmp_cdddd_path ; echo `pwd`'
 
