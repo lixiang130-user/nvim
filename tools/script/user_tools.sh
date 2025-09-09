@@ -203,7 +203,7 @@ function uttelnet()
     elif [[ "$param2" != "" ]]; then    #v3s
         ~/.config/nvim/tools/script/expect/expect_telnet_v3s.sh $ip | tee -a /tmp/$1_$timestamp.log
     else    #t113
-        ~/.config/nvim/tools/script/expect/expect_telnet.sh $ip | tee -a /tmp/$1_$timestamp.log
+        ~/.config/nvim/tools/script/expect/expect_telnet_t113.sh $ip | tee -a /tmp/$1_$timestamp.log
     fi
 }
 
