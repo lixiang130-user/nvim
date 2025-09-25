@@ -45,6 +45,22 @@ require('packer').startup(function()
     use 'lfv89/vim-interestingwords'
     -- leap 快速跳转搜索
     use {'ggandor/leap.nvim', requires = {'tpope/vim-repeat',}}
+
+    -- windsurf ai智能编程工具,免费不需要api key
+    -- 会打开浏览器，要求登录 Codeium 帐号 ,登录后会生成一个 Token, 将 Token 复制回 Neovim 的提示框，完成认证
+    -- :Codeium Auth
+    -- 或者访问网站,获取toekn,5分钟的有效期
+    -- https://www.codeium.com/profile?response_type=token&redirect_uri=vim-show-auth-token&state=a&scope=openid%20profile%20email&redirect_parameters_type=query
+    -- 查看token状态
+    -- :Codeium AuthStatus
+    use {
+        'Exafunction/windsurf.vim',
+        config = function()
+            -- 禁用默认快捷键（可选）
+            vim.g.codeium_disable_bindings = 1
+        end
+    }
+
 end)
 
 --leap 使用s/S char1 char2 即可跳转到对应位置, 多个字符是,会展示字符,选择字母跳转过去
@@ -169,23 +185,65 @@ require'mason'.setup({
         },
     },
 })
--- 按键映射
+
+
+
+-- 确保 mason 已 setup
+require('mason').setup()
+require('mason-lspconfig').setup {
+    ensure_installed = { "lua_ls", "clangd", "bashls", "pyright", "gopls", "ast_grep" },
+    -- automatic_installation = true, -- 若想自动安装未安装的服务器可启用
+}
+
+-- on_attach 回调
 local on_attach = function(client, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  require('keymaps').lsp_map()
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    require('keymaps').lsp_map()
 end
--- 支持解析的语法, 确保安装,根据需要填写, 可以改成循环的方式,暂时不实现了
-require'mason-lspconfig'.setup({
-    ensure_installed = {
-        'lua_ls',
-        'pyright',
-        'clangd',
-        'bashls',
-        --'pylsp',
-        'gopls',
-        'ast_grep',
+
+-- 可选：capabilities（用于 cmp）
+local ok_cmp, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+local capabilities = ok_cmp and cmp_nvim_lsp.default_capabilities() or nil
+
+local servers = { "lua_ls", "clangd", "bashls", "pyright", "gopls", "ast_grep" }
+
+for _, name in ipairs(servers) do
+    -- 注册/扩展该 LSP 的配置（不要调用 .setup）
+    vim.lsp.config(name, {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        -- 这里可以加其他 server 特定字段，例如 settings、cmd、filetypes 等
+        -- settings = { ... }
+    })
+
+    -- 启用该配置，使其在匹配 filetype 的 buffer 打开时自动激活
+    vim.lsp.enable(name)
+end
+
+-- pylsp 可选配置
+--[[
+lspconfig.pylsp.setup{
+    on_attach = on_attach,
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    maxLineLength = 300,
+                    ignore = {
+                        'W391','E401','E265','E262','E128','E231','E402',
+                        'E123','E126','E225','E701','E261','E226','W291',
+                        'W293','E251','E127','E227','E241','W503','E124',
+                        'E201','E221','W504','W605','E125','E275','E703',
+                        'E302','E301','E501',
+                    },
+                },
+            },
+        },
     },
-})
+}
+--]]
+-- 旧版本注释掉
+--[[
 require'lspconfig'['lua_ls'].setup{ on_attach =  on_attach}
 require'lspconfig'['clangd'].setup{ on_attach =  on_attach}
 require'lspconfig'['bashls'].setup{ on_attach =  on_attach}
@@ -204,6 +262,7 @@ require'lspconfig'['pyright'].setup{ on_attach =  on_attach}
 --}
 require'lspconfig'['gopls'].setup{ on_attach =  on_attach}
 require'lspconfig'['ast_grep'].setup{ on_attach =  on_attach}
+--]]
 
 -- lsp 自动补全功能
 local cmp = require'cmp'
