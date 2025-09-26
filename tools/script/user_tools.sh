@@ -648,7 +648,7 @@ function codecheck()
 }
 
 #通义灵码 安装
-function install_tongyilingma()
+function install_iflow()
 {
     #安装nvm
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.6/install.sh | bash
@@ -663,6 +663,13 @@ function install_tongyilingma()
     npm install -g @iflow-ai/iflow-cli
     iflow --help   # 测试是否可用
     #常用iflow chat / iflow code
+
+    #常见使用方式:
+    #生成代码        iflow -p "帮我写一个冒泡排序的 Python 函数"
+    #修改已有代码    iflow -m "把这个函数改成大括号独占行风格" path/to/file.c
+    #代码分析        iflow -a path/to/file
+    #文档生成        iflow -d path/to/file.py
+
 }
 #设置通义灵码的key,https://iflow.cn/     https://platform.iflow.cn/docs/
 export IFLOW_apiKey="sk-c706841c8638b1598ba52087ce9f0e2e"
