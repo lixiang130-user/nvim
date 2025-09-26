@@ -647,6 +647,26 @@ function codecheck()
 
 }
 
+#通义灵码 安装
+function install_tongyilingma()
+{
+    #安装nvm
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.6/install.sh | bash
+    source ~/.bashrc      # 如果你用 bash
+    #更新node.js
+    nvm install 20
+    nvm use 20
+    node -v      # 应该显示 >=20.0.0
+    npm -v       # 检查 npm 版本
+
+    #安装 通义灵码
+    npm install -g @iflow-ai/iflow-cli
+    iflow --help   # 测试是否可用
+    #常用iflow chat / iflow code
+}
+#设置通义灵码的key,https://iflow.cn/     https://platform.iflow.cn/docs/
+export IFLOW_apiKey="sk-c706841c8638b1598ba52087ce9f0e2e"
+
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
 #proxy_on    #开启了代理能google翻译了
