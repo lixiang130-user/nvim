@@ -45,22 +45,6 @@ require('packer').startup(function()
     use 'lfv89/vim-interestingwords'
     -- leap 快速跳转搜索
     use {'ggandor/leap.nvim', requires = {'tpope/vim-repeat',}}
-
-    -- windsurf ai智能编程工具,免费不需要api key
-    -- 会打开浏览器，要求登录 Codeium 帐号 ,登录后会生成一个 Token, 将 Token 复制回 Neovim 的提示框，完成认证
-    -- :Codeium Auth
-    -- 或者访问网站,获取toekn,5分钟的有效期
-    -- https://www.codeium.com/profile?response_type=token&redirect_uri=vim-show-auth-token&state=a&scope=openid%20profile%20email&redirect_parameters_type=query
-    -- 查看token状态
-    -- :Codeium AuthStatus
-    use {
-        'Exafunction/windsurf.vim',
-        config = function()
-            -- 禁用默认快捷键（可选）
-            vim.g.codeium_disable_bindings = 1
-        end
-    }
-
 end)
 
 --leap 使用s/S char1 char2 即可跳转到对应位置, 多个字符是,会展示字符,选择字母跳转过去
