@@ -427,7 +427,8 @@ avante.setup({
     providers = {
         ollama = {
             endpoint = "http://192.168.222.222:11434", -- 你的 Ollama 服务地址（保持和 curl 测试一致）
-            model = "qwen2.5-coder:7b",                 -- 你要用的模型
+            --model = "qwen2.5-coder:7b",                 -- 你要用的模型
+            model = "qwen3:4b",                 -- 你要用的模型
             -- 如果 Ollama 不需要 key，设成空字符串 ""；如果需要认证，可以写 "OLLAMA_API_KEY"
             api_key_name = "OLLAMA_API_KEY",
             -- 如果 avante 读取 env 有问题，可以用下面这个临时覆盖，见 issue #2130 的建议
