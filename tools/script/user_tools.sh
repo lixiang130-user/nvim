@@ -647,32 +647,30 @@ function codecheck()
 
 }
 
-#通义灵码 安装
-function install_iflow()
+#本地ollama依赖安装
+function install_env_ai_avante_ollama()
 {
-    #安装nvm
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.6/install.sh | bash
-    source ~/.bashrc      # 如果你用 bash
-    #更新node.js
-    nvm install 20
-    nvm use 20
-    node -v      # 应该显示 >=20.0.0
-    npm -v       # 检查 npm 版本
+    # 在 WSL 下执行
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    source $HOME/.cargo/env
+    # 验证
+    cargo --version
+    cd ~/.local/share/nvim/site/pack/packer/start/avante.nvim/
+    bash build.sh
 
-    #安装 通义灵码
-    npm install -g @iflow-ai/iflow-cli
-    iflow --help   # 测试是否可用
-    #常用iflow chat / iflow code
-
-    #常见使用方式:
-    #生成代码        iflow -p "帮我写一个冒泡排序的 Python 函数"
-    #修改已有代码    iflow -m "把这个函数改成大括号独占行风格" path/to/file.c
-    #代码分析        iflow -a path/to/file
-    #文档生成        iflow -d path/to/file.py
+    # 插件目录（根据你的实际路径）
+    PLUGIN_DIR="$HOME/.local/share/nvim/site/pack/packer/start/avante.nvim"
+    # Avante 实际查找的模板目录
+    TARGET_DIR="$HOME/.cache/nvim/avante"
+    # 确保目标目录存在
+    mkdir -p "$TARGET_DIR"
+    # 复制插件自带模板到运行时目录
+    cp -rv "$PLUGIN_DIR/avante_templates/." "$TARGET_DIR/"
+    # 确认内容
+    echo "=== $TARGET_DIR 内容 ==="
+    ls -la "$TARGET_DIR"
 
 }
-#设置通义灵码的key,https://iflow.cn/     https://platform.iflow.cn/docs/
-export IFLOW_apiKey="sk-c706841c8638b1598ba52087ce9f0e2e"
 
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译

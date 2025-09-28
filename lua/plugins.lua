@@ -45,6 +45,20 @@ require('packer').startup(function()
     use 'lfv89/vim-interestingwords'
     -- leap 快速跳转搜索
     use {'ggandor/leap.nvim', requires = {'tpope/vim-repeat',}}
+    -- ollama 本地ai 助手
+    -- 使用方式: windows下
+    -- 1.setx OLLAMA_HOST "0.0.0.0",注销重新登录, 
+    -- 2.wsl下:curl http://192.168.222.222:11434/api/tags
+    -- 3.环境配置调用指令:install_env_ai_avante_ollama 
+    -- 4.vim中执行":AvanteBuild"
+    use {"MunifTanjim/nui.nvim"}
+    use {
+        "yetone/avante.nvim",
+        requires = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+        },
+    }
 end)
 
 --leap 使用s/S char1 char2 即可跳转到对应位置, 多个字符是,会展示字符,选择字母跳转过去
@@ -360,6 +374,66 @@ require('telescope').setup({
             '*.d',
             'kernel_ssc337de',  --忽略ssc337内核子仓库
             'build*',
+        },
+    },
+})
+
+
+-- avante ai 插件
+-- -- 在 require('avante') 之前设置
+vim.env.AVANTE_NO_OPENAI = "1"
+vim.env.AVANTE_NO_ANTHROPIC = "1"
+-- 保险起见设置一个占位 Key（避免插件尝试写入时报错）
+vim.env.ANTHROPIC_API_KEY = "ANYSTRING"
+vim.env.OLLAMA_API_KEY = "ANYSTRING"
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+local avante = require('avante')
+avante.setup({
+    -- 超时时间
+    timeout = 60,  -- 秒
+    -- 可选：日志级别
+    log_level = "info",
+
+    -- 代码相关设置
+    code = {
+        lint = true,
+        -- 支持的文件类型
+        filetypes = { "c", "cpp", "python", "lua", "sh", "go", "javascript", "typescript" },
+        -- 快捷键示例
+        keymaps = {
+            -- 在普通模式下选中一段代码，按 <leader>ac 调用 AI 检查/改进
+            check_code = "<leader>ac",
+            -- 生成代码示例
+            generate_code = "<leader>cg",  -- 改成空格 c g，避免与已有 <Space>a 前缀冲突
+        },
+    },
+    -- 对话相关
+    chat = {
+        enable = true,
+        backend = "ollama",
+        backends = { "ollama" },
+        keymaps = {
+            -- 打开 Avante 的聊天窗口，用来和 Ollama 进行对话
+            open_chat = "<leader>aa",
+            -- Ctrl + Enter 当你在聊天窗口输入完内容，按这个组合键，内容会发送给 Ollama 并显示回复
+            send_message = "<C-Enter>",
+        },
+    },
+
+    -- **必须**指明使用哪个 provider（否则可能回退到其它 provider）
+    provider = "ollama",
+    -- providers 配置（新版文档/示例中使用 providers 或 vendors）
+    providers = {
+        ollama = {
+            endpoint = "http://192.168.222.222:11434", -- 你的 Ollama 服务地址（保持和 curl 测试一致）
+            model = "qwen2.5-coder:7b",                 -- 你要用的模型
+            -- 如果 Ollama 不需要 key，设成空字符串 ""；如果需要认证，可以写 "OLLAMA_API_KEY"
+            api_key_name = "OLLAMA_API_KEY",
+            -- 如果 avante 读取 env 有问题，可以用下面这个临时覆盖，见 issue #2130 的建议
+            -- parse_api_key = function() return vim.env.OLLAMA_API_KEY end,
+            -- 关闭工具（许多本地模型不支持 tools）
+            disable_tools = true,
         },
     },
 })

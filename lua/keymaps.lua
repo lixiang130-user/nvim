@@ -22,6 +22,22 @@ vim.g.maplocalleader = ' '
 local map = vim.api.nvim_set_keymap
 local opt = { noremap = true, silent = true }
 
+vim.keymap.set('n', '<leader>cg', function()
+  local prompt = "Replace with a minimal C Hello World program. Output only the code."
+  local cmd = string.format(
+    'curl -s -X POST -H "Content-Type: application/json" -d \'{"model":"qwen2.5-coder:7b","prompt":"%s"}\' http://192.168.222.222:11434/api/completions',
+    prompt
+  )
+  local output = vim.fn.system(cmd)
+
+  -- 插入到当前 buffer
+  vim.api.nvim_buf_set_option(0, 'modifiable', true)
+  vim.cmd('normal! gg"_dG')  -- 删除原有内容
+  vim.api.nvim_put({output}, 'l', true, true)
+  vim.cmd('write')
+end, { desc = "Generate C Hello World via Ollama" })
+
+
 -- 多行数字加法快捷键
 map('v', '<leader>a', ":'<,'>!awk '{sum+=$1} END{print sum}'<CR>", opt)
 
