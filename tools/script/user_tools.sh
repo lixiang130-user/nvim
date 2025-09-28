@@ -647,31 +647,6 @@ function codecheck()
 
 }
 
-#本地ollama依赖安装
-function install_env_ai_avante_ollama()
-{
-    # 在 WSL 下执行
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    source $HOME/.cargo/env
-    # 验证
-    cargo --version
-    cd ~/.local/share/nvim/site/pack/packer/start/avante.nvim/
-    bash build.sh
-
-    # 插件目录（根据你的实际路径）
-    PLUGIN_DIR="$HOME/.local/share/nvim/site/pack/packer/start/avante.nvim"
-    # Avante 实际查找的模板目录
-    TARGET_DIR="$HOME/.cache/nvim/avante"
-    # 确保目标目录存在
-    mkdir -p "$TARGET_DIR"
-    # 复制插件自带模板到运行时目录
-    cp -rv "$PLUGIN_DIR/avante_templates/." "$TARGET_DIR/"
-    # 确认内容
-    echo "=== $TARGET_DIR 内容 ==="
-    ls -la "$TARGET_DIR"
-
-}
-
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
 #proxy_on    #开启了代理能google翻译了
