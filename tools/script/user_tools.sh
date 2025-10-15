@@ -12,6 +12,8 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u:\[\033[01;34m\]\W\[\033
 alias vim=vim_proxy
 alias vi=nvim
 alias ll='ls -a -l'
+alias lls='ls -lhS'     #从大到小排列
+alias llsr='ls -lhSr'   #从小到大排列
 alias rmake='"make"'
 alias make='make_fun'
 alias rrm='"rm" -rf'
@@ -205,8 +207,8 @@ function uttelnet()
     elif [[ "$param2" == "t" ]]; then    #t113
         ~/.config/nvim/tools/script/expect/expect_telnet_t113.sh $ip | tee -a /tmp/$1_$timestamp.log
     else    #337
-        #~/.config/nvim/tools/script/expect/expect_telnet_ssc337.sh $ip | tee -a /tmp/$1_$timestamp.log
-        ~/.config/nvim/tools/script/expect/expect_telnet_t113.sh $ip | tee -a /tmp/$1_$timestamp.log
+        ~/.config/nvim/tools/script/expect/expect_telnet_ssc337.sh $ip | tee -a /tmp/$1_$timestamp.log
+        #~/.config/nvim/tools/script/expect/expect_telnet_t113.sh $ip | tee -a /tmp/$1_$timestamp.log
     fi
 }
 
