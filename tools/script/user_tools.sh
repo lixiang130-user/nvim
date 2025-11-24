@@ -19,6 +19,7 @@ alias make='make_fun'
 alias rrm='"rm" -rf'
 alias rm='rm_fun'
 #alias make='bear --append -- make'
+alias e='explorer.exe .'
 
 #bash进入vi模式,set -o可以查看值,-o配置键位,+o 设置值
 alias vibash_on='set -o vi'
@@ -657,7 +658,7 @@ go_proxy_on
 
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
 tmp_cdd_path=/home/user/linux/work/80/sip_backend
-tmp_cddd_path=/home/user/linux/work/80/sip_backend/tools/products/sip_panel_ssc337/kernel_ssc337de/bsp/SSC337DE
+tmp_cddd_path=/home/user/linux/work/80/sip_backend/self_libs/sdk/platform_star
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 alias cddd='cd $tmp_cddd_path ; echo `pwd`'
 
