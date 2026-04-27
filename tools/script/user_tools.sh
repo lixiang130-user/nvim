@@ -658,7 +658,7 @@ go_proxy_on
 
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
 tmp_cdd_path=/home/user/linux/mytools/tools/python/kelly_qihuo/v1
-tmp_cddd_path=/home/user/linux/mytools
+tmp_cddd_path=/mnt/c/Users/13097/AppData/Roaming/InfiniTrader_WxyAllProgramX64/pyStrategy
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 alias cddd='cd $tmp_cddd_path ; echo `pwd`'
 
