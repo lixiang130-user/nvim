@@ -653,12 +653,12 @@ function codecheck()
 ###########################默认启动执行程序#############################
 #google_translator_vim_on   #默认打开google翻译
 #proxy_on    #开启了代理能google翻译了
-path_simplify
+#path_simplify
 go_proxy_on
 
 #常用的临时自定义工作目录,修改路径,直接进入到这个目录里
-tmp_cdd_path=/home/user/linux/mytools/tools/python/kelly_qihuo/v1
-tmp_cddd_path=/mnt/c/Users/13097/AppData/Roaming/InfiniTrader_WxyAllProgramX64/pyStrategy
+tmp_cdd_path=/mnt/c/Users/13097/AppData/Roaming/InfiniTrader_WxyAllProgramX64/pyStrategy
+tmp_cddd_path=/home/user/linux/mytools/tools/python/kelly_qihuo/v1
 alias cdd='cd $tmp_cdd_path ; echo `pwd`'
 alias cddd='cd $tmp_cddd_path ; echo `pwd`'
 
